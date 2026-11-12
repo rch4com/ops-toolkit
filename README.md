@@ -72,9 +72,10 @@ ops-toolkit/
 ## 3. 유틸리티 카탈로그 (Tool Catalog)
 
 ### PowerShell Scripts (`scripts/`)
-| 카테고리 | 스크립트명 | 경로 | 설명 | 호환 버전 | Dry-Run 지원 |
+| 카테고리 | 스크립트/도구명 | 경로 | 설명 | 호환 버전 | Dry-Run 지원 |
 | :--- | :--- | :--- | :--- | :---: | :---: |
 | `iis` | **[Remove-ExpiredIISCertificate](./scripts/iis/Remove-ExpiredIISCertificate/README.md)** | `scripts/iis/Remove-ExpiredIISCertificate/` | IIS 및 HTTP.sys 바인딩을 전수 확인하여 만료된 미바인딩 인증서만 안전하게 조회/삭제 및 현재 폴더 하위 CSV 리포트 생성 | PS 5.1 / 7+ | O (`-List`, `-Execute -WhatIf`) |
+| `scheduler` | **[PSJobScheduler](./scripts/scheduler/PSJobScheduler/README.md)** | `scripts/scheduler/PSJobScheduler/` | 파일명 기반 Cron-Safe(`X`, `@`, `L`) 표기로 PowerShell 작업을 주기 실행하며 타임아웃, 서킷 브레이커, 재시도, NSSM Windows 서비스 등록 지원 | PS 5.1 / 7+ | O (`-WhatIf`, `-RunOnce`, `Test-CronSchedule`) |
 | `modules` | `OpsCommon` (예정) | `scripts/modules/` | 공통 로깅 및 운영 안전 헬퍼 모듈 | PS 7+ | - |
 
 ### C# .NET 10 CLI Tools (`src/`)
