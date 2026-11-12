@@ -1,0 +1,22 @@
+# PLAN.md — MIPLabelCustomCheck
+
+- [x] **Step 1: 기존 저장소(`D:\Sources\github\MIPLabelCustomCheck`) 분석 및 요구사항 인터뷰**
+  - 프로젝트 구조(`MIPLabelCustomCheck`, `MIPLabelCustomCheck.Explorer`, `MIPLabelCustomCheck.Benchmarks`, 단위 테스트 2종) 확인
+  - 사용자 인터뷰를 통해 `src/MIPLabelCustomCheck/` 배치, WPF GUI + CLI 하이브리드 지원, 벤치마크 포함, 기존 저장소 이전 공지 확정
+- [x] **Step 2: 인터뷰 기반 6대 필수 문서 생성 (`src/MIPLabelCustomCheck/`)**
+  - `README.md`, `AGENTS.md`, `INTENT.md`, `SPEC.md`, `PLAN.md`, `REVIEW.md` 작성
+- [x] **Step 3: 코어 라이브러리, Explorer(WPF+CLI), 벤치마크 및 픽스처 이관 (.NET 10 업그레이드)**
+  - `src/MIPLabelCustomCheck/Fixtures/`에 샘플 `MIP Label.*` 8종 복사
+  - `src/MIPLabelCustomCheck/MIPLabelCustomCheck/` 코어 라이브러리 이관 (`net10.0`)
+  - `src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/` 이관 (`net10.0-windows`) 및 CLI 하이브리드(`CliOptions`, `CliRunner`) 추가
+  - `src/MIPLabelCustomCheck/MIPLabelCustomCheck.Benchmarks/` 이관 (`net10.0`)
+- [x] **Step 4: 단위 테스트 2종 이관 및 CLI 테스트 추가 (`tests/dotnet/`)**
+  - `tests/dotnet/MIPLabelCustomCheck.Tests/` 이관 (`net10.0`)
+  - `tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/` 이관 (`net10.0-windows`) 및 CLI 하이브리드 단위 테스트 추가
+- [x] **Step 5: 2-Tier 솔루션(`MIPLabelCustomCheck.sln` & 루트 `OpsToolkit.slnx`) 구성 및 검증**
+  - `src/MIPLabelCustomCheck/MIPLabelCustomCheck.sln` 생성 (시작 프로젝트: `MIPLabelCustomCheck.Explorer`)
+  - 루트 `OpsToolkit.slnx`에 신규 프로젝트 및 테스트 등록
+  - `dotnet build -warnaserror`, `dotnet test --nologo` 전체 통과 확인 및 루트 `README.md` 카탈로그 등록
+- [x] **Step 6: 기존 `D:\Sources\github\MIPLabelCustomCheck` 저장소 이전 안내 업데이트 및 양쪽 저장소 커밋/푸시**
+  - `D:\Sources\github\MIPLabelCustomCheck\README.md`에 `ops-toolkit` 이전 및 사용 중단 안내 작성 후 커밋·푸시
+  - `ops-toolkit` 변경사항 분리 커밋 및 푸시
