@@ -1,0 +1,26 @@
+# PLAN.md — LdapAuthTester
+
+- [x] **Step 1: 요구사항 분석 및 사용자 인터뷰**
+  - 기존 `art.CNR.LdapAuthTest` 코드 분석 (사내 의존성 `art.CNR.Common`, 고객사 빌드 설정 확인)
+  - 사용자 인터뷰를 통해 하이브리드(WinForms GUI + CLI) 구조, 도구명(`LdapAuthTester`), 3대 표준 검증 방식(`DirectoryEntry`, `PrincipalContext`, `LdapConnection`), `--dry-run` TCP 사전 점검 사양 확정
+- [x] **Step 2: 인터뷰 기반 6대 필수 문서 생성**
+  - `src/LdapAuthTester/` 하위에 `README.md`, `AGENTS.md`, `INTENT.md`, `SPEC.md`, `PLAN.md`, `REVIEW.md` 작성
+- [x] **Step 3: 프로젝트 스캐폴딩 및 핵심 도메인/서비스 구현 (`src/LdapAuthTester/`)**
+  - `.NET 10` (`net10.0-windows`) 기반 `LdapAuthTester.csproj` 생성 (`Directory.Build.props` 준수)
+  - `Models/AdAuthModels.cs`: 요청/결과/환경 모델 및 열거형 정의 (Nullable 활성화 및 JSON 직렬화 친화적 구조)
+  - `Services/AdAuthChecker.cs`:
+    - 도메인/DC/현재 사용자 환경 자동 감지 (`GetCurrentEnvironmentInfo`)
+    - 3가지 표준 인증 방식(`DirectoryEntry`, `PrincipalContext`, `LdapConnection`) 구현
+    - `--dry-run` 모드용 TCP 포트 연결성 점검 구현 (`CancellationToken` 지원)
+    - LDAP Extended Error(`data 52e`, `775` 등), `LdapException`, Win32 오류 코드 정밀 파싱 및 계정 잠금 방지 스킵 로직 구현
+- [x] **Step 4: 하이브리드 진입점(CLI 파서 + WinForms GUI) 구현**
+  - `Cli/CliOptions.cs` 및 `Cli/CliRunner.cs`: CLI 인자 파싱, `--dry-run`, `--env-only`, `--json`, `--password-env`, `CancellationToken`(`Ctrl+C`) 연동 및 종료 코드(`0`, `1`, `2`) 처리
+  - `MainForm.cs` & `MainForm.Designer.cs`: .NET 10 WinForms UI 구성 (환경 조회, 인증 검증 실행, Dry-Run 사전 연결 점검 버튼, 로그 복사/지우기)
+  - `Program.cs`: 인자 유무에 따른 GUI / CLI 분기 처리
+- [x] **Step 5: xUnit 단위 테스트 작성 및 검증 (`tests/dotnet/LdapAuthTester.Tests/`)**
+  - LDAP 에러 코드 파싱(`52e`, `775`, `532`, 서버 연결 실패, SSL 오류 등) 테스트
+  - 자격 증명 실패 시 2차 프로토콜 자동 생략(계정 잠금 방지) 및 네트워크 실패 시 계속 진행 테스트
+  - `--dry-run` 동작 및 CLI 인자 파서(`CliOptions`) 유효성/종료 코드 검증 테스트
+- [x] **Step 6: 빌드, 포맷, 테스트 검증 및 카탈로그 등록 (`REVIEW.md`)**
+  - `dotnet build -warnaserror`, `dotnet format --verify-no-changes`, `dotnet test --nologo` 실행 및 검증
+  - 루트 `README.md` 카탈로그 업데이트 및 `REVIEW.md` 최종 체크리스트 기록
