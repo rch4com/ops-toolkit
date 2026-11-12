@@ -1,8 +1,13 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/LdapAuthTester/LdapAuthTester.csproj" />
+    <Project Path="src/MIPLabelCustomCheck/MIPLabelCustomCheck/MIPLabelCustomCheck.csproj" />
+    <Project Path="src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/MIPLabelCustomCheck.Explorer.csproj" />
+    <Project Path="src/MIPLabelCustomCheck/MIPLabelCustomCheck.Benchmarks/MIPLabelCustomCheck.Benchmarks.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/dotnet/LdapAuthTester.Tests/LdapAuthTester.Tests.csproj" />
+    <Project Path="tests/dotnet/MIPLabelCustomCheck.Tests/MIPLabelCustomCheck.Tests.csproj" />
+    <Project Path="tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/MIPLabelCustomCheck.Explorer.Tests.csproj" />
   </Folder>
 </Solution>

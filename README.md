@@ -83,6 +83,7 @@ ops-toolkit/
 | 도구명 | 경로 | 설명 | Dry-Run 지원 |
 | :--- | :--- | :--- | :---: |
 | **[LdapAuthTester](./src/LdapAuthTester/README.md)** | `src/LdapAuthTester/` | Active Directory 도메인 조인 감지 및 LDAP(389)/LDAPS(636) 연결성·인증 검증 하이브리드(WinForms GUI + CLI) 도구 (계정 잠금 방지 및 3종 표준 바인딩 지원) | O (`--dry-run`, GUI 사전 포트 점검) |
+| **[MIPLabelCustomCheck](./src/MIPLabelCustomCheck/README.md)** | `src/MIPLabelCustomCheck/` | MIP SDK 없이 Office, PDF, 이미지(PNG/JPEG/TIFF), 이메일(MSG/EML)의 Microsoft Purview 민감도 레이블 GUID 및 보호 상태를 고속 검출하는 무의존성 라이브러리 + 하이브리드(WPF Explorer GUI + CLI) 도구 | O (`--dry-run`) |
 | `OpsToolkit.Shared` (예정) | `src/OpsToolkit.Shared` | CLI 공통 옵션 및 출력 포맷 라이브러리 | - |
 
 ---
