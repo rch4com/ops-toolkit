@@ -8,11 +8,12 @@
 ## 로컬 빌드, 실행 및 테스트 명령어
 
 ```powershell
-# 1. 프로젝트 빌드 (경고를 오류로 처리)
-dotnet build .\src\LdapAuthTester\LdapAuthTester.csproj -warnaserror
+# 1. 도구 전용 솔루션(LdapAuthTester.sln) 빌드 및 테스트 (Visual Studio 단독 오픈 가능)
+dotnet build .\src\LdapAuthTester\LdapAuthTester.sln -warnaserror
+dotnet test .\src\LdapAuthTester\LdapAuthTester.sln --nologo
 
 # 2. 코드 포맷 검증
-dotnet format .\src\LdapAuthTester\LdapAuthTester.csproj --verify-no-changes
+dotnet format .\src\LdapAuthTester\LdapAuthTester.sln --verify-no-changes
 
 # 3. CLI 도움말 및 환경 감지 실행
 dotnet run --project .\src\LdapAuthTester\LdapAuthTester.csproj -- --help

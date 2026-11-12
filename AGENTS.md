@@ -43,12 +43,13 @@ ops-toolkit/
 ├── Directory.Build.props            # .NET 10 공통 빌드 설정
 ├── global.json                      # .NET 10 SDK 버전 정책
 ├── .editorconfig                    # C# / PowerShell 코드 스타일 및 인코딩 규칙
+├── OpsToolkit.slnx                  # [전체 통합용] 저장소 전체 C# 빌드/테스트/포맷 솔루션
 ├── scripts/                         # PowerShell 7 (pwsh) 스크립트 및 모듈
 │   ├── modules/                     # 공통 모듈 (예: OpsCommon)
 │   └── <category>/<ToolName>/       # 개별 PowerShell 도구 폴더 (코드 + 필수 6대 문서 세트)
-├── src/                             # C# (.NET 10) CLI 애플리케이션 및 라이브러리
+├── src/                             # C# (.NET 10) CLI/GUI 애플리케이션 및 라이브러리
 │   ├── OpsToolkit.Shared/           # 공통 유틸리티/로깅/설정 라이브러리
-│   └── <ToolName>/                  # 개별 C# CLI 도구 폴더 (코드 + 필수 6대 문서 세트)
+│   └── <ToolName>/                  # 개별 C# 도구 폴더 (<ToolName>.sln + 코드 + 필수 6대 문서 세트)
 ├── tests/                           # 자동화 테스트
 │   ├── powershell/                  # Pester 테스트 (*.Tests.ps1)
 │   └── dotnet/                      # xUnit 테스트 (*.Tests.csproj)
@@ -139,7 +140,10 @@ pwsh -NoProfile -File .\scripts\<category>\<ScriptName>.ps1 -WhatIf
      4) *상태를 변경/삭제하는 작업이 포함되어 있나요? (안전장치 `-WhatIf` / `--dry-run` 범위 확인)*
 2. **Step 2 — 6대 문서 초안 생성 및 컨펌**:
    - 인터뷰 결과를 바탕으로 해당 도구 폴더에 `README.md`, `AGENTS.md`, `INTENT.md`, `SPEC.md`, `PLAN.md`, `REVIEW.md`를 생성합니다 (`docs/templates/` 참고).
-3. **Step 3 — 구현 및 단위 테스트**:
+3. **Step 3 — 구현 및 단위 테스트 (2-Tier 솔루션 구성)**:
    - 확정된 `SPEC.md`와 `PLAN.md`에 따라 코드를 구현하고 `tests/`에 테스트를 작성합니다.
+   - **C# 도구의 경우 2-Tier 솔루션을 함께 구성합니다**:
+     - **개별 실행용 (`src/<ToolName>/<ToolName>.sln`)**: Visual Studio에서 단독으로 열어 즉시 `F5` 실행/디버깅할 수 있도록 해당 도구 프로젝트(첫 번째 시작 프로젝트)와 대응 테스트 프로젝트(`tests/dotnet/<ToolName>.Tests`)를 묶은 표준 `.sln` 파일을 도구 폴더 내에 생성합니다.
+     - **전체 통합용 (루트 `OpsToolkit.slnx`)**: 루트에서 `dotnet build`, `dotnet test` 일괄 검증이 동작하도록 신규 도구와 테스트 프로젝트를 루트 `OpsToolkit.slnx`에도 등록합니다.
 4. **Step 4 — Self-Review 및 카탈로그 등록**:
    - 도구 폴더의 `REVIEW.md` 체크리스트를 완료하고, 루트 `README.md`의 유틸리티 카탈로그 표에 신규 도구를 등록합니다.

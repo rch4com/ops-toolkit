@@ -33,8 +33,9 @@
 
 ## 3. 사용법 및 옵션 (Usage & Options)
 
-### GUI 모드 실행
-인자 없이 실행하거나 `--gui` 옵션을 전달하면 데스크톱 UI 창이 실행됩니다:
+### GUI 모드 실행 (Visual Studio 또는 CLI)
+- **Visual Studio에서 단독 실행 (`F5`)**: `src/LdapAuthTester/LdapAuthTester.sln` 파일을 열면 `LdapAuthTester`(기본 시작 프로젝트)와 단위 테스트 프로젝트만 로드되어 즉시 `F5`로 실행 및 디버깅할 수 있습니다.
+- **명령줄에서 GUI 실행**: 인자 없이 실행하거나 `--gui` 옵션을 전달하면 데스크톱 UI 창이 실행됩니다:
 ```powershell
 dotnet run --project .\src\LdapAuthTester\LdapAuthTester.csproj
 # 또는 빌드된 실행 파일 직접 실행

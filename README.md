@@ -31,12 +31,13 @@ ops-toolkit/
 ├── Directory.Build.props            # .NET 10 공통 빌드 설정
 ├── global.json                      # .NET 10 SDK 버전 정책
 ├── .editorconfig                    # C# / PowerShell 인코딩 및 코드 스타일 표준
+├── OpsToolkit.slnx                  # 전체 C# 프로젝트 일괄 빌드/테스트용 루트 솔루션
 ├── scripts/                         # PowerShell 7 (pwsh) 스크립트 및 모듈
 │   ├── modules/                     # 공통 PowerShell 모듈 (예: OpsCommon)
 │   └── <category>/<ToolName>/       # 개별 PowerShell 도구 (코드 + 6대 필수 문서 포함)
-├── src/                             # C# (.NET 10) CLI 애플리케이션 및 공통 라이브러리
+├── src/                             # C# (.NET 10) CLI/GUI 애플리케이션 및 공통 라이브러리
 │   ├── OpsToolkit.Shared/           # 공통 라이브러리
-│   └── <ToolName>/                  # 개별 C# CLI 도구 (코드 + 6대 필수 문서 포함)
+│   └── <ToolName>/                  # 개별 C# 도구 (<ToolName>.sln + 코드 + 6대 필수 문서 포함)
 ├── tests/                           # 자동화 테스트
 │   ├── powershell/                  # Pester 테스트 (*.Tests.ps1)
 │   └── dotnet/                      # xUnit 테스트 (*.Tests.csproj)
