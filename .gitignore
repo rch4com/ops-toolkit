@@ -426,3 +426,9 @@ FodyWeavers.xsd
 
 # Official VS Code C# Dev Kit Extension exclusion
 #*.lscache
+
+# ops-toolkit runtime logs and scheduler state
+**/[Ll]ogs/
+**/state/
+**/schedule.stop
+
