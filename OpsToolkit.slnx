@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/LdapAuthTester/LdapAuthTester.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/dotnet/LdapAuthTester.Tests/LdapAuthTester.Tests.csproj" />
+  </Folder>
+</Solution>

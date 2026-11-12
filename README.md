@@ -81,6 +81,7 @@ ops-toolkit/
 ### C# .NET 10 CLI Tools (`src/`)
 | 도구명 | 경로 | 설명 | Dry-Run 지원 |
 | :--- | :--- | :--- | :---: |
+| **[LdapAuthTester](./src/LdapAuthTester/README.md)** | `src/LdapAuthTester/` | Active Directory 도메인 조인 감지 및 LDAP(389)/LDAPS(636) 연결성·인증 검증 하이브리드(WinForms GUI + CLI) 도구 (계정 잠금 방지 및 3종 표준 바인딩 지원) | O (`--dry-run`, GUI 사전 포트 점검) |
 | `OpsToolkit.Shared` (예정) | `src/OpsToolkit.Shared` | CLI 공통 옵션 및 출력 포맷 라이브러리 | - |
 
 ---
