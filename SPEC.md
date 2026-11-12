@@ -95,21 +95,25 @@ catch {
 }
 ```
 
-### 3.2 C# (.NET 10) CLI 애플리케이션 규격 (`src/`)
+### 3.2 C# (.NET 10) CLI 및 GUI 하이브리드 애플리케이션 규격 (`src/`)
 
 1. **공통 빌드 속성 (`Directory.Build.props`)**:
-   - `TargetFramework`: `net10.0`
+   - `TargetFramework`: `net10.0` (순수 CLI) 또는 `net10.0-windows` (WinForms / WPF 포함 시)
    - `ImplicitUsings`: `enable`
    - `Nullable`: `enable`
    - `TreatWarningsAsErrors`: `true`
    - `EnforceCodeStyleInBuild`: `true`
-2. **표준 CLI 옵션 계약**:
+2. **코어 분리 및 하이브리드 아키텍처**:
+   - 모든 핵심 진단/처리 로직은 UI 컨트롤(`System.Windows.Forms`, `System.Windows`)을 참조하지 않는 `Services/` 및 `Models/` 계층에 작성하여 `xUnit` 단위 테스트가 가능해야 합니다.
+   - 데스크톱 GUI가 필요한 단일 진단 도구는 `<OutputType>Exe</OutputType>` + `<UseWindowsForms>true</UseWindowsForms>` 하이브리드 구성을 기본으로 하여, **명령줄 인자 없이 실행 시 GUI(`MainForm`)를 띄우고, 인자 전달 시 CLI 모드로 동작**하도록 구현합니다.
+   - 다중 탭·대규모 데이터 그리드·실시간 대시보드가 필요한 경우에만 **WPF (`<UseWPF>true</UseWPF>`, MVVM 패턴)**를 선택하며, 서버 배포 제약을 유발하는 `WinUI 3`는 사용하지 않습니다.
+3. **표준 CLI 옵션 계약**:
    - `--help` / `-h`: 사용법 및 예제 출력
    - `--version`: 빌드 버전 출력
-   - `--dry-run`: (상태 변경 도구인 경우 필수) 실제 변경 없이 수행 예정 작업만 출력
+   - `--dry-run`: (상태 변경 또는 외부 인증/연결 도구인 경우 필수) 실제 변경/인증 없이 사전 점검만 출력
    - `--verbose` / `-v`: 상세 진단 로그 출력
    - `--json`: 파이프라인 연동을 위한 JSON 포맷 출력 (선택/권장)
-3. **에러 처리 및 종료 코드**:
+4. **에러 처리 및 종료 코드**:
    - 처리되지 않은 예외로 스택 트레이스가 그대로 노출되지 않도록 최상위 핸들러에서 표준 에러(`stderr`)로 메시지를 출력하고 종료 코드 `1`을 반환합니다.
    - `PosixSignalRegistration` 또는 `Console.CancelKeyPress`를 통해 `CancellationToken`을 연결하여 작업 중단 시 안전하게 리소스를 정리합니다.
 

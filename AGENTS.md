@@ -76,7 +76,12 @@ ops-toolkit/
 - 파이프라인 출력은 단순 텍스트(`Write-Host`)가 아닌 **구조화된 객체(`PSCustomObject`)**를 반환하여 다른 명령어와 조합(`| Export-Csv`, `| ConvertTo-Json`)할 수 있게 작성합니다. 진행 상황/정보 로깅은 `Write-Verbose` 또는 `Write-Information`을 사용합니다.
 
 ### 4.3 C# (.NET 10) 규칙
-- `Directory.Build.props`에 정의된 `net10.0`, `<Nullable>enable</Nullable>`, `<ImplicitUsings>enable</ImplicitUsings>`, `<TreatWarningsAsErrors>true</TreatWarningsAsErrors>`를 준수합니다.
+- `Directory.Build.props`에 정의된 `net10.0`(또는 GUI 포함 시 `net10.0-windows`), `<Nullable>enable</Nullable>`, `<ImplicitUsings>enable</ImplicitUsings>`, `<TreatWarningsAsErrors>true</TreatWarningsAsErrors>`를 준수합니다.
+- **UI 플랫폼 선택 및 코어 분리 원칙**:
+  - 비즈니스 로직(`Services/`, `Models/`)은 UI 프레임워크와 철저히 분리하여 `xUnit`으로 독립 테스트가 가능해야 합니다.
+  - **순수 자동화 도구**: `net10.0` 콘솔 CLI (+ 대화형 TUI 필요 시 `Spectre.Console`)
+  - **단일 진단/테스트 GUI 도구 (폼 1~2개)**: `net10.0-windows` 기반 **CLI + WinForms 하이브리드** (`OutputType=Exe`, 인자 없을 시 WinForms 실행, 인자 있을 시 CLI 실행)
+  - **복합 대시보드/다중 탭/대용량 그리드 도구**: `net10.0-windows` 기반 **WPF (MVVM)** 사용 (현장 Windows Server 배포 호환성 문제가 있는 `WinUI 3`는 지양)
 - 모든 I/O 및 네트워크 작업은 `async`/`await`로 작성하며, CLI 진입점부터 하위 메서드까지 `CancellationToken`(`Ctrl+C` 인터럽트 대응)을 반드시 전달합니다.
 - 콘솔 출력 시 사람이 읽기 좋은 포맷과 기계가 파싱하기 좋은 포맷(`--output json` 또는 `--json`) 옵션을 함께 고려합니다.
 - 종료 코드(Exit Code) 표준:
