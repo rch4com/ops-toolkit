@@ -1,0 +1,8 @@
+{
+  "git.useEditorAsCommitInput": true,
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "file": ".gitmessage.txt"
+    }
+  ]
+}
