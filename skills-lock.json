@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "skills": {
+    "agent-handoff-manager": {
+      "source": "rch4com/agent-handoff-manager",
+      "sourceType": "github",
+      "skillPath": "skills/agent-handoff-manager/SKILL.md",
+      "computedHash": "625d24fa3b0b4ac9c7b129af60e68a6107b915ad9c2214ce92a38c66e45f894c",
+      "installMode": "copy"
+    },
+    "caveman": {
+      "source": "JuliusBrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman/SKILL.md",
+      "computedHash": "b51af74aacdadbc3c2d6bb79f05db58dc521854b87f7ffabd48faf286a81ed31",
+      "installMode": "copy"
+    },
+    "html-plan": {
+      "source": "anthropics/claude-plugins-community",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "html-plan/skills/html-plan/SKILL.md",
+      "computedHash": "f949138fe1d549eca3609e56bdbab04f45a85fa75e1742b91f3911fad74c0bed",
+      "installMode": "copy"
+    },
+    "unslop": {
+      "source": "heydamir/unslop",
+      "sourceType": "github",
+      "skillPath": "skills/unslop/SKILL.md",
+      "computedHash": "4a56982871cb876533a444c6a12438d51cf168e64430148dc8862a4eeba0d687",
+      "installMode": "copy"
+    }
+  }
+}

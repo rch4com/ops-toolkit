@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "graphify": {
+      "type": "stdio",
+      "command": "graphify-mcp",
+      "args": []
+    }
+  }
+}
