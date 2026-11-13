@@ -4,11 +4,11 @@
         xmlns:vm="clr-namespace:MIPLabelCustomCheck.Explorer.ViewModels"
         xmlns:conv="clr-namespace:MIPLabelCustomCheck.Explorer.Converters"
         Title="MIP Label Explorer"
-        Height="700" Width="1200">
+        Height="700" Width="1200" MinWidth="1000" MinHeight="600"
+        Style="{StaticResource {x:Type Window}}">
 
     <Window.Resources>
         <conv:ElapsedToTextConverter x:Key="Elapsed" />
-        <conv:CheckStateToBrushConverter x:Key="StateBrush" />
 
         <!-- 경로/확장자 두 입력 행의 라벨을 같은 폭으로 맞춰 세로로 정렬한다. -->
         <Style x:Key="RowLabel" TargetType="TextBlock">
@@ -18,7 +18,7 @@
         </Style>
         <Style x:Key="RowBar" TargetType="Border">
             <Setter Property="Padding" Value="6,4" />
-            <Setter Property="BorderBrush" Value="LightGray" />
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
             <Setter Property="BorderThickness" Value="0,0,0,1" />
         </Style>
     </Window.Resources>
@@ -29,7 +29,7 @@
 
     <DockPanel>
         <!-- 경로: 절대 경로를 입력해 이동하면 왼쪽 트리가 그 폴더까지 펼쳐지고 선택된다. -->
-        <Border DockPanel.Dock="Top" Style="{StaticResource RowBar}" Background="#FAFAFA">
+        <Border DockPanel.Dock="Top" Style="{StaticResource RowBar}" Background="{DynamicResource CanvasBrush}">
             <DockPanel>
                 <TextBlock DockPanel.Dock="Left" Text="경로" Style="{StaticResource RowLabel}" />
                 <Button DockPanel.Dock="Right" Content="CSV 내보내기" Margin="4,0,0,0" Padding="10,2"
@@ -45,10 +45,10 @@
                          Text="{Binding PathText, UpdateSourceTrigger=PropertyChanged}"
                          ToolTip="절대 경로를 입력하고 Enter를 누르세요. 왼쪽 트리가 그 폴더까지 펼쳐집니다.">
                     <TextBox.Style>
-                        <Style TargetType="TextBox">
+                        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsPathValid}" Value="False">
-                                    <Setter Property="Background" Value="MistyRose" />
+                                    <Setter Property="Background" Value="{DynamicResource ErrorSurfaceBrush}" />
                                     <Setter Property="ToolTip" Value="그런 폴더가 없습니다." />
                                 </DataTrigger>
                             </Style.Triggers>
@@ -62,11 +62,11 @@
         </Border>
 
         <!-- 검사 대상 확장자 -->
-        <Border DockPanel.Dock="Top" Style="{StaticResource RowBar}" Background="#F6F6F6">
+        <Border DockPanel.Dock="Top" Style="{StaticResource RowBar}" Background="{DynamicResource SubtleBrush}">
             <DockPanel>
                 <TextBlock DockPanel.Dock="Left" Text="검사 대상 확장자"
                            Style="{StaticResource RowLabel}" />
-                <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center" Foreground="Gray"
+                <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center" Foreground="{DynamicResource MutedBrush}"
                            Margin="8,0,2,0" Text="{Binding ExtensionCount, StringFormat='{}{0}종'}" />
                 <Button DockPanel.Dock="Right" Content="기본값" Margin="6,0,0,0" Padding="10,2"
                         Command="{Binding ResetExtensionsCommand}"
@@ -78,7 +78,7 @@
         </Border>
 
         <!-- 기본 검사 옵션 -->
-        <Border DockPanel.Dock="Top" Style="{StaticResource RowBar}" Background="#FAFAFA">
+        <Border DockPanel.Dock="Top" Style="{StaticResource RowBar}" Background="{DynamicResource CanvasBrush}">
             <DockPanel>
                 <TextBlock DockPanel.Dock="Left" Text="기본 검사 옵션"
                            Style="{StaticResource RowLabel}" />
@@ -97,8 +97,8 @@
                           IsChecked="{Binding IncludeDetailsByDefault}"
                           Content="부가 정보(테넌트·이름·적용 방법·설정일)까지 읽기"
                           ToolTip="켜면 폴더 검사가 레이블 GUID 외에 부가 정보도 읽습니다. 파싱이 늘어나므로 시간 컬럼으로 비용을 확인할 수 있습니다. 바꾸면 현재 폴더를 다시 검사합니다." />
-                <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" FontSize="10"
-                           Foreground="Gray" TextTrimming="CharacterEllipsis"
+                <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" FontSize="12"
+                           Foreground="{DynamicResource MutedBrush}" TextTrimming="CharacterEllipsis"
                            Text="끄면 '이 파일이 레이블됐나'만 가장 싸게 답합니다." />
             </DockPanel>
         </Border>
@@ -109,7 +109,7 @@
             <StatusBarItem>
                 <ProgressBar Width="160" Height="12" IsIndeterminate="{Binding IsScanning}" />
             </StatusBarItem>
-            <StatusBarItem Content="ESC: 중지 · 더블클릭: 연결된 프로그램으로 열기" Foreground="Gray" />
+            <StatusBarItem Content="ESC: 중지 · 더블클릭: 연결된 프로그램으로 열기" Foreground="{DynamicResource MutedBrush}" />
         </StatusBar>
 
         <Grid>
@@ -125,7 +125,7 @@
             <TreeView Grid.Column="0" ItemsSource="{Binding Drives}"
                       SelectedItemChanged="OnTreeSelectionChanged">
                 <TreeView.ItemContainerStyle>
-                    <Style TargetType="TreeViewItem">
+                    <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
                         <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
                         <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
                         <EventSetter Event="Selected" Handler="OnTreeItemSelected" />
@@ -140,14 +140,14 @@
             </TreeView>
 
             <GridSplitter Grid.Column="1" Width="4" HorizontalAlignment="Stretch"
-                          Background="LightGray" />
+                          Background="{DynamicResource BorderBrush}" />
 
             <!-- 중: 파일 목록 -->
             <ListView Grid.Column="2"
                       ItemsSource="{Binding FilteredFiles}"
                       SelectedItem="{Binding SelectedFile, Mode=TwoWay}">
                 <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
+                    <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
                         <EventSetter Event="MouseDoubleClick" Handler="OnFileDoubleClick" />
                         <Setter Property="ToolTip" Value="더블클릭하면 연결된 프로그램으로 열립니다." />
                     </Style>
@@ -160,7 +160,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding StatusText}"
-                                               Foreground="{Binding State, Converter={StaticResource StateBrush}}" />
+                                               Style="{StaticResource StateText}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -182,7 +182,7 @@
             </ListView>
 
             <GridSplitter Grid.Column="3" Width="4" HorizontalAlignment="Stretch"
-                          Background="LightGray" />
+                          Background="{DynamicResource BorderBrush}" />
 
             <!-- 우: 상세 -->
             <ScrollViewer Grid.Column="4" Margin="8">
@@ -195,15 +195,15 @@
                     <TextBlock Text="{Binding SizeBytes, StringFormat='크기: {0:N0} 바이트'}" />
                     <TextBlock Text="{Binding Elapsed, Converter={StaticResource Elapsed}, StringFormat='시간: {0}'}"
                                Margin="0,6,0,0" />
-                    <TextBlock Text="(병렬 검사 중 측정)" FontSize="10" Foreground="Gray" />
+                    <TextBlock Text="(병렬 검사 중 측정)" FontSize="12" Foreground="{DynamicResource MutedBrush}" />
                     <TextBlock Text="{Binding Remeasured, Converter={StaticResource Elapsed}, StringFormat='재측정: {0}'}"
                                Margin="0,4,0,0" />
-                    <TextBlock Text="(단독 측정)" FontSize="10" Foreground="Gray" />
+                    <TextBlock Text="(단독 측정)" FontSize="12" Foreground="{DynamicResource MutedBrush}" />
                     <TextBlock Text="레이블 GUID:" Margin="0,8,0,0" />
                     <ItemsControl ItemsSource="{Binding Result.LabelIds}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" FontFamily="Consolas" FontSize="11"
+                                <TextBlock Text="{Binding}" FontFamily="Consolas" FontSize="12"
                                            TextWrapping="Wrap" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -214,10 +214,10 @@
                     <ItemsControl ItemsSource="{Binding Details}" Margin="0,10,0,0">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="Gainsboro" BorderThickness="1" Padding="6"
-                                        Margin="0,0,0,6" Background="#FCFCFC">
+                                <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Padding="6"
+                                        Margin="0,0,0,6" Background="{DynamicResource SurfaceBrush}">
                                     <StackPanel>
-                                        <TextBlock Text="부가 정보" FontWeight="Bold" FontSize="11" />
+                                        <TextBlock Text="부가 정보" FontWeight="Bold" FontSize="12" />
                                         <Separator Margin="0,4" />
                                         <TextBlock Text="{Binding NameText, StringFormat='이름: {0}'}"
                                                    TextWrapping="Wrap" />
@@ -227,17 +227,17 @@
                                         <TextBlock Text="{Binding ContentBitsText, StringFormat='ContentBits: {0}'}" />
                                         <TextBlock Text="테넌트(SiteId):" Margin="0,4,0,0" />
                                         <TextBlock Text="{Binding SiteIdText}" FontFamily="Consolas"
-                                                   FontSize="10" TextWrapping="Wrap" />
+                                                   FontSize="12" TextWrapping="Wrap" />
                                         <TextBlock Text="ActionId:" Margin="0,4,0,0" />
                                         <TextBlock Text="{Binding ActionIdText}" FontFamily="Consolas"
-                                                   FontSize="10" TextWrapping="Wrap" />
+                                                   FontSize="12" TextWrapping="Wrap" />
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
-                    <TextBlock Margin="0,2,0,0" FontSize="10" Foreground="Gray" TextWrapping="Wrap"
+                    <TextBlock Margin="0,2,0,0" FontSize="12" Foreground="{DynamicResource MutedBrush}" TextWrapping="Wrap"
                                Text="부가 정보를 보려면 아래 체크박스를 켜고 재측정하세요.">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
@@ -251,7 +251,7 @@
                         </TextBlock.Style>
                     </TextBlock>
 
-                    <TextBlock Text="{Binding Error.Message}" Foreground="Firebrick"
+                    <TextBlock Text="{Binding Error.Message}" Foreground="{DynamicResource ErrorBrush}"
                                TextWrapping="Wrap" Margin="0,8,0,0" />
 
                     <CheckBox Margin="0,12,0,0" Content="재측정 시 부가 정보까지 읽기"
@@ -264,7 +264,7 @@
                     <Button Content="↗ 연결된 프로그램으로 열기" Margin="0,6,0,0" Padding="8,4"
                             Command="{Binding DataContext.OpenFileCommand,
                                               RelativeSource={RelativeSource AncestorType=Window}}" />
-                    <TextBlock Margin="0,12,0,0" FontSize="10" Foreground="Gray" TextWrapping="Wrap"
+                    <TextBlock Margin="0,12,0,0" FontSize="12" Foreground="{DynamicResource MutedBrush}" TextWrapping="Wrap"
                                Text="정밀한 성능 수치는 이 앱이 아니라 benchmarks/ 의 BenchmarkDotNet 스위트를 쓰세요." />
                 </StackPanel>
             </ScrollViewer>

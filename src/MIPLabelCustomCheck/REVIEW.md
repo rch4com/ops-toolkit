@@ -1,5 +1,19 @@
 # REVIEW.md — MIPLabelCustomCheck
 
+## Nocturne 네이티브 디자인 검증 (2026-11-13)
+
+- [x] SPEC/PLAN 및 루트 DESIGN.md의 승인된 범위를 코드보다 먼저 기록
+- [x] 공유 `Themes/Nocturne.xaml`, OS 앱 테마 반영, 고대비 시스템 색상 매핑, 의미 리소스 기반 상태·오류·선택·포커스·비활성 표시 적용
+- [x] Explorer 경고 오류 처리 빌드: 경고 0, 오류 0
+- [x] 기존 Explorer 테스트 91/91, `design-system/tests/palette.test.cjs` 대비 검사 3/3 통과
+- [x] 변경 C# 대상 `dotnet format --verify-no-changes --no-restore --include ...` 통과
+- [x] STA RenderTargetBitmap으로 합성 데이터의 1200×660 본문을 강제 라이트/다크 팔레트, 96 DPI에서 캡처·검토. 다크 폴더명 대비를 수정하고 재확인
+- [ ] 실제 창의 대화형 키보드·스크린리더·고대비·실행 중 OS 테마 변경·다양한 DPI 검증: 미확인
+
+Computer Use의 `launch_app`이 `accessibility window-opened handler did not become ready`로 실패하여 실제 창을 열지 못했다. 캡처는 앱 리소스와 실제 MainWindow XAML을 사용한 렌더 하네스이며, 실제 대화형 검증을 대체하지 않는다. 드롭다운·표 헤더·스크롤바 등 네이티브 템플릿은 OS 렌더링을 유지한다. HTML/CSS 디자인 감지기는 네이티브 UI에 적용하지 않았다. 인증·실제 문서 스캔은 디자인 검증에서 실행하지 않았다.
+
+캡처: `artifacts/nocturne-review/mip-forced-light-96dpi.png`, `mip-forced-dark-96dpi.png` (로컬 검증 산출물, 저장소 추적 제외).
+
 ## 1. 품질 및 보안 체크리스트
 - [x] **보안 (Secrets & XXE/DoS 방어)**:
   - 코드 및 샘플 파일에 사내 비밀번호, 개인정보, 민감 서버 정보가 포함되어 있지 않은가?

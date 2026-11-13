@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>ops-toolkit · Nocturne</title>
+  <link rel="stylesheet" href="components.css">
+</head>
+<body>
+  <a class="ut-skip" href="#main">본문으로 이동</a>
+  <main id="main" class="ut-page" tabindex="-1">
+    <header class="ut-header"><a class="ut-brand" href="../DESIGN.md">ops-toolkit / Nocturne</a><a href="README.md">적용 기준</a></header>
+    <div class="ut-intro">
+      <h1>진단에 집중하는 운영 도구.</h1>
+      <p class="ut-muted">Utilities와 Modubit Foundation에서 이어받은 Nocturne 팔레트입니다. Windows 앱에서는 같은 색상 의미를 네이티브 컨트롤에 적용합니다.</p>
+      <p>이 페이지는 정적 스타일 참조입니다. OS 라이트·다크 설정을 따르며 실제 인증이나 파일 처리를 실행하지 않습니다.</p>
+    </div>
+    <div class="ut-grid">
+      <section class="ut-panel ut-stack" aria-labelledby="inputs">
+        <h2 id="inputs">입력과 실행</h2>
+        <div class="ut-field"><label for="path">검사할 경로</label><input id="path" class="ut-input" value="C:\SampleDocuments" aria-describedby="path-help"><small id="path-help">예시 경로입니다. 실제 파일을 읽지 않습니다.</small></div>
+        <label class="ut-check"><input type="checkbox" checked><span>하위 폴더 포함</span></label>
+        <div class="ut-actions"><button class="ut-button ut-button-primary" type="button">실행 스타일</button><button class="ut-button" type="button">보조 동작</button><button class="ut-button" type="button" disabled>사용 불가</button></div>
+      </section>
+      <section class="ut-panel ut-stack" aria-labelledby="results">
+        <h2 id="results">결과와 상태</h2>
+        <p class="ut-status">대기 중 · 검사할 경로를 확인하세요. 이 상태는 디자인 예시입니다.</p>
+        <div class="ut-table-wrap"><table class="ut-table"><caption>합성 예시 데이터</caption><thead><tr><th scope="col">파일명</th><th scope="col">상태</th></tr></thead><tbody><tr><td>sample.docx</td><td>레이블됨</td></tr><tr><td>sample.pdf</td><td>미레이블</td></tr></tbody></table></div>
+        <div><h3>상세 로그</h3><pre class="ut-log" tabindex="0">대기 중 · 실제 실행 기록이 아닙니다.</pre></div>
+      </section>
+    </div>
+    <section class="ut-reference" aria-labelledby="palette"><h2 id="palette">색상 의미</h2><div class="ut-swatches"><span class="ut-swatch"><span class="ut-chip" style="--ut-chip:var(--ut-bg)" aria-hidden="true"></span>배경</span><span class="ut-swatch"><span class="ut-chip" style="--ut-chip:var(--ut-surface)" aria-hidden="true"></span>작업 표면</span><span class="ut-swatch"><span class="ut-chip" style="--ut-chip:var(--ut-accent)" aria-hidden="true"></span>행동·초점</span><span class="ut-swatch"><span class="ut-chip" style="--ut-chip:var(--ut-text)" aria-hidden="true"></span>본문</span></div></section>
+    <footer class="ut-footer">Adapted from Utilities / Modubit Foundation Nocturne. <a href="README.md">출처와 적용 안내</a></footer>
+  </main>
+</body>
+</html>

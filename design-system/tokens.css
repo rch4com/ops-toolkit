@@ -1,0 +1,61 @@
+/* Utilities / Nocturne. Adapted from Modubit Foundation; local source of truth. */
+:root {
+  color-scheme: light dark;
+  --ut-font: Inter, "Noto Sans KR", "Segoe UI", system-ui, sans-serif;
+  --ut-mono: "Cascadia Code", Consolas, monospace;
+  --ut-space-1: 4px;
+  --ut-space-2: 8px;
+  --ut-space-3: 12px;
+  --ut-space-4: 16px;
+  --ut-space-6: 24px;
+  --ut-space-8: 32px;
+  --ut-space-12: 48px;
+  --ut-radius-badge: 4px;
+  --ut-radius-control: 6px;
+  --ut-radius-panel: 8px;
+  --ut-control-height: 44px;
+  --ut-motion: 160ms;
+}
+
+:root, :root[data-theme="dark"] {
+  --ut-bg: #161826;
+  --ut-surface: #232532;
+  --ut-subtle: #292b31;
+  --ut-text: #e9e9ed;
+  --ut-muted: #b2b6ca;
+  --ut-border: #75798c;
+  --ut-accent: #9184d9;
+  --ut-accent-text: #d2cefd;
+  --ut-accent-soft: #2b2741;
+  --ut-accent-pressed: #423a6a;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --ut-bg: #eef0f9;
+    --ut-surface: #f8f9fe;
+    --ut-subtle: #e4e7f5;
+    --ut-text: #292b31;
+    --ut-muted: #595d6c;
+    --ut-border: #75798c;
+    --ut-accent: #796cbf;
+    --ut-accent-text: #5d5294;
+    --ut-accent-soft: #e7e5fe;
+    --ut-accent-pressed: #d2cefd;
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --ut-bg: #eef0f9;
+  --ut-surface: #f8f9fe;
+  --ut-subtle: #e4e7f5;
+  --ut-text: #292b31;
+  --ut-muted: #595d6c;
+  --ut-border: #75798c;
+  --ut-accent: #796cbf;
+  --ut-accent-text: #5d5294;
+  --ut-accent-soft: #e7e5fe;
+  --ut-accent-pressed: #d2cefd;
+}
+:root[data-theme="dark"] { color-scheme: dark; }

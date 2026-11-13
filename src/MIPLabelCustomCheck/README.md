@@ -27,6 +27,8 @@
 
 ## 3. 사용법 및 옵션 (Usage & Options)
 
+GUI는 저장소 [Nocturne 디자인 기준](../../DESIGN.md)을 적용하며 Windows 앱 라이트/다크 설정을 따릅니다. 고대비에서는 시스템 색상을 우선하고 기존 트리·파일 목록·상세 패널과 키보드 조작을 유지합니다. 별도 테마 설정이나 외부 UI 런타임은 필요하지 않습니다.
+
 ### 3.1 GUI 모드 실행 (Visual Studio 또는 명령줄)
 - **Visual Studio 단독 실행 (`F5`)**: `src/MIPLabelCustomCheck/MIPLabelCustomCheck.sln` 파일을 열면 `MIPLabelCustomCheck.Explorer`가 기본 시작 프로젝트로 설정되어 있어 즉시 `F5`로 실행/디버깅할 수 있습니다.
 - **명령줄 실행**:

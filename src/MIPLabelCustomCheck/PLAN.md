@@ -25,3 +25,9 @@
   - CLI `--output-csv <file>`, `--output-json <file>` 옵션 및 `CsvReportExporter` 구현
   - WPF Explorer GUI `ExportCsvCommand`, `IncludeSubfolders`, `SelectedStatusFilter`(`FilteredFiles`) 및 상단 툴바 UI 추가
   - 신규 기능 단위 테스트 추가 및 전체 빌드/테스트 검증 완료
+
+- [x] **Step 8a: 승인된 Nocturne 디자인 명세 선반영**
+  - 루트 DESIGN.md, 이 도구 SPEC/PLAN에 OS 테마·고대비·기존 기능 보존 범위 기록
+- [x] **Step 8b: WPF 의미 리소스 및 네이티브 테마 적용**
+  - 공유 ResourceDictionary, 하드코딩 색상 교체, 상태·선택·키보드 포커스·비활성 스타일 연결
+  - 빌드·기존 Explorer 테스트·팔레트 대비 및 가능한 네이티브 시각 검증 후 REVIEW 갱신
