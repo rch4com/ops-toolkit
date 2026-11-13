@@ -1,0 +1,138 @@
+{
+  "claims_are_unverified": true,
+  "created_at": "2026-11-13T14:36:56Z",
+  "depth": "exhaustive",
+  "git_observation": {
+    "branch": "main",
+    "dirty": false,
+    "head": "50ad3841782020e2c5c55a0deb6ba86b67901932"
+  },
+  "id": "20261113T143656Z-839a1616b912",
+  "payload": {
+    "acceptance_criteria": [
+      "src/IISDeploySlotManager의 필수 6문서와 RECOVERY.md를 모두 읽고 사용자 확정 요구와 대조한다.",
+      "동기화·권한·페어링·전환·백업/긴급 복구에서 구체적 실패 사례가 있는 지적만 심각도와 파일/행 근거로 보고한다.",
+      "설계 보완과 실제 동작 검증을 구분한다. 코드는 없고 빌드/실서버/인증/복원 시험은 미실행이다.",
+      "루트 AGENTS.md 및 INTENT/SPEC/PLAN/REVIEW, 도구 AGENTS.md를 준수한다. 사용자 문서 승인 전 프로젝트/코드를 만들지 않는다.",
+      "BACKGROUND.md와 ARCHITECTURE.md를 포함해 총 9문서를 검토한다. 배경/기대 효과를 구현 실적으로 해석하지 않고 설명/도표와 SPEC의 계약 일치를 확인한다."
+    ],
+    "agent": "codex",
+    "blocked": [],
+    "changed_files": [
+      {
+        "owner": "codex",
+        "path": "src/IISDeploySlotManager/README.md"
+      },
+      {
+        "owner": "codex",
+        "path": "src/IISDeploySlotManager/AGENTS.md"
+      },
+      {
+        "owner": "codex",
+        "path": "src/IISDeploySlotManager/INTENT.md"
+      },
+      {
+        "owner": "codex",
+        "path": "src/IISDeploySlotManager/SPEC.md"
+      },
+      {
+        "owner": "codex",
+        "path": "src/IISDeploySlotManager/PLAN.md"
+      },
+      {
+        "owner": "codex",
+        "path": "src/IISDeploySlotManager/REVIEW.md"
+      },
+      {
+        "owner": "codex",
+        "path": "src/IISDeploySlotManager/RECOVERY.md"
+      },
+      {
+        "owner": "codex",
+        "path": "src/IISDeploySlotManager/BACKGROUND.md"
+      },
+      {
+        "owner": "codex",
+        "path": "src/IISDeploySlotManager/ARCHITECTURE.md"
+      }
+    ],
+    "completed": [
+      "필수 6개 문서와 RECOVERY.md를 작성하고 문서 리뷰 6건 및 최신 백업 복원·강제 동기화·보안 페어링 요구를 반영했다. 문서 작업만 완료했으며 설계 최종 승인과 구현은 완료되지 않았다.",
+      "BACKGROUND.md에 개발 배경·취지·문제·사용자·기대 효과/한계를, ARCHITECTURE.md에 전체 구성도와 업로드 시퀀스·권한/동기화/복구 경계·설계 선택 이유를 추가하고 README/INTENT/PLAN/REVIEW에 연결했다. 총 9문서의 정적 검사를 통과했으나 Mermaid 렌더와 기능 시험은 미실행이다.",
+      "사용자 요청에 따라 설계/배경/아키텍처/복구 문서 9개를 문서 전용 커밋 50ad384에 저장했다. 인계 기록은 별도 커밋으로 분리한다."
+    ],
+    "decisions": [
+      "구성: 기존 Windows NLB 또는 LB 뒤의 Active–Active 2노드. 각 노드에 YARP, IIS Blue/Green 전용 사이트/풀, Controller Windows 서비스, SQLite와 파일 보관소. YARP는 IIS 호스팅/Windows 서비스 둘 다 지원하며 노드당 하나만 운영. 서버·슬롯별 검증 주소를 제공한다.",
+      "인증/권한: 관리 웹만 Windows 또는 Entra ID 인증. 업무 앱 인증은 유지한다. IIS·PID 조회/정상 중지/기한 후 소유권 확인 강제 종료·배포·암호화는 서비스가 수행한다. 웹은 일반 권한. Named Pipe 우선, 연결 불가 시 인증된 루프백 HTTPS; 인증 거부는 우회하지 않고 RequestId로 중복을 막는다.",
+      "DB/조정: 별도 DB 서버 없이 노드별 SQLite. DB/WAL 파일 복제가 아닌 outbox/inbox·논리 snapshot·버전 메시지 동기화. 어느 웹에서든 요청하되 지정 단일 Coordinator가 순서를 관리한다. 단절 중 신규 페어 변경/자동 승격은 금지. 실제 구노드 실행 차단 후 DegradedMaintenance에서 로컬 복구만 허용한다.",
+      "업로드/보안: 한쪽 암호화 압축 업로드는 상대에 자동 복제. 양쪽 해시·전체 내용·수신 비밀 검증 후 PairReady. 패키지 암호는 DB 암호문, 보호 키는 DB 밖; 수신 노드용 envelope. mTLS HTTPS 전용 규약으로 정보/패키지/백업을 동기화하며 양쪽 관리자 신뢰 등록·공개 지문 대조·등록 PairId/NodeId/키 인가가 필요하다. 같은 CA/IP만으로 허용하거나 무인증 bootstrap API를 열지 않는다.",
+      "설정/검증: JSON appsettings와 XML web.config/별도 XML. Preserve/ManagedMigration/Replace 정책, 스키마·매핑 차이 분석, 솔루션별 변환·암호화·점검 스크립트/모듈. Standby 기동 부작용 억제·필수 점검·관찰 기준·Proxy AppliedRevision/InstanceId/실제 경유 릴리스가 전환 게이트다.",
+      "롤백/복구: 롤백 원본은 배포 전 백업 압축파일. CurrentServingRecovery와 TargetBeforeOverwrite를 구분하고 백업 전체 검증 실패 시 변경 금지. 로컬 offline Recovery 실행기는 서비스 정지/재시작 방지·전역 잠금·RecoveryHold·독립 저널을 요구한다. 강제 동기화는 소스/대상/scope 지정·양쪽 백업/diff·새 generation·구허가 격리; 노드 고유 정보/감사를 보존하고 실제 IIS 변경이나 예약 replay를 자동 실행하지 않는다."
+    ],
+    "failed_attempts": [
+      "인계 도구에 python 별칭을 사용하면 WindowsApps/python.exe ResourceUnavailable로 실패했다. 실제 C:/Users/rchco/AppData/Local/Python/pythoncore-3.14-64/python.exe로 core 0.2.0-pilot 실행을 확인했다. 설치/재설치는 하지 않았다.",
+      "공통 DB/lease 기반 페어 설계는 사용자 요구와 달라 폐기했다. 다시 도입하지 말고 노드별 SQLite+동기화 설계를 유지한다. 이전 슬롯 라우팅 복귀만의 롤백도 사용자 요구에 따라 백업 압축 복원으로 대체했다."
+    ],
+    "failure_records": [
+      {
+        "approach": "정상 페어 양쪽 ACK 규칙을 장애 인계에도 그대로 적용",
+        "evidence": "이전 리뷰 SPEC 138/140에서 지적. 현 SPEC 12의 DegradedMaintenance와 15의 로컬 복구 예외로 문서 보완. 실행 테스트 없음.",
+        "regression_test": "planned",
+        "resolved": true,
+        "why_failed": "상대 완전 장애 시 양쪽 기록/ACK가 불가능하여 인계 후 복구 작업도 시작할 수 없는 설계 충돌이었다."
+      },
+      {
+        "approach": "설정 저장/라우팅 요청만으로 전환 완료를 해석할 수 있는 불명확한 계약",
+        "evidence": "현 SPEC 4에 RequestedRevision/AppliedRevision, InstanceId, 실제 경유 릴리스와 마지막 적용 snapshot을 추가했다. REVIEW.md에 다른 4건의 보완 위치도 기록. 실행 테스트 없음.",
+        "regression_test": "planned",
+        "resolved": true,
+        "why_failed": "YARP가 새 설정 적용을 거부하면 기존 슬롯에 트래픽이 남아 있을 수 있다."
+      }
+    ],
+    "in_progress": [
+      "다음 단계: 최신 보완본에 대한 다른 에이전트의 독립 리뷰. SPEC 15/16/17과 RECOVERY.md는 보완 후 아직 별도 리뷰하지 않았다.",
+      "프로젝트 폴더명/예정 솔루션명은 IISDeploySlotManager / IISDeploySlotManager.sln으로 확정. 9문서는 커밋 50ad3841782020e2c5c55a0deb6ba86b67901932에 저장됐다. 인계는 별도 커밋 후 main에 푸시할 예정이며 이는 인계 저장 시점의 관측이다. 시작 시 git 상태를 다시 확인한다.",
+      "SPEC 1-14: Controller/Proxy/Admin 경계, JSON/XML 변환·암호화, 점검 확장, 예약, SQLite와 IPC/HTTP 계약. SPEC 15: 배포 전 압축 백업과 긴급 복원. SPEC 16: 강제 논리 동기화. SPEC 17: 신뢰 등록/mTLS 통신.",
+      "이전 리뷰 지적 6건: 양쪽 ACK와 장애 인계 충돌; Proxy 실제 적용 ACK 누락; NLB 앱 health 가정; Standby 부작용 억제 계약; 정량 관찰 기준; RequestId 주체/인자 결합. REVIEW.md에 보완 위치를 표로 기록했다.",
+      "특별관리 계정의 구체적 용도/운영 그룹, 실제 DNS/인증서/AD/Entra 등록, 압축 형식 및 라이브러리, SQLite provider, 실제 변환·암호화·점검 모듈, 알림 방식·보존/중지/관찰 값은 미확정이다.",
+      "권장 재검토: offline 복구가 손상 SQLite/Controller/상대 ACK 없이 실행 가능한지, 보호 파일 예외/잔여 DLL 정리와 백업 일관성, 강제 동기화의 감사/노드 고유 상태 보존·구명령 replay 차단, 페어링 초기 신뢰·키 교체/폐기, Proxy snapshot 적용/재시작 계약.",
+      "권장 읽기 순서: BACKGROUND.md → ARCHITECTURE.md → INTENT.md/SPEC.md → PLAN.md/REVIEW.md/RECOVERY.md. 에이전트 규칙은 루트 및 도구 AGENTS.md를 먼저 따른다.",
+      "신규 설명 문서는 user-facing 기획/구조 설명이며 상세 계약의 추가/대체물이 아니다. ARCHITECTURE의 두 Mermaid 도표는 정적으로만 확인했고 렌더하지 않았다. 특히 Controller 요청 snapshot과 Proxy 최종 적용 snapshot을 구분한 설명, Local/Leader 논리 역할과 단독/페어 경계를 검토한다."
+    ],
+    "mission": "IISDeploySlotManager의 개발 배경/취지와 아키텍처 설명을 포함한 최신 설계 문서 9개를 다른 에이전트가 독립 검토하도록 인계한다. 범위는 설계 검토이며 구현 시작이 아니다.",
+    "next_action": "BACKGROUND.md와 ARCHITECTURE.md를 포함한 9문서를 독립 리뷰한다. 설명/도표와 SPEC 계약의 일치 및 백업 압축 수동 복원·강제 논리 동기화·보안 페어링의 구체적 실패 상황을 심각도·파일·행 근거와 최소 수정안으로 보고한다. 다음 작업은 리뷰 하나이며 사용자 설계 확정 전 구현하지 않는다.",
+    "validation": [
+      {
+        "command": "PowerShell inline nine-document verification: Test-Path, headings/nonempty content, old-name/trailing-whitespace/CJK checks, Markdown local links, balanced fences, two Mermaid blocks and architecture contract terms",
+        "evidence": "이번 턴 9/9 문서 Pass 및 Nine-document and architecture checks: Pass. README 74, AGENTS 47, INTENT 51, SPEC 291, PLAN 115, REVIEW 87, RECOVERY 56, BACKGROUND 78, ARCHITECTURE 185 lines로 관측했다.",
+        "result": "passed"
+      },
+      {
+        "command": "git diff --check",
+        "evidence": "이번 턴 exit 0, 출력 없음. 문서와 인계 디렉터리는 untracked이므로 신규 문서 공백은 별도 inline 검사로 확인했다.",
+        "result": "passed"
+      },
+      {
+        "command": "Mermaid diagram browser rendering and dotnet/IIS/service/authentication/backup/HA integration tests",
+        "evidence": "도표 구조는 정적으로만 확인했다. 실행 코드/프로젝트는 없고 실제 렌더·기능 시험은 하지 않았다.",
+        "result": "not_run"
+      },
+      {
+        "command": "PowerShell nine-document verification and git diff --cached --check",
+        "evidence": "커밋 직전 Document verification: 9/9 passed, staged whitespace 검사 exit 0. 문서만 9개 staged 확인.",
+        "result": "passed"
+      },
+      {
+        "command": "git commit -m docs(iis-deploy-slot-manager): add design and recovery documentation",
+        "evidence": "커밋 50ad3841782020e2c5c55a0deb6ba86b67901932: 문서 9개, 975 insertions. 실행 코드/프로젝트 변경 없음.",
+        "result": "passed"
+      }
+    ]
+  },
+  "project_id": "f430d34b0db3943f4b905c79",
+  "revision": 3,
+  "schema_version": 1,
+  "status": "open",
+  "updated_at": "2026-11-13T14:56:37Z",
+  "writer_version": "0.2.0-pilot"
+}
