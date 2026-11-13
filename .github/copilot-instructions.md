@@ -14,3 +14,10 @@
 - **PowerShell 7 (`scripts/`)**: `#Requires -Version 7.0`, `Set-StrictMode -Version Latest`, `$ErrorActionPreference = 'Stop'`, 상태 변경 시 `[CmdletBinding(SupportsShouldProcess = $true)]` 필수 적용, 축약 별칭(Alias) 사용 금지, `[PSCustomObject]` 반환 지향.
 - **C# .NET 10 (`src/`)**: `net10.0`, Nullable Reference Types 활성화, 모든 비동기 작업에 `CancellationToken` 전달, 상태 변경 CLI 도구에 `--dry-run` 옵션 지원.
 - **보안**: 자격 증명, API 키, 내부 IP 주소의 하드코딩을 절대 금지합니다.
+
+<!-- mermaid-ai-skills:start -->
+## Mermaid Diagrams
+
+When the user asks to create, edit, or visualize a diagram, follow the
+instructions in `.github/instructions/mermaid.instructions.md`.
+<!-- mermaid-ai-skills:end -->
