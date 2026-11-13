@@ -12,8 +12,8 @@
 ### 주요 구성
 1. **`MIPLabelCustomCheck` (Core Library, `net10.0`)**: 외부 의존성 0개의 초경량 MIP 레이블/보호 상태 검출 라이브러리
 2. **`MIPLabelCustomCheck.Explorer` (WPF GUI + CLI Hybrid, `net10.0-windows`)**:
-   - **인자 없이 실행 시**: 드라이브/폴더 트리 탐색, 병렬 고속 스캔, 레이블 상세 정보 및 파일별 검사 소요 시간을 보여주는 **WPF 데스크톱 탐색기 GUI** 실행
-   - **CLI 인자 전달 시**: 지정한 파일/폴더의 레이블 상태를 콘솔 표 또는 `--json`으로 출력하고 종료 코드를 반환하는 **CLI 도구**로 동작
+   - **인자 없이 실행 시**: 드라이브/폴더 트리 탐색, 하위 폴더 재귀 스캔, 상태별 필터링(`전체`, `레이블됨`, `미레이블`, `보호됨`, `오류/잘못된파일`, `대상 외`), UTF-8(BOM) CSV 내보내기, 레이블 상세 정보 및 파일별 검사 소요 시간을 보여주는 **WPF 데스크톱 탐색기 GUI** 실행
+   - **CLI 인자 전달 시**: 지정한 파일/폴더의 레이블 상태를 콘솔 표, `--json`, `--output-csv <file>`, `--output-json <file>`로 출력·저장하고 종료 코드를 반환하는 **CLI 도구**로 동작
 3. **`MIPLabelCustomCheck.Benchmarks` (`net10.0`)**: 포맷별 단건/병렬 처리 및 512 MiB 대용량 스파스 파일 성능을 검증하는 `BenchmarkDotNet` 스위트
 
 ---
@@ -44,6 +44,8 @@ dotnet run --project .\src\MIPLabelCustomCheck\MIPLabelCustomCheck.Explorer\MIPL
 | `--details` | `-d` | 선택 | `false` | 레이블 상세 메타데이터(`SiteId`, `Name`, `Method`, `ContentBits`, `SetDate`) 포함 |
 | `--dry-run` | - | 선택 | `false` | 실제 파일 파싱 없이 스캔 대상 파일 목록과 크기만 사전 점검 |
 | `--json` | - | 선택 | `false` | 결과를 구조화된 JSON 포맷으로 출력 |
+| `--output-csv <file>` | - | 선택 | - | 결과를 UTF-8(BOM) CSV 파일로 저장 |
+| `--output-json <file>` | - | 선택 | - | 결과를 구조화된 JSON 파일로 저장 |
 | `--verbose` | `-v` | 선택 | `false` | 파일별 소요 시간(ms) 및 보호 상세(`ProtectionDetail`) 출력 |
 | `--gui` | - | 선택 | `false` | WPF Explorer GUI 창 실행 |
 | `--help` | `-h` | 선택 | - | 도움말 출력 |

@@ -20,3 +20,8 @@
 - [x] **Step 6: 기존 `D:\Sources\github\MIPLabelCustomCheck` 저장소 이전 안내 업데이트 및 양쪽 저장소 커밋/푸시**
   - `D:\Sources\github\MIPLabelCustomCheck\README.md`에 `ops-toolkit` 이전 및 사용 중단 안내 작성 후 커밋·푸시
   - `ops-toolkit` 변경사항 분리 커밋 및 푸시
+- [x] **Step 7: Explorer 기본 확장자(`.msg`, `.eml`), CLI/GUI CSV·JSON 내보내기, 하위 폴더 재귀 스캔 및 상태 필터 고도화**
+  - `LabelableExtensions.Default`에 `.msg`, `.eml` 기본 포함 및 XML 주석 현행화
+  - CLI `--output-csv <file>`, `--output-json <file>` 옵션 및 `CsvReportExporter` 구현
+  - WPF Explorer GUI `ExportCsvCommand`, `IncludeSubfolders`, `SelectedStatusFilter`(`FilteredFiles`) 및 상단 툴바 UI 추가
+  - 신규 기능 단위 테스트 추가 및 전체 빌드/테스트 검증 완료

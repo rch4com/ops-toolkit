@@ -1,6 +1,10 @@
+using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
+using System.Text;
+using MIPLabelCustomCheck.Explorer.Cli;
 using MIPLabelCustomCheck.Explorer.Scanning;
 
 namespace MIPLabelCustomCheck.Explorer.ViewModels;
@@ -8,9 +12,14 @@ namespace MIPLabelCustomCheck.Explorer.ViewModels;
 /// <summary>Orchestrates the tree, list, and detail panes and owns the scan lifecycle.</summary>
 public sealed class MainViewModel : ObservableObject
 {
+    public static IReadOnlyList<string> DefaultStatusFilters { get; } =
+        ["전체", "레이블됨", "미레이블", "보호됨", "오류/잘못된파일", "대상 외"];
+
     private readonly TimedChecker _checker;
     private readonly ScanSession _session;
     private readonly Action<string> _openFile;
+    private readonly Func<string?> _selectExportCsvPath;
+    private readonly Lock _filterLock = new();
 
     private CancellationTokenSource? _scanCancellation;
     private FolderTreeNodeViewModel? _selectedNode;
@@ -26,7 +35,9 @@ public sealed class MainViewModel : ObservableObject
     private bool _isScanning;
     private bool _isRemeasuring;
     private bool _includeDetailsByDefault;
+    private bool _includeSubfolders;
     private bool _remeasureWithDetails = true;
+    private string _selectedStatusFilter = "전체";
     private string _statusText = "폴더를 선택하세요.";
 
     /// <param name="checker">Times and performs the label checks.</param>
@@ -34,16 +45,26 @@ public sealed class MainViewModel : ObservableObject
     /// Opens a file in whatever program is associated with it. Injectable so tests can assert a
     /// double-click asks for the right path without actually launching Word.
     /// </param>
-    public MainViewModel(TimedChecker checker, Action<string>? openFile = null)
+    /// <param name="selectExportCsvPath">
+    /// Chooses the destination path for CSV export. Injectable so tests can export without showing
+    /// a modal file dialog.
+    /// </param>
+    public MainViewModel(
+        TimedChecker checker,
+        Action<string>? openFile = null,
+        Func<string?>? selectExportCsvPath = null)
     {
         ArgumentNullException.ThrowIfNull(checker);
         _checker = checker;
         _openFile = openFile ?? ShellOpen;
+        _selectExportCsvPath = selectExportCsvPath ?? PromptSaveCsvPath;
         _session = new ScanSession(checker);
 
         Drives = new ObservableCollection<FolderTreeNodeViewModel>(
             FolderTreeNodeViewModel.CreateDriveRoots());
         Files = [];
+        FilteredFiles = [];
+        StatusFilterOptions = DefaultStatusFilters;
 
         NavigateCommand = new RelayCommand(() => _ = NavigateAsync());
         RescanCommand = new RelayCommand(
@@ -56,6 +77,18 @@ public sealed class MainViewModel : ObservableObject
         ResetExtensionsCommand = new RelayCommand(
             () => ExtensionsText = LabelableExtensions.Format(LabelableExtensions.Default));
         OpenFileCommand = new RelayCommand(OpenSelectedFile, () => _selectedFile is not null);
+        ExportCsvCommand = new RelayCommand(ExportCsv, () => !_isScanning && Files.Count > 0);
+    }
+
+    private static string? PromptSaveCsvPath()
+    {
+        var dialog = new Microsoft.Win32.SaveFileDialog
+        {
+            Filter = "CSV 파일 (*.csv)|*.csv",
+            FileName = $"MipLabelScan_{DateTime.Now:yyyyMMdd_HHmmss}.csv"
+        };
+
+        return dialog.ShowDialog() == true ? dialog.FileName : null;
     }
 
     /// <summary>
@@ -73,6 +106,10 @@ public sealed class MainViewModel : ObservableObject
 
     public ObservableCollection<FileEntryViewModel> Files { get; }
 
+    public ObservableCollection<FileEntryViewModel> FilteredFiles { get; }
+
+    public IReadOnlyList<string> StatusFilterOptions { get; }
+
     public RelayCommand NavigateCommand { get; }
 
     public RelayCommand RescanCommand { get; }
@@ -85,6 +122,9 @@ public sealed class MainViewModel : ObservableObject
 
     /// <summary>Opens the selected file in its associated program. Bound to double-click.</summary>
     public RelayCommand OpenFileCommand { get; }
+
+    /// <summary>Exports the current file scan results to a UTF-8 with BOM CSV file.</summary>
+    public RelayCommand ExportCsvCommand { get; }
 
     /// <summary>
     /// The extensions a scan checks, as an editable comma-separated list. Defaults to what
@@ -121,6 +161,38 @@ public sealed class MainViewModel : ObservableObject
             if (Set(ref _includeDetailsByDefault, value) && _currentFolder is not null)
             {
                 _ = OpenFolderAsync(_currentFolder);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Whether a folder scan recurses into subdirectories. Changing this re-scans the current
+    /// folder immediately.
+    /// </summary>
+    public bool IncludeSubfolders
+    {
+        get => _includeSubfolders;
+        set
+        {
+            if (Set(ref _includeSubfolders, value) && _currentFolder is not null)
+            {
+                _ = OpenFolderAsync(_currentFolder);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Filters the visible file list by status category ("전체", "레이블됨", "미레이블", "보호됨",
+    /// "오류/잘못된파일", "대상 외").
+    /// </summary>
+    public string SelectedStatusFilter
+    {
+        get => _selectedStatusFilter;
+        set
+        {
+            if (Set(ref _selectedStatusFilter, string.IsNullOrWhiteSpace(value) ? "전체" : value))
+            {
+                RefreshFilteredFiles();
             }
         }
     }
@@ -191,6 +263,7 @@ public sealed class MainViewModel : ObservableObject
                 StopCommand.RaiseCanExecuteChanged();
                 RescanCommand.RaiseCanExecuteChanged();
                 RemeasureCommand.RaiseCanExecuteChanged();
+                ExportCsvCommand.RaiseCanExecuteChanged();
             }
         }
     }
@@ -224,6 +297,65 @@ public sealed class MainViewModel : ObservableObject
                 or IOException or UnauthorizedAccessException)
         {
             StatusText = $"{name} 을(를) 열 수 없습니다: {exception.Message}";
+        }
+    }
+
+    /// <summary>
+    /// Exports the current <see cref="Files"/> collection to a UTF-8 with BOM CSV file selected by
+    /// the user (or injected path provider).
+    /// </summary>
+    public void ExportCsv()
+    {
+        if (_isScanning || Files.Count == 0)
+        {
+            return;
+        }
+
+        string? outputPath = _selectExportCsvPath();
+        if (string.IsNullOrWhiteSpace(outputPath))
+        {
+            return;
+        }
+
+        try
+        {
+            string fullPath = Path.GetFullPath(outputPath);
+            string? dir = Path.GetDirectoryName(fullPath);
+            if (!string.IsNullOrEmpty(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+
+            using var writer = new StreamWriter(fullPath, append: false, new UTF8Encoding(encoderShouldEmitUTF8Identifier: true));
+            writer.WriteLine("FilePath,FileName,SizeBytes,StatusText,ProtectionText,LabelIds,SourcesText,ElapsedMs");
+
+            foreach (FileEntryViewModel entry in Files)
+            {
+                string labelIds = entry.Result is { LabelIds.Count: > 0 }
+                    ? string.Join(";", entry.Result.LabelIds)
+                    : string.Empty;
+                TimeSpan? measured = entry.Remeasured ?? entry.Elapsed;
+                string elapsedMs = measured is { } elapsed
+                    ? Math.Round(elapsed.TotalMilliseconds, 3).ToString("0.###", CultureInfo.InvariantCulture)
+                    : string.Empty;
+
+                writer.WriteLine(string.Join(",",
+                    CsvReportExporter.EscapeCsv(entry.FilePath),
+                    CsvReportExporter.EscapeCsv(entry.Name),
+                    entry.SizeBytes.ToString(CultureInfo.InvariantCulture),
+                    CsvReportExporter.EscapeCsv(entry.StatusText),
+                    CsvReportExporter.EscapeCsv(entry.ProtectionText),
+                    CsvReportExporter.EscapeCsv(labelIds),
+                    CsvReportExporter.EscapeCsv(entry.SourcesText),
+                    elapsedMs));
+            }
+
+            StatusText = $"CSV 내보내기 완료: {Path.GetFileName(fullPath)}";
+        }
+        catch (Exception exception) when (
+            exception is IOException or UnauthorizedAccessException or ArgumentException)
+        {
+            StatusText = $"CSV 내보내기 실패: {exception.Message}";
         }
     }
 
@@ -292,12 +424,14 @@ public sealed class MainViewModel : ObservableObject
     private async Task ScanFolderAsync(string folderPath, CancellationToken cancellationToken)
     {
         Files.Clear();
+        FilteredFiles.Clear();
         SelectedFile = null;
+        ExportCsvCommand.RaiseCanExecuteChanged();
 
         string[] filePaths;
         try
         {
-            filePaths = Directory.GetFiles(folderPath).Order(StringComparer.OrdinalIgnoreCase).ToArray();
+            filePaths = ScanSession.EnumerateFiles(folderPath, _includeSubfolders);
         }
         catch (Exception exception) when (
             exception is UnauthorizedAccessException or IOException or ArgumentException)
@@ -324,6 +458,8 @@ public sealed class MainViewModel : ObservableObject
             Files.Add(new FileEntryViewModel(filePath, size));
         }
 
+        ExportCsvCommand.RaiseCanExecuteChanged();
+
         if (Files.Count == 0)
         {
             StatusText = "이 폴더에는 파일이 없습니다.";
@@ -348,6 +484,8 @@ public sealed class MainViewModel : ObservableObject
             }
         }
 
+        RefreshFilteredFiles();
+
         if (targets.Count == 0)
         {
             StatusText = $"검사 대상 없음 — {Files.Count}개 모두 설정된 확장자 밖입니다.";
@@ -364,12 +502,22 @@ public sealed class MainViewModel : ObservableObject
         // 실행되면 상태바가 "검사 중 N/N"에 멈춘 채 끝난다. 항목 갱신은 늦게 와도 유효하므로
         // 그대로 두고, 상태바 문구만 막는다.
         var finished = false;
+        var recordedResults = new ConcurrentDictionary<string, TimedCheckResult?>(StringComparer.OrdinalIgnoreCase);
 
-        var progress = new Progress<ScanProgress>(report =>
+        var uiProgress = new Progress<ScanProgress>(report =>
         {
+            if (finished)
+            {
+                return;
+            }
+
             if (byPath.TryGetValue(report.FilePath, out var entry))
             {
                 entry.Apply(report.Result);
+                if (!string.Equals(_selectedStatusFilter, "전체", StringComparison.Ordinal))
+                {
+                    RefreshFilteredFiles();
+                }
             }
 
             if (!finished)
@@ -378,10 +526,22 @@ public sealed class MainViewModel : ObservableObject
             }
         });
 
+        var recordingProgress = new RecordingProgress(recordedResults, uiProgress);
+
         // 요약도 스캔이 직접 센 값을 쓴다. 같은 이유로 콜백에서 세면 숫자가 적게 나온다.
         var summary = await _session.RunAsync(
-            targets, progress, _includeDetailsByDefault, cancellationToken);
+            targets, recordingProgress, _includeDetailsByDefault, cancellationToken, _includeSubfolders);
         finished = true;
+
+        foreach (var (filePath, result) in recordedResults)
+        {
+            if (byPath.TryGetValue(filePath, out var entry) && entry.State == CheckState.Pending)
+            {
+                entry.Apply(result);
+            }
+        }
+
+        RefreshFilteredFiles();
 
         var skippedNote = skipped > 0 ? $", 대상 외 {skipped}개 제외" : string.Empty;
         StatusText = summary.Canceled > 0
@@ -471,7 +631,50 @@ public sealed class MainViewModel : ObservableObject
             entry.Apply(measured);
         }
 
+        RefreshFilteredFiles();
         _isRemeasuring = false;
         RemeasureCommand.RaiseCanExecuteChanged();
+    }
+
+    private void RefreshFilteredFiles()
+    {
+        lock (_filterLock)
+        {
+            string filter = _selectedStatusFilter;
+            FilteredFiles.Clear();
+            foreach (FileEntryViewModel entry in Files)
+            {
+                if (MatchesStatusFilter(entry, filter))
+                {
+                    FilteredFiles.Add(entry);
+                }
+            }
+        }
+    }
+
+    private static bool MatchesStatusFilter(FileEntryViewModel entry, string filter) => filter switch
+    {
+        "" or "전체" => true,
+        "레이블됨" => entry.State == CheckState.Completed && entry.Result?.Status == LabelStatus.Labeled,
+        "미레이블" => entry.State == CheckState.Completed && entry.Result?.Status == LabelStatus.Unlabeled,
+        "보호됨" => entry.State == CheckState.Completed &&
+                   (entry.Result?.Status == LabelStatus.ProtectedLabelUnknown ||
+                    entry.Result is { Protection: not ProtectionType.None }),
+        "오류/잘못된파일" => entry.State == CheckState.Failed ||
+                            (entry.State == CheckState.Completed &&
+                             entry.Result?.Status is LabelStatus.InvalidFile or LabelStatus.Unsupported),
+        "대상 외" => entry.State == CheckState.Skipped,
+        _ => string.Equals(entry.StatusText, filter, StringComparison.Ordinal)
+    };
+
+    private sealed class RecordingProgress(
+        ConcurrentDictionary<string, TimedCheckResult?> recordedResults,
+        IProgress<ScanProgress> inner) : IProgress<ScanProgress>
+    {
+        public void Report(ScanProgress value)
+        {
+            recordedResults[value.FilePath] = value.Result;
+            inner.Report(value);
+        }
     }
 }

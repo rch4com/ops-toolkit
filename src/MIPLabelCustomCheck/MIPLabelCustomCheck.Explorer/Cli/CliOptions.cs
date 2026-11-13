@@ -12,6 +12,8 @@ public sealed class CliOptions
     public bool OutputJson { get; set; }
     public bool Verbose { get; set; }
     public string? TargetPath { get; set; }
+    public string? OutputCsvPath { get; set; }
+    public string? OutputJsonPath { get; set; }
 
     public static bool TryParse(string[] args, out CliOptions options, out string? errorMessage)
     {
@@ -80,6 +82,26 @@ public sealed class CliOptions
                     }
                     i++;
                     options.TargetPath = args[i];
+                    break;
+
+                case "--output-csv":
+                    if (i + 1 >= args.Length || string.IsNullOrWhiteSpace(args[i + 1]))
+                    {
+                        errorMessage = $"'{arg}' 옵션에 출력할 CSV 파일 경로 값이 필요합니다.";
+                        return false;
+                    }
+                    i++;
+                    options.OutputCsvPath = args[i];
+                    break;
+
+                case "--output-json":
+                    if (i + 1 >= args.Length || string.IsNullOrWhiteSpace(args[i + 1]))
+                    {
+                        errorMessage = $"'{arg}' 옵션에 출력할 JSON 파일 경로 값이 필요합니다.";
+                        return false;
+                    }
+                    i++;
+                    options.OutputJsonPath = args[i];
                     break;
 
                 default:

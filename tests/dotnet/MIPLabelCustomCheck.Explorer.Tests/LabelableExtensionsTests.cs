@@ -12,6 +12,13 @@ public sealed class LabelableExtensionsTests
     public void Default_includes_the_generic_pfile_container() =>
         Assert.Contains(".pfile", LabelableExtensions.Default);
 
+    [Fact]
+    public void Default_includes_msg_and_eml_email_containers()
+    {
+        Assert.Contains(".msg", LabelableExtensions.Default);
+        Assert.Contains(".eml", LabelableExtensions.Default);
+    }
+
     [Theory]
     // 이 라이브러리가 실제로 레이블을 읽어내는 형식들.
     [InlineData(".docx")]
@@ -22,6 +29,10 @@ public sealed class LabelableExtensionsTests
     [InlineData(".ppt")]
     [InlineData(".pdf")]
     [InlineData(".png")]
+    [InlineData(".jpg")]
+    [InlineData(".tiff")]
+    [InlineData(".msg")]
+    [InlineData(".eml")]
     // 매크로 사용 및 서식 파일 변형.
     [InlineData(".docm")]
     [InlineData(".dotx")]
@@ -30,8 +41,6 @@ public sealed class LabelableExtensionsTests
     [InlineData(".pptm")]
     [InlineData(".potx")]
     // Purview가 레이블하지만 이 라이브러리는 읽지 못하는 형식들 — 기본 집합에는 들어간다.
-    [InlineData(".jpg")]
-    [InlineData(".tiff")]
     [InlineData(".psd")]
     [InlineData(".vsdx")]
     [InlineData(".mpp")]

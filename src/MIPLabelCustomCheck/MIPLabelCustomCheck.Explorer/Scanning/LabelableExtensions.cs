@@ -14,12 +14,13 @@ namespace MIPLabelCustomCheck.Explorer.Scanning;
 /// Protection client: https://learn.microsoft.com/en-us/purview/information-protection-client
 /// </para>
 /// <para>
-/// This is the set Purview can <em>label</em>, which is wider than the set this library can
-/// <em>read</em> a label from. The library detects format by content signature and reads only
-/// ZIP/OOXML, compound-file (legacy Office), PDF, PNG, and <c>.pfile</c>; the remaining
-/// extensions here — <c>.jpg</c>, <c>.tif</c>, <c>.psd</c>, <c>.dng</c>, <c>.txt</c>, and so on —
-/// report as unsupported. That gap is deliberate and worth showing: it is the honest answer to
-/// "Purview labels this, can this library read it?"
+/// This is the set Purview can <em>label</em>, plus Outlook email containers (<c>.msg</c>, <c>.eml</c>)
+/// and <c>.pfile</c>, which is wider than the set this library can <em>read</em> a label from.
+/// The library detects format by content signature and reads OOXML, legacy Office CFB, Outlook
+/// <c>.msg</c>, <c>.eml</c>, PDF, PNG, JPEG, TIFF, and <c>.pfile</c>; the remaining extensions
+/// here — <c>.psd</c>, <c>.dng</c>, <c>.txt</c>, and so on — report as unsupported. That gap is
+/// deliberate and worth showing: it is the honest answer to "Purview labels this, can this
+/// library read it?"
 /// </para>
 /// <para>
 /// The natively-encrypted output extensions (<c>.ppng</c>, <c>.pjpg</c>, <c>.ptxt</c>, …) are not
@@ -29,7 +30,7 @@ namespace MIPLabelCustomCheck.Explorer.Scanning;
 /// </remarks>
 public static class LabelableExtensions
 {
-    /// <summary>The default extension set: everything Purview can label, plus <c>.pfile</c>.</summary>
+    /// <summary>The default extension set: everything Purview can label, plus <c>.msg</c>, <c>.eml</c>, and <c>.pfile</c>.</summary>
     public static IReadOnlySet<string> Default { get; } = new HashSet<string>(
         [
             // Microsoft Office — 97-2003 and Open XML formats.
@@ -37,6 +38,9 @@ public static class LabelableExtensions
             ".xls", ".xlsb", ".xlsm", ".xlsx", ".xlt", ".xltm", ".xltx", ".xla", ".xlam",
             ".ppt", ".pptm", ".pptx", ".pot", ".potm", ".potx", ".pps", ".ppsm", ".ppsx",
             ".vdw", ".vsd", ".vsdm", ".vsdx", ".vss", ".vssm", ".vssx", ".vst", ".vstm", ".vstx",
+
+            // Outlook / Email formats.
+            ".msg", ".eml",
 
             // Adobe Portable Document Format.
             ".pdf",

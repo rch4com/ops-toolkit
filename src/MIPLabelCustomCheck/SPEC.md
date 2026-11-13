@@ -16,6 +16,9 @@
 ## 2. 실행 모드 및 CLI 옵션 명세 (`MIPLabelCustomCheck.Explorer`)
 
 - **GUI 모드**: 명령줄 인자 없이 실행하거나 `--gui` 옵션을 주면 WPF 탐색기(`MainWindow`)가 실행됩니다.
+  - 하위 폴더 재귀 스캔(`IncludeSubfolders` / `"하위 폴더 포함"` 체크박스) 지원
+  - 상태 필터(`SelectedStatusFilter`: `"전체"`, `"레이블됨"`, `"미레이블"`, `"보호됨"`, `"오류/잘못된파일"`, `"대상 외"`)를 통한 실시간 목록 필터링(`FilteredFiles`) 지원
+  - 스캔된 파일 목록을 UTF-8(BOM) CSV 파일로 내보내는 `"CSV 내보내기"`(`ExportCsvCommand`) 지원
 - **CLI 모드**: `--gui` 외의 인자가 1개 이상 전달되면 콘솔 모드로 동작합니다.
 
 | CLI 옵션 | 단축 | 필수 여부 | 기본값 | 설명 |
@@ -26,6 +29,8 @@
 | `--details` | `-d` | 선택 | `false` | 레이블 GUID 외에 상세 메타데이터(`SiteId`, `Name`, `Method`, `ContentBits`, `SetDate`)까지 파싱 (`LabelCheckOptions.WithDetails`) |
 | `--dry-run` | - | 선택 | `false` | 실제 파일 스트림을 열어 파싱하지 않고, 검사 대상 파일 목록과 확장자/크기만 사전 확인 |
 | `--json` | - | 선택 | `false` | 검사 결과를 JSON 포맷으로 표준 출력(`stdout`)에 출력 |
+| `--output-csv <file>` | - | 선택 | - | 검사 결과를 UTF-8(BOM) CSV 파일로 저장 |
+| `--output-json <file>` | - | 선택 | - | 검사 결과를 JSON 파일로 저장 |
 | `--verbose` | `-v` | 선택 | `false` | 개별 파일 소요 시간(ms) 및 보호 상세(`ProtectionDetail`) 등 추가 정보 출력 |
 | `--gui` | - | 선택 | `false` | WPF Explorer GUI 명시적 실행 |
 | `--help` | `-h` | 선택 | - | 도움말 및 사용 예제 출력 |

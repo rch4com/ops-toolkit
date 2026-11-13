@@ -80,4 +80,89 @@ public sealed class MainViewModelOpenFileTests
 
         Assert.Contains("열었습니다", viewModel.StatusText, StringComparison.Ordinal);
     }
+
+    [Fact]
+    public async Task ExportCsvCommand_writes_utf8_bom_csv_and_updates_status_text()
+    {
+        string tempDir = Path.Combine(Path.GetTempPath(), $"MipExportTest_{Guid.NewGuid():N}");
+        Directory.CreateDirectory(tempDir);
+
+        try
+        {
+            string csvPath = Path.Combine(tempDir, "exported.csv");
+            var viewModel = new MainViewModel(
+                new TimedChecker((path, options) => new MipLabelChecker().Check(path, options)),
+                openFile: _ => { },
+                selectExportCsvPath: () => csvPath);
+
+            Assert.False(viewModel.ExportCsvCommand.CanExecute(null));
+
+            await viewModel.OpenFolderAsync(Path.GetDirectoryName(FixturePaths.Get(".pdf"))!);
+
+            Assert.True(viewModel.ExportCsvCommand.CanExecute(null));
+            viewModel.ExportCsvCommand.Execute(null);
+
+            Assert.True(File.Exists(csvPath));
+            byte[] bytes = await File.ReadAllBytesAsync(csvPath);
+            Assert.True(bytes.Length >= 3 && bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF);
+
+            string content = await File.ReadAllTextAsync(csvPath);
+            Assert.Contains("FilePath,FileName,SizeBytes,StatusText,ProtectionText,LabelIds,SourcesText,ElapsedMs", content, StringComparison.Ordinal);
+            Assert.Contains("레이블됨", content, StringComparison.Ordinal);
+            Assert.Contains("CSV 내보내기 완료: exported.csv", viewModel.StatusText, StringComparison.Ordinal);
+        }
+        finally
+        {
+            if (Directory.Exists(tempDir))
+            {
+                Directory.Delete(tempDir, recursive: true);
+            }
+        }
+    }
+
+    [Fact]
+    public async Task IncludeSubfolders_and_StatusFilter_enumerate_subdirectories_and_filter_items()
+    {
+        string tempRoot = Path.Combine(Path.GetTempPath(), $"MipSubfolderTest_{Guid.NewGuid():N}");
+        string subDir = Path.Combine(tempRoot, "sub");
+        Directory.CreateDirectory(subDir);
+
+        try
+        {
+            string rootDocx = Path.Combine(tempRoot, "root.docx");
+            string subPdf = Path.Combine(subDir, "nested.pdf");
+            string skippedDll = Path.Combine(tempRoot, "ignored.dll");
+
+            File.Copy(FixturePaths.Get(".docx"), rootDocx);
+            File.Copy(FixturePaths.Get(".pdf"), subPdf);
+            await File.WriteAllBytesAsync(skippedDll, [0x4D, 0x5A]);
+
+            var viewModel = new MainViewModel(
+                new TimedChecker((path, options) => new MipLabelChecker().Check(path, options)));
+
+            await viewModel.OpenFolderAsync(tempRoot);
+            Assert.Equal(2, viewModel.Files.Count);
+
+            viewModel.IncludeSubfolders = true;
+            await viewModel.OpenFolderAsync(tempRoot);
+            Assert.Equal(3, viewModel.Files.Count);
+            Assert.Equal(3, viewModel.FilteredFiles.Count);
+
+            viewModel.SelectedStatusFilter = "레이블됨";
+            Assert.Equal(2, viewModel.FilteredFiles.Count);
+
+            viewModel.SelectedStatusFilter = "대상 외";
+            Assert.Single(viewModel.FilteredFiles);
+
+            viewModel.SelectedStatusFilter = "전체";
+            Assert.Equal(3, viewModel.FilteredFiles.Count);
+        }
+        finally
+        {
+            if (Directory.Exists(tempRoot))
+            {
+                Directory.Delete(tempRoot, recursive: true);
+            }
+        }
+    }
 }

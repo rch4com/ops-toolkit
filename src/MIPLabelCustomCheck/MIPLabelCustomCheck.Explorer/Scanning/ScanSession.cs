@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace MIPLabelCustomCheck.Explorer.Scanning;
 
 /// <summary>
@@ -21,6 +23,26 @@ public sealed class ScanSession
     }
 
     /// <summary>
+    /// Enumerates files in <paramref name="folderPath"/>, optionally recursing into subfolders
+    /// while ignoring inaccessible directories.
+    /// </summary>
+    public static string[] EnumerateFiles(string folderPath, bool includeSubfolders = false)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(folderPath);
+
+        var options = new EnumerationOptions
+        {
+            RecurseSubdirectories = includeSubfolders,
+            IgnoreInaccessible = true,
+            ReturnSpecialDirectories = false
+        };
+
+        return Directory.EnumerateFiles(folderPath, "*", options)
+            .Order(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+    }
+
+    /// <summary>
     /// Scans <paramref name="filePaths"/>, reporting one <see cref="ScanProgress"/> per file, and
     /// returns what the scan actually did.
     /// </summary>
@@ -28,11 +50,13 @@ public sealed class ScanSession
     /// <param name="progress">Receives one report per file, as each completes.</param>
     /// <param name="includeDetails">Whether each check also reads label metadata beyond the GUID.</param>
     /// <param name="cancellationToken">Stops files that have not started yet.</param>
+    /// <param name="includeSubfolders">Whether folder entries in <paramref name="filePaths"/> should recurse into subdirectories.</param>
     public Task<ScanSummary> RunAsync(
         IReadOnlyList<string> filePaths,
         IProgress<ScanProgress> progress,
         bool includeDetails,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken,
+        bool includeSubfolders = false)
     {
         ArgumentNullException.ThrowIfNull(filePaths);
         ArgumentNullException.ThrowIfNull(progress);
@@ -40,25 +64,30 @@ public sealed class ScanSession
         return filePaths.Count == 0
             ? Task.FromResult(new ScanSummary(0, 0, 0))
             : Task.Run(
-                () => Run(filePaths, progress, includeDetails, cancellationToken),
+                () => Run(filePaths, progress, includeDetails, cancellationToken, includeSubfolders),
                 CancellationToken.None);
     }
 
-    private ScanSummary Run(
+    public ScanSummary Run(
         IReadOnlyList<string> filePaths,
         IProgress<ScanProgress> progress,
         bool includeDetails,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken,
+        bool includeSubfolders = false)
     {
+        ArgumentNullException.ThrowIfNull(filePaths);
+        ArgumentNullException.ThrowIfNull(progress);
+
+        IReadOnlyList<string> expandedPaths = ExpandPaths(filePaths, includeSubfolders);
         var processed = 0;
         var canceled = 0;
-        var total = filePaths.Count;
+        var total = expandedPaths.Count;
 
         // ParallelOptions.CancellationToken은 일부러 설정하지 않는다. 설정하면 루프가
         // OperationCanceledException으로 중단되어 남은 파일이 보고되지 않는데,
         // UI는 그 파일들을 "취소됨"으로 표시해야 하므로 하나하나 보고가 필요하다.
         Parallel.ForEach(
-            filePaths,
+            expandedPaths,
             new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount },
             filePath =>
             {
@@ -78,5 +107,23 @@ public sealed class ScanSession
             });
 
         return new ScanSummary(total - canceled, canceled, total);
+    }
+
+    private static IReadOnlyList<string> ExpandPaths(IReadOnlyList<string> paths, bool includeSubfolders)
+    {
+        var expanded = new List<string>(paths.Count);
+        foreach (string path in paths)
+        {
+            if (Directory.Exists(path))
+            {
+                expanded.AddRange(EnumerateFiles(path, includeSubfolders));
+            }
+            else
+            {
+                expanded.Add(path);
+            }
+        }
+
+        return expanded;
     }
 }

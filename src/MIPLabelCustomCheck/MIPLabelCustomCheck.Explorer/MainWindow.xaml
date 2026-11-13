@@ -32,6 +32,9 @@
         <Border DockPanel.Dock="Top" Style="{StaticResource RowBar}" Background="#FAFAFA">
             <DockPanel>
                 <TextBlock DockPanel.Dock="Left" Text="경로" Style="{StaticResource RowLabel}" />
+                <Button DockPanel.Dock="Right" Content="CSV 내보내기" Margin="4,0,0,0" Padding="10,2"
+                        Command="{Binding ExportCsvCommand}"
+                        ToolTip="현재 스캔된 파일 목록을 UTF-8(BOM) CSV 파일로 내보냅니다." />
                 <Button DockPanel.Dock="Right" Content="■ 중지" Margin="4,0,0,0" Padding="10,2"
                         Command="{Binding StopCommand}" />
                 <Button DockPanel.Dock="Right" Content="↻ 다시검사" Margin="4,0,0,0" Padding="10,2"
@@ -79,6 +82,17 @@
             <DockPanel>
                 <TextBlock DockPanel.Dock="Left" Text="기본 검사 옵션"
                            Style="{StaticResource RowLabel}" />
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="상태 필터:" VerticalAlignment="Center" Margin="8,0,6,0" />
+                    <ComboBox Width="130" VerticalAlignment="Center"
+                              ItemsSource="{Binding StatusFilterOptions}"
+                              SelectedItem="{Binding SelectedStatusFilter, Mode=TwoWay}" />
+                </StackPanel>
+                <CheckBox VerticalAlignment="Center"
+                          IsChecked="{Binding IncludeSubfolders}"
+                          Content="하위 폴더 포함"
+                          Margin="0,0,14,0"
+                          ToolTip="켜면 선택한 폴더의 하위 디렉터리까지 재귀적으로 스캔합니다." />
                 <CheckBox VerticalAlignment="Center"
                           IsChecked="{Binding IncludeDetailsByDefault}"
                           Content="부가 정보(테넌트·이름·적용 방법·설정일)까지 읽기"
@@ -130,7 +144,7 @@
 
             <!-- 중: 파일 목록 -->
             <ListView Grid.Column="2"
-                      ItemsSource="{Binding Files}"
+                      ItemsSource="{Binding FilteredFiles}"
                       SelectedItem="{Binding SelectedFile, Mode=TwoWay}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">

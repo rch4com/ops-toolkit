@@ -1,12 +1,68 @@
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using MIPLabelCustomCheck.Explorer.Scanning;
 
 namespace MIPLabelCustomCheck.Explorer.Cli;
+
+public static class CsvReportExporter
+{
+    public static void Export(IEnumerable<CliFileScanItem> items, string outputPath)
+    {
+        ArgumentNullException.ThrowIfNull(items);
+        ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
+
+        string fullPath = Path.GetFullPath(outputPath);
+        string? dir = Path.GetDirectoryName(fullPath);
+        if (!string.IsNullOrEmpty(dir))
+        {
+            Directory.CreateDirectory(dir);
+        }
+
+        using var writer = new StreamWriter(fullPath, append: false, new UTF8Encoding(encoderShouldEmitUTF8Identifier: true));
+        writer.WriteLine("FilePath,FileName,FileSizeBytes,Status,Protection,ProtectionDetail,LabelIds,Sources,ElapsedMilliseconds,ErrorMessage");
+
+        foreach (CliFileScanItem item in items)
+        {
+            string fileName = Path.GetFileName(item.FilePath);
+            string labelIds = string.Join(";", item.LabelIds);
+            string sources = string.Join(";", item.Sources);
+            string elapsed = item.ElapsedMilliseconds.ToString("0.###", CultureInfo.InvariantCulture);
+
+            writer.WriteLine(string.Join(",",
+                EscapeCsv(item.FilePath),
+                EscapeCsv(fileName),
+                item.FileSizeBytes.ToString(CultureInfo.InvariantCulture),
+                EscapeCsv(item.Status),
+                EscapeCsv(item.Protection),
+                EscapeCsv(item.ProtectionDetail),
+                EscapeCsv(labelIds),
+                EscapeCsv(sources),
+                elapsed,
+                EscapeCsv(item.ErrorMessage)));
+        }
+    }
+
+    internal static string EscapeCsv(string? value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return string.Empty;
+        }
+
+        if (value.Contains(',') || value.Contains('"') || value.Contains('\r') || value.Contains('\n'))
+        {
+            return $"\"{value.Replace("\"", "\"\"")}\"";
+        }
+
+        return value;
+    }
+}
 
 public sealed class CliFileScanItem
 {
@@ -100,7 +156,7 @@ public static class CliRunner
 
             foreach (string file in Directory.EnumerateFiles(fullTarget, "*", enumOptions))
             {
-                if (options.AllFiles || LabelableExtensions.Includes(LabelableExtensions.Default, file) || IsExtraSupportedExtension(file))
+                if (options.AllFiles || LabelableExtensions.Includes(LabelableExtensions.Default, file))
                 {
                     targetFiles.Add(file);
                 }
@@ -207,6 +263,27 @@ public static class CliRunner
             }
         }
 
+        if (!string.IsNullOrWhiteSpace(options.OutputCsvPath))
+        {
+            CsvReportExporter.Export(report.Items, options.OutputCsvPath);
+        }
+
+        if (!string.IsNullOrWhiteSpace(options.OutputJsonPath))
+        {
+            string fullJsonPath = Path.GetFullPath(options.OutputJsonPath);
+            string? jsonDir = Path.GetDirectoryName(fullJsonPath);
+            if (!string.IsNullOrEmpty(jsonDir))
+            {
+                Directory.CreateDirectory(jsonDir);
+            }
+
+            await File.WriteAllTextAsync(
+                fullJsonPath,
+                JsonSerializer.Serialize(report, JsonOptions),
+                new UTF8Encoding(encoderShouldEmitUTF8Identifier: false),
+                cancellationToken).ConfigureAwait(false);
+        }
+
         if (options.OutputJson)
         {
             await stdOut.WriteLineAsync(JsonSerializer.Serialize(report, JsonOptions)).ConfigureAwait(false);
@@ -219,12 +296,8 @@ public static class CliRunner
         return report.ErrorCount == 0 ? ExitSuccess : ExitFailure;
     }
 
-    private static bool IsExtraSupportedExtension(string filePath)
-    {
-        string ext = Path.GetExtension(filePath);
-        return string.Equals(ext, ".msg", StringComparison.OrdinalIgnoreCase) ||
-               string.Equals(ext, ".eml", StringComparison.OrdinalIgnoreCase);
-    }
+    public static void ExportCsv(IEnumerable<CliFileScanItem> items, string outputPath) =>
+        CsvReportExporter.Export(items, outputPath);
 
     private static void WriteConsoleReport(TextWriter writer, CliScanReport report, CliOptions options)
     {
@@ -292,6 +365,8 @@ public static class CliRunner
         writer.WriteLine("  -d, --details          레이블 상세 메타데이터(SiteId, Name, Method, SetDate 등) 파싱");
         writer.WriteLine("      --dry-run          실제 파일 파싱 없이 검사 대상 파일 목록과 크기만 사전 점검");
         writer.WriteLine("      --json             결과를 JSON 포맷으로 출력");
+        writer.WriteLine("      --output-csv <f>   결과를 UTF-8 (BOM) CSV 파일로 저장");
+        writer.WriteLine("      --output-json <f>  결과를 JSON 파일로 저장");
         writer.WriteLine("  -v, --verbose          파일별 검사 소요 시간(ms) 등 상세 정보 표시");
         writer.WriteLine("  -h, --help             도움말 출력");
         writer.WriteLine("      --version          버전 출력");

@@ -25,5 +25,6 @@
   - DryRun & CLI Check (`--path ... --dry-run` / `--details`): Pass
 - **주요 확인 사항**:
   - 코어 라이브러리(`MIPLabelCustomCheck`) 외부 NuGet 의존성 0개 유지 완료
-  - `MIPLabelCustomCheck.Explorer`에 WPF GUI + CLI(`--path`, `--recursive`, `--details`, `--dry-run`, `--json`) 하이브리드 모드 추가 완료
+  - `MIPLabelCustomCheck.Explorer`에 WPF GUI + CLI(`--path`, `--recursive`, `--details`, `--dry-run`, `--json`, `--output-csv`, `--output-json`) 하이브리드 모드 추가 완료
+  - WPF Explorer GUI에 `.msg`/`.eml` 기본 스캔 확장자 포함, 하위 폴더 재귀 스캔(`IncludeSubfolders`), 상태 필터(`SelectedStatusFilter`), UTF-8(BOM) CSV 내보내기(`ExportCsvCommand`) 추가 완료
   - `MIPLabelCustomCheck.sln`(개별 실행용) 및 루트 `OpsToolkit.slnx` 2-Tier 솔루션 연동 완료
