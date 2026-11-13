@@ -1,5 +1,22 @@
 # REVIEW.md — Code Review & Quality Gate Checklist
 
+## 2026-11-13 Utilities 통합 검증
+
+- 범위: Phase 1 AD 진단/선택적 저장, Phase 2 UI 독립 5서비스, Phase 4 네이티브 Nocturne. 스캐폴더 제외. 신규 도구의 6문서를 먼저 작성하고 기존 도구의 명세/계획을 갱신했다.
+- `dotnet build -warnaserror`: 경고 0, 오류 0.
+- `dotnet test --nologo`: Shared 14, LDAP 36, MIP core 502, Explorer 91, 총 643/643 통과.
+- `Invoke-Pester -Path ./tests/powershell/ -Output Normal -PassThru`: 33/33 통과 (신규 AD 11 포함).
+- `node --test design-system/tests/*.test.cjs`: 대비 검사 3/3 통과.
+- 변경 C# 전체 `dotnet format ./OpsToolkit.slnx --verify-no-changes --no-restore --include <changed files>`: 통과.
+- 전체 `dotnet format --verify-no-changes --no-restore`: 실패. 이번에 수정하지 않은 MIP 코어 `Internal/Pdf/PdfLexer.cs` 등의 기존 들여쓰기 및 `tests/dotnet/MIPLabelCustomCheck.Tests/LabelDetailTests.cs` 등의 줄끝 오류가 남아 있다. 해당 예시 파일은 HEAD와 동일함을 `git diff --quiet`로 확인했다. 무관한 대규모 재포맷은 하지 않았다.
+- PSScriptAnalyzer Warning/Error: 신규 AD 스크립트 0건, 기존 스크립트 115건. 기존 스크립트 변경 없음.
+- 독립 리뷰 후 알 수 없는 JSON envelope 필드가 사라질 수 있는 문제를 실패 테스트로 재현하고 거부/원본 보존하도록 수정했다. 폼 종료 중 비동기 저장 수명 문제도 회귀 테스트로 검증했다.
+- GUI: MIP 라이트/다크 96 DPI STA 렌더, LDAP 현재 OS 테마의 그룹 배치/색상 렌더를 검토했다. 캡처는 `artifacts/nocturne-review/` (추적 제외). 실제 창 자동 실행은 도구 오류로 실패하여 대화형 키보드·스크린리더·고대비 전환·다양한 DPI는 미확인이다. WinForms DrawToBitmap은 일부 입력 컨트롤을 완전히 그리지 못한다.
+- 실제 AD 인증·외부 서버·실제 문서 스캔은 실행하지 않았다. 저장 서비스는 파일당 단일 소유자 전제이며 동기 Windows bind는 즉시 취소되지 않을 수 있다. 상세 제한은 각 도구 REVIEW/README 참조.
+- Utilities/Modubit 디자인 출처를 보존했으며 원본에 없는 라이선스를 새로 주장하지 않았다. 원본 저장소 및 기존 graphify 산출물은 이번 구현에서 수정하지 않았다.
+
+상태: 구현 및 범위 내 자동 검증 완료. 저장소 전체 포맷/기존 정적 분석 부채와 실환경 대화형 검증은 남아 있다.
+
 > **문서 역할**: 개발 완료(PR 생성, 커밋, 또는 사용자에게 완료 보고) 전에 AI 에이전트와 개발자가 반드시 점검해야 하는 **품질, 보안, 운영 안전성 체크리스트**입니다.
 
 ---

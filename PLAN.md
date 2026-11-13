@@ -64,6 +64,15 @@
 4. **검증 및 카탈로그 등록 (`REVIEW.md`)**:
    - 빌드/린트/테스트 명령어를 실행하고 도구 폴더의 `REVIEW.md` 체크리스트를 통과한 뒤, 루트 `README.md`의 유틸리티 카탈로그에 등록합니다.
 
+## Utilities 통합 (2026-11-13)
+
+기존 저장소 Phase 번호와 구분되는 통합 작업이다. 사용자 확정 범위와 담당/검증은 [통합 계획](docs/specs/utilities-integration/PLAN.md)을 따른다.
+
+- [x] Phase 1: `Test-AdCredential` 독립 PowerShell 도구와 LDAP 프리셋·이력·실행별 인증서 검증 생략 통합
+- [x] Phase 2: `OpsToolkit.Shared` 로그 감시·프리셋·이력·CSV/JSON 보고서·시스템 진단 이관
+- [x] Phase 3: 스캐폴더 제외 (사용자 지시, 구현하지 않음)
+- [x] Phase 4: Nocturne 표준·HTML 토큰 및 LDAP/MIP 네이티브 테마 적용 (대화형·다양한 DPI 검증은 미수행, REVIEW 참조)
+
 ### 구현 완료된 유틸리티 목록
 - [x] **`Remove-ExpiredIISCertificate` (`scripts/iis/Remove-ExpiredIISCertificate/`)**: IIS 및 HTTP.sys 바인딩 전수 검사 기반 만료 미바인딩 인증서 안전 조회/삭제 및 CSV 리포트 생성
 - [x] **`PSJobScheduler` (`scripts/scheduler/PSJobScheduler/`)**: 파일명 기반 Cron-Safe(`X`, `@`, `L`) 주기 실행 스케줄러 (타임아웃, 서킷 브레이커, 재시도, NSSM 서비스 등록)

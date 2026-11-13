@@ -65,8 +65,11 @@ C# 도구를 개발할 때는 **핵심 비즈니스 로직(`Services/`, `Models/
 
 > 새로운 도구/스크립트 개발을 시작할 때 아래 섹션을 업데이트하거나 `docs/templates/INTENT.template.md`를 복사하여 작업별 의도를 정의하세요.
 
-- **현재 목표**: `ops-toolkit` 저장소 초기 아키텍처 수립 및 Multi-AI CLI 협업 표준(`AGENTS.md`, `INTENT.md`, `SPEC.md`, `PLAN.md`, `REVIEW.md`) 구축
+- **현재 목표**: Utilities의 AD 진단, UI 독립 공통 서비스, Nocturne 디자인을 기존 운영 안전 계약에 맞춰 통합한다. 스캐폴더는 사용자 요청으로 제외한다. 상세 계획은 [Utilities 통합 계획](docs/specs/utilities-integration/PLAN.md)을 따른다.
 - **성공 기준**:
   - 모든 주요 AI CLI가 루트 지침 파일을 자동 인식할 것
   - .NET 10 및 PowerShell 7 기반 디렉터리 구조와 빌드/코드 스타일 설정이 준비될 것
   - 신규 유틸리티 추가 시 즉시 활용 가능한 SDLC 문서 체계가 마련될 것
+  - 기존 종료 코드와 계정 잠금 방지를 유지하며 LDAP 서버 설정 저장은 명시적 선택으로만 제공할 것
+  - PowerShell WhatIf에서 인증/접속/암호 입력을 하지 않고 공통 저장 파일 손상을 보존할 것
+  - WinForms/WPF 기능과 독립 배포를 유지하며 네이티브 Nocturne 테마를 적용할 것

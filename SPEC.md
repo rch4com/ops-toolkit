@@ -121,6 +121,8 @@ catch {
 
 ## 4. 멀티 AI CLI 호환 명세
 
+Utilities 통합은 [통합 계획](docs/specs/utilities-integration/PLAN.md)에 정의한다. `OpsToolkit.Shared`는 UI 비종속 BCL 라이브러리로 로그 감시, 프리셋, 최근 이력, CSV/JSON 보고서, 시스템 진단을 제공한다. 저장 경로는 호출자가 지정하며 파일 손상 시 원본을 덮어쓰지 않는다. LDAP는 명시적 opt-in에 한해 연결 설정을 저장하고 비밀번호·사용자 ID·인증서 검증 생략은 저장하지 않는다. 디자인 표준은 [DESIGN.md](DESIGN.md)를 따른다. 스캐폴더는 이번 통합 범위에서 제외한다.
+
 | 도구명 | 진입 파일 | 연동 방식 |
 | :--- | :--- | :--- |
 | **OpenAI Codex / 범용 Agent** | `AGENTS.md` | 루트 `AGENTS.md` 직접 로드 |
