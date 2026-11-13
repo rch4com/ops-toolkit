@@ -1,0 +1,418 @@
+{
+  "claims_are_unverified": true,
+  "created_at": "2026-11-13T06:24:44Z",
+  "depth": "exhaustive",
+  "git_observation": {
+    "branch": "main",
+    "dirty": true,
+    "head": "b4f366d8d753a37cd7f7641adf006b8fa4b27132"
+  },
+  "id": "20261113T062444Z-a574f76dbeea",
+  "payload": {
+    "acceptance_criteria": [
+      "ops-toolkit의 .NET 10 + WinForms/WPF 하이브리드 및 PowerShell 7 표준과 6대 필수 문서(README, AGENTS, INTENT, SPEC, PLAN, REVIEW) 체계 준수",
+      "Utilities의 AD 자격증명 점검 도구(ad-credential-checker, ad-credential-gui) 핵심 기능이 ops-toolkit에 누락 없이 통합",
+      "Utilities의 winui-app 비-UI 코어 서비스(LogTailService, PresetService, RecentHistoryService, ReportExportService, SystemDiagnosticsService 등)를 .NET 10 기반 src/OpsToolkit.Shared로 이식"
+    ],
+    "agent": "codex",
+    "blocked": [],
+    "changed_files": [
+      {
+        "owner": "agent",
+        "path": "DESIGN.md"
+      },
+      {
+        "owner": "agent",
+        "path": "INTENT.md"
+      },
+      {
+        "owner": "agent",
+        "path": "OpsToolkit.slnx"
+      },
+      {
+        "owner": "agent",
+        "path": "PLAN.md"
+      },
+      {
+        "owner": "agent",
+        "path": "README.md"
+      },
+      {
+        "owner": "agent",
+        "path": "REVIEW.md"
+      },
+      {
+        "owner": "agent",
+        "path": "SPEC.md"
+      },
+      {
+        "owner": "agent",
+        "path": "design-system/README.md"
+      },
+      {
+        "owner": "agent",
+        "path": "design-system/components.css"
+      },
+      {
+        "owner": "agent",
+        "path": "design-system/index.html"
+      },
+      {
+        "owner": "agent",
+        "path": "design-system/tests/palette.test.cjs"
+      },
+      {
+        "owner": "agent",
+        "path": "design-system/tokens.css"
+      },
+      {
+        "owner": "agent",
+        "path": "docs/specs/utilities-integration/PLAN.md"
+      },
+      {
+        "owner": "agent",
+        "path": "scripts/ad/Test-AdCredential/AGENTS.md"
+      },
+      {
+        "owner": "agent",
+        "path": "scripts/ad/Test-AdCredential/INTENT.md"
+      },
+      {
+        "owner": "agent",
+        "path": "scripts/ad/Test-AdCredential/PLAN.md"
+      },
+      {
+        "owner": "agent",
+        "path": "scripts/ad/Test-AdCredential/README.md"
+      },
+      {
+        "owner": "agent",
+        "path": "scripts/ad/Test-AdCredential/REVIEW.md"
+      },
+      {
+        "owner": "agent",
+        "path": "scripts/ad/Test-AdCredential/SPEC.md"
+      },
+      {
+        "owner": "agent",
+        "path": "scripts/ad/Test-AdCredential/Test-AdCredential.ps1"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/AGENTS.md"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/Cli/CliOptions.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/Cli/CliRunner.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/INTENT.md"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/LdapAuthTester.csproj"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/LdapAuthTester.sln"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/MainForm.Designer.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/MainForm.Settings.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/MainForm.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/Models/AdAuthModels.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/Models/LdapServerSettings.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/NativeTheme.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/PLAN.md"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/README.md"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/REVIEW.md"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/SPEC.md"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/Services/AdAuthChecker.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/LdapAuthTester/Services/LdapSettingsStore.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/App.xaml"
+      },
+      {
+        "owner": "agent",
+        "path": "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/App.xaml.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Converters/CheckStateToBrushConverter.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/MainWindow.xaml"
+      },
+      {
+        "owner": "agent",
+        "path": "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Themes/NativeTheme.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Themes/Nocturne.xaml"
+      },
+      {
+        "owner": "agent",
+        "path": "src/MIPLabelCustomCheck/PLAN.md"
+      },
+      {
+        "owner": "agent",
+        "path": "src/MIPLabelCustomCheck/README.md"
+      },
+      {
+        "owner": "agent",
+        "path": "src/MIPLabelCustomCheck/REVIEW.md"
+      },
+      {
+        "owner": "agent",
+        "path": "src/MIPLabelCustomCheck/SPEC.md"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/AGENTS.md"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/INTENT.md"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/Models/PresetProfile.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/Models/RecentHistoryItem.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/Models/ReportItem.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/Models/SystemDiagnosticsInfo.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/OpsToolkit.Shared.csproj"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/OpsToolkit.Shared.sln"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/PLAN.md"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/README.md"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/REVIEW.md"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/SPEC.md"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/Services/JsonFileStore.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/Services/LogTailService.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/Services/PresetService.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/Services/RecentHistoryService.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/Services/ReportExportService.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "src/OpsToolkit.Shared/Services/SystemDiagnosticsService.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "tests/dotnet/LdapAuthTester.Tests/AdAuthCheckerTests.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "tests/dotnet/LdapAuthTester.Tests/CliOptionsAndRunnerTests.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "tests/dotnet/LdapAuthTester.Tests/LdapSettingsStoreTests.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "tests/dotnet/OpsToolkit.Shared.Tests/OpsToolkit.Shared.Tests.csproj"
+      },
+      {
+        "owner": "agent",
+        "path": "tests/dotnet/OpsToolkit.Shared.Tests/SharedServicesTests.cs"
+      },
+      {
+        "owner": "agent",
+        "path": "tests/powershell/Test-AdCredential.Tests.ps1"
+      }
+    ],
+    "completed": [
+      "ops-toolkit 저장소 구조 및 거버넌스 문서(AGENTS.md, INTENT.md, SPEC.md, README.md, src/LdapAuthTester/README.md) 분석 완료",
+      "Utilities 저장소 구조 및 주요 자산(README.md, AGENTS.md, DESIGN.md, docs/CATALOG.md, tools/ad-credential-checker, tools/ad-credential-gui, scripts/powershell/New-Utility.ps1, templates/winui-app, design-system) 전수 조사 완료",
+      "두 저장소 간 4대 핵심 시너지(거버넌스+스캐폴딩 결합, AD/LDAP 진단 도구 완전체화, OpsToolkit.Shared 코어 서비스 이식, Nocturne 디자인 시스템 편입) 및 3대 아키텍처 충돌 해결 방안 도출 완료",
+      "사용자 승인 범위의 Utilities 통합 종료: Phase 1 AD PowerShell 및 LDAP 선택적 프리셋/이력/실행별 인증서 검증 생략, Phase 2 BCL 공통 5서비스, Phase 4 Nocturne WinForms/WPF/HTML 표준 구현.",
+      "2026-11-13 기능별 5개 커밋 84dbcac, 806f14e, f9fc4a1, fd96650, b4f366d를 origin/main에 푸시했고 ls-remote로 원격 HEAD b4f366d8d753a37cd7f7641adf006b8fa4b27132 일치를 확인했다.",
+      "같은 대화에서 전체 빌드 경고/오류 0, .NET 643/643, Pester 33/33, 대비 검사 3/3, 변경 C# 포맷 통과를 직접 확인했다.",
+      "독립 리뷰에서 발견한 알 수 없는 저장 JSON 필드 유실 문제 및 폼 종료 중 비동기 저장 수명 문제를 수정하고 회귀 테스트로 검증했다.",
+      "사용자의 모든 인계 완료 요청에 따라 세션을 종료한다. 기존 범위 밖 후속 과제까지 구현 완료라는 의미는 아니다."
+    ],
+    "decisions": [
+      "UI 프레임워크 충돌 해결: Windows Server 배포 호환성을 위해 ops-toolkit의 .NET 10 + WinForms/WPF 하이브리드 원칙을 유지하고, Utilities의 WinUI 3 템플릿에서는 UI 비종속 코어 서비스(Services/, Models/)만 추출하여 활용",
+      "코드 공유 vs 격리 충돌 해결: 소스 레벨에서는 src/OpsToolkit.Shared 및 scripts/modules/OpsCommon으로 공통 모듈을 공유하되, 배포 시 PublishSingleFile=true로 단일 실행 파일 독립성을 보장",
+      "언어 및 디자인 범위 정리: 주력 런타임은 PowerShell 7 + C# (.NET 10)으로 단일화하고, Nocturne 디자인 시스템(DESIGN.md, design-system/)은 GUI 및 HTML 리포트 표준으로 편입",
+      "사용자가 스캐폴더를 명시적으로 제외했으므로 기존 New-Utility 통합 기준은 이번 범위에서 취소되었다. OpsCommon은 구현하지 않았다.",
+      "기존 전체 포맷 오류와 PowerShell 정적 분석 115건은 이번 변경 범위 밖이다. 실제 AD 인증, 대화형 GUI/다중 DPI/고대비 전환은 미검증이며 루트 REVIEW.md에 기록했다.",
+      "기존 graphify-out 수정/미추적 산출물은 커밋/푸시하지 않고 보존했다. 이 인계 종료 처리는 그래프 완료를 주장하지 않는다.",
+      "이전 in_progress 항목은 당시 스냅샷이며 이 종료 기록과 실제 Git 이력이 현재 상태를 설명한다.",
+      "사용자 취소한 기존 기준: Utilities의 New-Utility.ps1 스캐폴더를 ops-toolkit 6대 문서 및 2-Tier 솔루션(.slnx + .sln) 자동 생성 구조로 개편"
+    ],
+    "failed_attempts": [
+      "전체 dotnet format 검사는 수정하지 않은 기존 MIP 코드의 들여쓰기/줄끝 문제로 실패했다. 변경 C# 파일만 검사하면 통과한다.",
+      "GUI 자동 실행 도구가 accessibility window-opened handler did not become ready로 실패하여 STA 렌더 검증으로 대체했다. 실제 상호작용 검증은 하지 않았다."
+    ],
+    "failure_records": [
+      {
+        "approach": "Default JSON unmapped-field handling",
+        "evidence": "Regression failed without Disallow and passed after the shared JsonFileStore fix; Shared final 14/14.",
+        "regression_test": "added",
+        "resolved": true,
+        "why_failed": "Unknown stored fields were silently dropped on subsequent writes."
+      },
+      {
+        "approach": "Dispose form storage while async actions are pending",
+        "evidence": "Deferred cleanup added; LDAP close-during-await regression and final 36/36 passed.",
+        "regression_test": "added",
+        "resolved": true,
+        "why_failed": "Semaphore/CTS disposal raced with pending UI continuations."
+      },
+      {
+        "approach": "Whole-repository formatting gate",
+        "evidence": "dotnet format --verify-no-changes failed; changed-file verification passed; git diff --quiet confirmed example files unchanged.",
+        "regression_test": "not_applicable",
+        "resolved": false,
+        "why_failed": "Pre-existing unchanged MIP indentation and line-ending errors."
+      }
+    ],
+    "in_progress": [],
+    "mission": "D:\\Sources\\github\\ops-toolkit 저장소와 D:\\Sources\\github\\Utilities 저장소 통합 시너지 분석 및 단계별 병합 로드맵 수립",
+    "next_action": "인계 종료. 추가 구현은 별도 사용자 요청으로 시작한다. 기존 graphify-out 변경은 로컬 보존되었으며 완료/커밋 대상으로 간주하지 않는다.",
+    "validation": [
+      {
+        "command": "Get-ChildItem -Path \"D:\\Sources\\github\\Utilities\" -Depth 2",
+        "evidence": "Utilities 저장소의 tools(ad-credential-checker, ad-credential-gui), scripts(New-Utility.ps1, Test-Templates.ps1), templates(5종), design-system 구조 확인 완료",
+        "result": "passed"
+      },
+      {
+        "command": "dotnet build -warnaserror",
+        "evidence": "Observed during implementation in this conversation: 0 warnings, 0 errors.",
+        "result": "passed"
+      },
+      {
+        "command": "dotnet test --no-build --no-restore --nologo",
+        "evidence": "Before commit/push in this conversation: Shared14 + LDAP36 + MIP502 + Explorer91 = 643 passed.",
+        "result": "passed"
+      },
+      {
+        "command": "Invoke-Pester -Path ./tests/powershell/ -Output Normal -PassThru",
+        "evidence": "Before commit/push: 33 passed, 0 failed.",
+        "result": "passed"
+      },
+      {
+        "command": "node --test design-system/tests/*.test.cjs",
+        "evidence": "Before commit/push: 3 passed, 0 failed.",
+        "result": "passed"
+      },
+      {
+        "command": "dotnet format --verify-no-changes --no-restore --include changed C# files",
+        "evidence": "Observed during implementation; whole-repository gate remains failed on legacy files.",
+        "result": "passed"
+      },
+      {
+        "command": "dotnet format --verify-no-changes --no-restore",
+        "evidence": "Unchanged legacy MIP whitespace and line-ending errors; not repaired in this scope.",
+        "result": "failed"
+      },
+      {
+        "command": "Invoke-ScriptAnalyzer -Path ./scripts/ -Recurse -Severity Warning,Error",
+        "evidence": "115 findings in unchanged existing scripts; new AD script has 0.",
+        "result": "failed"
+      },
+      {
+        "command": "git push origin main; git ls-remote origin refs/heads/main",
+        "evidence": "Observed previous turn: remote HEAD equals local b4f366d8d753a37cd7f7641adf006b8fa4b27132.",
+        "result": "passed"
+      },
+      {
+        "command": "Live AD authentication and interactive GUI/high contrast/multiple DPI checks",
+        "evidence": "No real AD authentication. Native STA render checks only; see REVIEW.md.",
+        "result": "not_run"
+      }
+    ]
+  },
+  "project_id": "f430d34b0db3943f4b905c79",
+  "revision": 3,
+  "schema_version": 1,
+  "status": "archived",
+  "updated_at": "2026-11-13T07:39:13Z",
+  "writer_version": "0.2.0-pilot"
+}
