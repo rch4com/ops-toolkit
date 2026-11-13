@@ -66,10 +66,10 @@
     "semantic_hash": "8136984c7ac29d13e648cdba86db5a38"
   },
   "OpsToolkit.slnx": {
-    "mtime": 1794502863.2265935,
-    "seen": 1794547834.2959952,
-    "ast_hash": "77d4d55d56a7bdbce59f49c6aec6200c",
-    "semantic_hash": "77d4d55d56a7bdbce59f49c6aec6200c"
+    "mtime": 1794554014.7779267,
+    "seen": 1794556337.2008412,
+    "ast_hash": "18eaad8c97519ad29eb8f505b32db684",
+    "semantic_hash": "18eaad8c97519ad29eb8f505b32db684"
   },
   "global.json": {
     "mtime": 1794462621.9227817,
@@ -162,46 +162,46 @@
     "semantic_hash": "6ddf502321abd54d6a7d1bf08d025cc9"
   },
   "src/LdapAuthTester/Cli/CliOptions.cs": {
-    "mtime": 1794499262.7613032,
-    "seen": 1794547834.2959952,
-    "ast_hash": "80b7cb5b93eb7dbca4a327bfb1d4790d",
-    "semantic_hash": "80b7cb5b93eb7dbca4a327bfb1d4790d"
+    "mtime": 1794553378.080138,
+    "seen": 1794556337.2008412,
+    "ast_hash": "b44169ee480ee553de2eb54446da9220",
+    "semantic_hash": "b44169ee480ee553de2eb54446da9220"
   },
   "src/LdapAuthTester/Cli/CliRunner.cs": {
-    "mtime": 1794499316.192589,
-    "seen": 1794547834.2959952,
-    "ast_hash": "2cf87c43fb42fdee44d87884d5672067",
-    "semantic_hash": "2cf87c43fb42fdee44d87884d5672067"
+    "mtime": 1794553673.1131616,
+    "seen": 1794556337.2008412,
+    "ast_hash": "646d398fb17326d88a2f61893774361e",
+    "semantic_hash": "646d398fb17326d88a2f61893774361e"
   },
   "src/LdapAuthTester/LdapAuthTester.csproj": {
-    "mtime": 1794499156.4598703,
-    "seen": 1794547834.2959952,
-    "ast_hash": "e6fc91696e42f21a91e81a9e89b69aee",
-    "semantic_hash": "e6fc91696e42f21a91e81a9e89b69aee"
+    "mtime": 1794553500.335808,
+    "seen": 1794556337.2008412,
+    "ast_hash": "dbfe0d82a759b70f0b00c96a7bea1824",
+    "semantic_hash": "dbfe0d82a759b70f0b00c96a7bea1824"
   },
   "src/LdapAuthTester/LdapAuthTester.sln": {
-    "mtime": 1794501561.1338954,
-    "seen": 1794547834.2959952,
-    "ast_hash": "a42b78303e421ed8e8b0d5ebb0136ff5",
-    "semantic_hash": "a42b78303e421ed8e8b0d5ebb0136ff5"
+    "mtime": 1794553501.1058595,
+    "seen": 1794556337.2008412,
+    "ast_hash": "07765fc5e82c204d1eb3916ab7caae01",
+    "semantic_hash": "07765fc5e82c204d1eb3916ab7caae01"
   },
   "src/LdapAuthTester/MainForm.Designer.cs": {
-    "mtime": 1794499187.5962863,
-    "seen": 1794547834.2959952,
-    "ast_hash": "2380315beacc51e77d646127244ccbd3",
-    "semantic_hash": "2380315beacc51e77d646127244ccbd3"
+    "mtime": 1794553864.830485,
+    "seen": 1794556337.2008412,
+    "ast_hash": "f8228731e167e66be8d58820c36a0d09",
+    "semantic_hash": "f8228731e167e66be8d58820c36a0d09"
   },
   "src/LdapAuthTester/MainForm.cs": {
-    "mtime": 1794499262.7755258,
-    "seen": 1794547834.2959952,
-    "ast_hash": "b765e4f5e91b7d0190fb10570e5ec7af",
-    "semantic_hash": "b765e4f5e91b7d0190fb10570e5ec7af"
+    "mtime": 1794553864.8316681,
+    "seen": 1794556337.2008412,
+    "ast_hash": "fa1786de0255c208e7a6b4cd751e5fbb",
+    "semantic_hash": "fa1786de0255c208e7a6b4cd751e5fbb"
   },
   "src/LdapAuthTester/Models/AdAuthModels.cs": {
-    "mtime": 1794499262.7760513,
-    "seen": 1794547834.2959952,
-    "ast_hash": "7c66660cc98e69aad2a8635f0e253cfd",
-    "semantic_hash": "7c66660cc98e69aad2a8635f0e253cfd"
+    "mtime": 1794553378.0812504,
+    "seen": 1794556337.2008412,
+    "ast_hash": "ea7642f523ed70c669152be618b9b53d",
+    "semantic_hash": "ea7642f523ed70c669152be618b9b53d"
   },
   "src/LdapAuthTester/Program.cs": {
     "mtime": 1794499262.777105,
@@ -210,10 +210,10 @@
     "semantic_hash": "e27e57d0c82b4da4279866a7e9a6c140"
   },
   "src/LdapAuthTester/Services/AdAuthChecker.cs": {
-    "mtime": 1794499262.777645,
-    "seen": 1794547834.2959952,
-    "ast_hash": "41f80b7ddd6f73f755db3dbd41cbeafa",
-    "semantic_hash": "41f80b7ddd6f73f755db3dbd41cbeafa"
+    "mtime": 1794553738.928238,
+    "seen": 1794556337.2008412,
+    "ast_hash": "018d2b79931e046990b1ed049fbfad71",
+    "semantic_hash": "018d2b79931e046990b1ed049fbfad71"
   },
   "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Benchmarks/LabelCheckerBenchmarks.cs": {
     "mtime": 1794502836.8606672,
@@ -234,34 +234,28 @@
     "semantic_hash": "afd7291261063bef7920cf6c6d033f34"
   },
   "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/App.xaml": {
-    "mtime": 1784274984.819203,
-    "seen": 1794547834.2959952,
-    "ast_hash": "25047ff5dd282193a47629c039c726d0",
-    "semantic_hash": "25047ff5dd282193a47629c039c726d0"
+    "mtime": 1794553531.343145,
+    "seen": 1794556337.2008412,
+    "ast_hash": "f7569ada43168329dcb524891a0b06f3",
+    "semantic_hash": "f7569ada43168329dcb524891a0b06f3"
   },
   "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/App.xaml.cs": {
-    "mtime": 1784299082.9872823,
-    "seen": 1794547834.2959952,
-    "ast_hash": "44278563a2c043754b0b800a443814c0",
-    "semantic_hash": "44278563a2c043754b0b800a443814c0"
+    "mtime": 1794554010.2550917,
+    "seen": 1794556337.2008412,
+    "ast_hash": "c1ef316e357736b944f6e742ee2ae9b2",
+    "semantic_hash": "c1ef316e357736b944f6e742ee2ae9b2"
   },
   "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Cli/CliOptions.cs": {
-    "mtime": 1794502829.306926,
-    "seen": 1794547834.2959952,
-    "ast_hash": "9c77ec622800276ee66ff8563aa0979e",
-    "semantic_hash": "9c77ec622800276ee66ff8563aa0979e"
+    "mtime": 1794550781.7790365,
+    "seen": 1794553099.004466,
+    "ast_hash": "eb078ff5880778f6f7b5543697424465",
+    "semantic_hash": "eb078ff5880778f6f7b5543697424465"
   },
   "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Cli/CliRunner.cs": {
-    "mtime": 1794502831.453082,
-    "seen": 1794547834.2959952,
-    "ast_hash": "418224df4c85212b5d58a39320e757ce",
-    "semantic_hash": "418224df4c85212b5d58a39320e757ce"
-  },
-  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Converters/CheckStateToBrushConverter.cs": {
-    "mtime": 1784289549.1595395,
-    "seen": 1794547834.2959952,
-    "ast_hash": "73e2d10250082554c0274bfc7ce15d20",
-    "semantic_hash": "73e2d10250082554c0274bfc7ce15d20"
+    "mtime": 1794550823.5250428,
+    "seen": 1794553099.004466,
+    "ast_hash": "e0ae4e776308136ba69d0b300ad484ac",
+    "semantic_hash": "e0ae4e776308136ba69d0b300ad484ac"
   },
   "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Converters/ElapsedToTextConverter.cs": {
     "mtime": 1784274920.3197446,
@@ -276,10 +270,10 @@
     "semantic_hash": "997f9b245f70ae0bef6078b9dc5be8a5"
   },
   "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/MainWindow.xaml": {
-    "mtime": 1791716495.3424945,
-    "seen": 1794547834.2959952,
-    "ast_hash": "fa1e4e3bc468ca480150e603f66d4a9a",
-    "semantic_hash": "fa1e4e3bc468ca480150e603f66d4a9a"
+    "mtime": 1794553556.5975032,
+    "seen": 1794556337.2008412,
+    "ast_hash": "928d6381bfdd3bc9ad57b72932eaad7e",
+    "semantic_hash": "928d6381bfdd3bc9ad57b72932eaad7e"
   },
   "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/MainWindow.xaml.cs": {
     "mtime": 1784294379.3197641,
@@ -294,10 +288,10 @@
     "semantic_hash": "f19855507cfe7ed45e18cce3f431dc73"
   },
   "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Scanning/LabelableExtensions.cs": {
-    "mtime": 1784289406.4558887,
-    "seen": 1794547834.2959952,
-    "ast_hash": "41964c5ce5b3c1f91fef8cad8be5b541",
-    "semantic_hash": "41964c5ce5b3c1f91fef8cad8be5b541"
+    "mtime": 1794550758.983991,
+    "seen": 1794553099.004466,
+    "ast_hash": "4709ced811210e8075d3ba26b3d52ce3",
+    "semantic_hash": "4709ced811210e8075d3ba26b3d52ce3"
   },
   "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Scanning/ScanProgress.cs": {
     "mtime": 1784274741.1372483,
@@ -306,10 +300,10 @@
     "semantic_hash": "692096a2a8be069b23e73bca305f5a80"
   },
   "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Scanning/ScanSession.cs": {
-    "mtime": 1784298954.4422367,
-    "seen": 1794547834.2959952,
-    "ast_hash": "08caab95a9c9eb6e7004a5d0013efb61",
-    "semantic_hash": "08caab95a9c9eb6e7004a5d0013efb61"
+    "mtime": 1794550950.0109427,
+    "seen": 1794553099.004466,
+    "ast_hash": "11d039e38d849bdb4192567cfca6607f",
+    "semantic_hash": "11d039e38d849bdb4192567cfca6607f"
   },
   "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Scanning/ScanSummary.cs": {
     "mtime": 1784275191.2725327,
@@ -354,10 +348,10 @@
     "semantic_hash": "bdb37f9b6a2bca36be8d1ae7d918fd74"
   },
   "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/ViewModels/MainViewModel.cs": {
-    "mtime": 1784299999.516226,
-    "seen": 1794547834.2959952,
-    "ast_hash": "21bd0434cad57c6bbd5e4082063ab19c",
-    "semantic_hash": "21bd0434cad57c6bbd5e4082063ab19c"
+    "mtime": 1794551044.368571,
+    "seen": 1794553099.004466,
+    "ast_hash": "fd6fd151ce1b145f97473abd16ef1b2c",
+    "semantic_hash": "fd6fd151ce1b145f97473abd16ef1b2c"
   },
   "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/ViewModels/ObservableObject.cs": {
     "mtime": 1784274781.9692416,
@@ -594,16 +588,16 @@
     "semantic_hash": "463ff2a1614a4176830713be60d77881"
   },
   "tests/dotnet/LdapAuthTester.Tests/AdAuthCheckerTests.cs": {
-    "mtime": 1794499262.779249,
-    "seen": 1794547834.2959952,
-    "ast_hash": "92016f7567bd62a745540449cdacbb1f",
-    "semantic_hash": "92016f7567bd62a745540449cdacbb1f"
+    "mtime": 1794553699.3027506,
+    "seen": 1794556337.2008412,
+    "ast_hash": "22f5bd90b259afdd5dc1d52fa80ed636",
+    "semantic_hash": "22f5bd90b259afdd5dc1d52fa80ed636"
   },
   "tests/dotnet/LdapAuthTester.Tests/CliOptionsAndRunnerTests.cs": {
-    "mtime": 1794499262.7797747,
-    "seen": 1794547834.2959952,
-    "ast_hash": "86ce385b97626048a5bd0fbc3b55e791",
-    "semantic_hash": "86ce385b97626048a5bd0fbc3b55e791"
+    "mtime": 1794553351.360538,
+    "seen": 1794556337.2008412,
+    "ast_hash": "aee6ea63f90691f0939c9cd8e8b0ef76",
+    "semantic_hash": "aee6ea63f90691f0939c9cd8e8b0ef76"
   },
   "tests/dotnet/LdapAuthTester.Tests/LdapAuthTester.Tests.csproj": {
     "mtime": 1794499101.223505,
@@ -612,10 +606,10 @@
     "semantic_hash": "aa602f3c8eb4f53b01923ca88f63a341"
   },
   "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/CliRunnerTests.cs": {
-    "mtime": 1794502861.1269116,
-    "seen": 1794547834.2959952,
-    "ast_hash": "c4c0af172f8e15ae5c3bc6d914936453",
-    "semantic_hash": "c4c0af172f8e15ae5c3bc6d914936453"
+    "mtime": 1794551108.992799,
+    "seen": 1794553099.004466,
+    "ast_hash": "9f2d4b12db7227c43f9469e73aeac759",
+    "semantic_hash": "9f2d4b12db7227c43f9469e73aeac759"
   },
   "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/CollectingProgress.cs": {
     "mtime": 1784299423.337417,
@@ -642,10 +636,10 @@
     "semantic_hash": "d37ad21ef1178a4bcb8b98987584cf2e"
   },
   "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/LabelableExtensionsTests.cs": {
-    "mtime": 1784299423.3440843,
-    "seen": 1794547834.2959952,
-    "ast_hash": "39f68b2b04a3263eb085e8cb1c75d37b",
-    "semantic_hash": "39f68b2b04a3263eb085e8cb1c75d37b"
+    "mtime": 1794551107.2335675,
+    "seen": 1794553099.004466,
+    "ast_hash": "b539a05ef611c260265a1764aa73f07f",
+    "semantic_hash": "b539a05ef611c260265a1764aa73f07f"
   },
   "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/MIPLabelCustomCheck.Explorer.Tests.csproj": {
     "mtime": 1794502934.6808357,
@@ -654,10 +648,10 @@
     "semantic_hash": "00cf28bc07ed51d8bb75350491565693"
   },
   "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/MainViewModelOpenFileTests.cs": {
-    "mtime": 1784299423.345081,
-    "seen": 1794547834.2959952,
-    "ast_hash": "d59928ee2c92451f684995f589fd6781",
-    "semantic_hash": "d59928ee2c92451f684995f589fd6781"
+    "mtime": 1794551110.2169394,
+    "seen": 1794553099.004466,
+    "ast_hash": "38b39bafa8891966ce5021deecb2c074",
+    "semantic_hash": "38b39bafa8891966ce5021deecb2c074"
   },
   "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/ScanSessionTests.cs": {
     "mtime": 1784299423.3481536,
@@ -954,34 +948,34 @@
     "semantic_hash": "e51fb53edbc59f31de0fe6cfea9cfc3d"
   },
   "INTENT.md": {
-    "mtime": 1794502153.8391352,
-    "seen": 1794547834.2959952,
-    "ast_hash": "caf5b1fb43dda06d65741e271445f28f",
-    "semantic_hash": "caf5b1fb43dda06d65741e271445f28f"
+    "mtime": 1794553506.0876527,
+    "seen": 1794556337.2008412,
+    "ast_hash": "50353de79c1fec46bff279534b454d33",
+    "semantic_hash": "50353de79c1fec46bff279534b454d33"
   },
   "PLAN.md": {
-    "mtime": 1794463129.8839202,
-    "seen": 1794547834.2959952,
-    "ast_hash": "5d98f543b563177401221410c45bdb9d",
-    "semantic_hash": "5d98f543b563177401221410c45bdb9d"
+    "mtime": 1794554243.8957899,
+    "seen": 1794556337.2008412,
+    "ast_hash": "a288b321d6f1aac429fbb59f5139dc44",
+    "semantic_hash": "a288b321d6f1aac429fbb59f5139dc44"
   },
   "README.md": {
-    "mtime": 1794503004.8382337,
-    "seen": 1794547834.2959952,
-    "ast_hash": "64f628ce0a2a9b017bb6638b835fc3c0",
-    "semantic_hash": "64f628ce0a2a9b017bb6638b835fc3c0"
+    "mtime": 1794553641.1363175,
+    "seen": 1794556337.2008412,
+    "ast_hash": "a25747c6f5427ede8b3807ac4b18d2a2",
+    "semantic_hash": "a25747c6f5427ede8b3807ac4b18d2a2"
   },
   "REVIEW.md": {
-    "mtime": 1794463132.090463,
-    "seen": 1794547834.2959952,
-    "ast_hash": "36a083397c8b569e1ad167e830ca981a",
-    "semantic_hash": "36a083397c8b569e1ad167e830ca981a"
+    "mtime": 1794554243.89679,
+    "seen": 1794556337.2008412,
+    "ast_hash": "372e3405a45ed602d05a35453b999be4",
+    "semantic_hash": "372e3405a45ed602d05a35453b999be4"
   },
   "SPEC.md": {
-    "mtime": 1794502156.036608,
-    "seen": 1794547834.2959952,
-    "ast_hash": "e47a29d19c77402d1e4689b808cc8da8",
-    "semantic_hash": "e47a29d19c77402d1e4689b808cc8da8"
+    "mtime": 1794553506.0908267,
+    "seen": 1794556337.2008412,
+    "ast_hash": "84305b3256ade5142c9ed99861768e7b",
+    "semantic_hash": "84305b3256ade5142c9ed99861768e7b"
   },
   "docs/templates/TOOL_BLUEPRINT.template.md": {
     "mtime": 1794463142.5986617,
@@ -1068,40 +1062,40 @@
     "semantic_hash": "cd3054723c7c318ad496d87c95089c7f"
   },
   "src/LdapAuthTester/AGENTS.md": {
-    "mtime": 1794501614.3806393,
-    "seen": 1794547834.2959952,
-    "ast_hash": "9a9a723caced8b98c9e262c681aaa135",
-    "semantic_hash": "9a9a723caced8b98c9e262c681aaa135"
+    "mtime": 1794553730.995159,
+    "seen": 1794556337.2008412,
+    "ast_hash": "7471d8f0a3d06b3ad00c13e6942c4480",
+    "semantic_hash": "7471d8f0a3d06b3ad00c13e6942c4480"
   },
   "src/LdapAuthTester/INTENT.md": {
-    "mtime": 1794498831.5107834,
-    "seen": 1794547834.2959952,
-    "ast_hash": "672ca79cabc09f2278f905fe8906d71c",
-    "semantic_hash": "672ca79cabc09f2278f905fe8906d71c"
+    "mtime": 1794553324.2405648,
+    "seen": 1794556337.2008412,
+    "ast_hash": "9cc6af294183f9633755618e8a0abcac",
+    "semantic_hash": "9cc6af294183f9633755618e8a0abcac"
   },
   "src/LdapAuthTester/PLAN.md": {
-    "mtime": 1794499317.9509044,
-    "seen": 1794547834.2959952,
-    "ast_hash": "955498c194954b620c2c1cadd8ce567e",
-    "semantic_hash": "955498c194954b620c2c1cadd8ce567e"
+    "mtime": 1794553787.485098,
+    "seen": 1794556337.2008412,
+    "ast_hash": "8bc4a66d80354f54806854ad4a0a542c",
+    "semantic_hash": "8bc4a66d80354f54806854ad4a0a542c"
   },
   "src/LdapAuthTester/README.md": {
-    "mtime": 1794501612.2651248,
-    "seen": 1794547834.2959952,
-    "ast_hash": "a419909ec4f8d76f61b9f6200a8d964f",
-    "semantic_hash": "a419909ec4f8d76f61b9f6200a8d964f"
+    "mtime": 1794553731.009588,
+    "seen": 1794556337.2008412,
+    "ast_hash": "77d1c33c379732b3d6952da10d6f7bd3",
+    "semantic_hash": "77d1c33c379732b3d6952da10d6f7bd3"
   },
   "src/LdapAuthTester/REVIEW.md": {
-    "mtime": 1794499320.057631,
-    "seen": 1794547834.2959952,
-    "ast_hash": "10493f16a114dd7c1dac287369ee02f1",
-    "semantic_hash": "10493f16a114dd7c1dac287369ee02f1"
+    "mtime": 1794553907.4459214,
+    "seen": 1794556337.2008412,
+    "ast_hash": "8692db24d563e56e4232ef999719146e",
+    "semantic_hash": "8692db24d563e56e4232ef999719146e"
   },
   "src/LdapAuthTester/SPEC.md": {
-    "mtime": 1794499291.4930947,
-    "seen": 1794547834.2959952,
-    "ast_hash": "710b377dbabd979e61b572af828fedc6",
-    "semantic_hash": "710b377dbabd979e61b572af828fedc6"
+    "mtime": 1794553731.0009255,
+    "seen": 1794556337.2008412,
+    "ast_hash": "5595d31f7cd0bfb6ad399076691a16a3",
+    "semantic_hash": "5595d31f7cd0bfb6ad399076691a16a3"
   },
   "src/MIPLabelCustomCheck/AGENTS.md": {
     "mtime": 1794502627.8375435,
@@ -1122,28 +1116,28 @@
     "semantic_hash": "1115aa2a67f3c11fb7cb59bb079f6df3"
   },
   "src/MIPLabelCustomCheck/PLAN.md": {
-    "mtime": 1794503006.8373592,
-    "seen": 1794547834.2959952,
-    "ast_hash": "752db5ffe4a8417477c383cf1bbf4efd",
-    "semantic_hash": "752db5ffe4a8417477c383cf1bbf4efd"
+    "mtime": 1794554073.2033267,
+    "seen": 1794556337.2008412,
+    "ast_hash": "44f9919400b5fa89ea62199fcc80964b",
+    "semantic_hash": "44f9919400b5fa89ea62199fcc80964b"
   },
   "src/MIPLabelCustomCheck/README.md": {
-    "mtime": 1794502630.0553913,
-    "seen": 1794547834.2959952,
-    "ast_hash": "bfe25e5c00d4066a6804352d610299f0",
-    "semantic_hash": "bfe25e5c00d4066a6804352d610299f0"
+    "mtime": 1794554073.2033267,
+    "seen": 1794556337.2008412,
+    "ast_hash": "17dde6ce7d6dbcbd0101759d5a55f109",
+    "semantic_hash": "17dde6ce7d6dbcbd0101759d5a55f109"
   },
   "src/MIPLabelCustomCheck/REVIEW.md": {
-    "mtime": 1794503008.1286087,
-    "seen": 1794547834.2959952,
-    "ast_hash": "a1351c1ab3e23b353bc604dfc25a33e1",
-    "semantic_hash": "a1351c1ab3e23b353bc604dfc25a33e1"
+    "mtime": 1794554073.205285,
+    "seen": 1794556337.2008412,
+    "ast_hash": "f13e7af2ff7f78cdce126fa7ffdfb00e",
+    "semantic_hash": "f13e7af2ff7f78cdce126fa7ffdfb00e"
   },
   "src/MIPLabelCustomCheck/SPEC.md": {
-    "mtime": 1794502623.8383613,
-    "seen": 1794547834.2959952,
-    "ast_hash": "99b62f22cb15e46ca5dcc6436e7d12bf",
-    "semantic_hash": "99b62f22cb15e46ca5dcc6436e7d12bf"
+    "mtime": 1794553401.9070501,
+    "seen": 1794556337.2008412,
+    "ast_hash": "71355bff376ac02cd6544b7ca674d713",
+    "semantic_hash": "71355bff376ac02cd6544b7ca674d713"
   },
   "src/README.md": {
     "mtime": 1794462643.8041713,
@@ -1204,5 +1198,275 @@
     "seen": 1794547834.2959952,
     "ast_hash": "666f6fb0867321df6a7680811e22a0b3",
     "semantic_hash": "666f6fb0867321df6a7680811e22a0b3"
+  },
+  ".github/workflows/ci.yml": {
+    "mtime": 1794550729.5339055,
+    "seen": 1794553099.004466,
+    "ast_hash": "46bbb7006be0192580d9c568f9e91911",
+    "semantic_hash": "46bbb7006be0192580d9c568f9e91911"
+  },
+  "tests/powershell/Publish-SingleFileTools.Tests.ps1": {
+    "mtime": 1794550793.979087,
+    "seen": 1794553099.004466,
+    "ast_hash": "f18cc1bdf2f2629a701ebd07fe82d277",
+    "semantic_hash": "f18cc1bdf2f2629a701ebd07fe82d277"
+  },
+  ".github/instructions/mermaid.instructions.md": {
+    "mtime": 1794547409.8408885,
+    "seen": 1794553099.004466,
+    "ast_hash": "19f49f46092fb573bdd29640d98d8e3a",
+    "semantic_hash": "19f49f46092fb573bdd29640d98d8e3a"
+  },
+  ".handoffs/archive/20261113T053002Z-b84bc1333e9d/session.json": {
+    "mtime": 1794555552.9225047,
+    "seen": 1794556337.2008412,
+    "ast_hash": "f473d8a8a26c7c304947616fc50afba0",
+    "semantic_hash": "f473d8a8a26c7c304947616fc50afba0"
+  },
+  ".handoffs/archive/20261113T062444Z-a574f76dbeea/session.json": {
+    "mtime": 1794555553.1906855,
+    "seen": 1794556337.2008412,
+    "ast_hash": "b705e931cb4f2e849c5f7742f16c1f39",
+    "semantic_hash": "b705e931cb4f2e849c5f7742f16c1f39"
+  },
+  "design-system/tests/palette.test.cjs": {
+    "mtime": 1794553628.046327,
+    "seen": 1794556337.2008412,
+    "ast_hash": "b267ba70a28398fb90876e0e4057d208",
+    "semantic_hash": "b267ba70a28398fb90876e0e4057d208"
+  },
+  "scripts/ad/Test-AdCredential/Test-AdCredential.ps1": {
+    "mtime": 1794553541.45101,
+    "seen": 1794556337.2008412,
+    "ast_hash": "304d590eb5262418694fe8d26d269c43",
+    "semantic_hash": "304d590eb5262418694fe8d26d269c43"
+  },
+  "src/LdapAuthTester/MainForm.Settings.cs": {
+    "mtime": 1794553864.8279238,
+    "seen": 1794556337.2008412,
+    "ast_hash": "c19edafec522ff6b3cc68ce5f9fd495a",
+    "semantic_hash": "c19edafec522ff6b3cc68ce5f9fd495a"
+  },
+  "src/LdapAuthTester/Models/LdapServerSettings.cs": {
+    "mtime": 1794553738.9266734,
+    "seen": 1794556337.2008412,
+    "ast_hash": "cb681c364d197d1f9977817d3f42a1ba",
+    "semantic_hash": "cb681c364d197d1f9977817d3f42a1ba"
+  },
+  "src/LdapAuthTester/NativeTheme.cs": {
+    "mtime": 1794554010.2540927,
+    "seen": 1794556337.2008412,
+    "ast_hash": "088723c0d742b67b3f4f17e08fad64af",
+    "semantic_hash": "088723c0d742b67b3f4f17e08fad64af"
+  },
+  "src/LdapAuthTester/Services/LdapSettingsStore.cs": {
+    "mtime": 1794553738.9292452,
+    "seen": 1794556337.2008412,
+    "ast_hash": "4ecab5fa69cb25167a930cf700b19446",
+    "semantic_hash": "4ecab5fa69cb25167a930cf700b19446"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Themes/NativeTheme.cs": {
+    "mtime": 1794554010.2540927,
+    "seen": 1794556337.2008412,
+    "ast_hash": "1ee365f22b77d73aa75e38cb390a9b21",
+    "semantic_hash": "1ee365f22b77d73aa75e38cb390a9b21"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Themes/Nocturne.xaml": {
+    "mtime": 1794553923.179161,
+    "seen": 1794556337.2008412,
+    "ast_hash": "903b4d0a8057d90099aef06e799b8d62",
+    "semantic_hash": "903b4d0a8057d90099aef06e799b8d62"
+  },
+  "src/OpsToolkit.Shared/Models/PresetProfile.cs": {
+    "mtime": 1794555274.719717,
+    "seen": 1794556337.2008412,
+    "ast_hash": "8e076b7357d372b7d99e1e1e26ee447f",
+    "semantic_hash": "8e076b7357d372b7d99e1e1e26ee447f"
+  },
+  "src/OpsToolkit.Shared/Models/RecentHistoryItem.cs": {
+    "mtime": 1794555274.7222488,
+    "seen": 1794556337.2008412,
+    "ast_hash": "a4f0b99665d2784542778dda6618aa63",
+    "semantic_hash": "a4f0b99665d2784542778dda6618aa63"
+  },
+  "src/OpsToolkit.Shared/Models/ReportItem.cs": {
+    "mtime": 1794553649.6238618,
+    "seen": 1794556337.2008412,
+    "ast_hash": "5077a53fa43023f4064d6aeaafd786d0",
+    "semantic_hash": "5077a53fa43023f4064d6aeaafd786d0"
+  },
+  "src/OpsToolkit.Shared/Models/SystemDiagnosticsInfo.cs": {
+    "mtime": 1794553945.3295693,
+    "seen": 1794556337.2008412,
+    "ast_hash": "9ba5b993a36fda64ab635cee2224f65d",
+    "semantic_hash": "9ba5b993a36fda64ab635cee2224f65d"
+  },
+  "src/OpsToolkit.Shared/OpsToolkit.Shared.csproj": {
+    "mtime": 1794553394.0124738,
+    "seen": 1794556337.2008412,
+    "ast_hash": "c3862ccdf67aa0de5ce5cf5528b7fe60",
+    "semantic_hash": "c3862ccdf67aa0de5ce5cf5528b7fe60"
+  },
+  "src/OpsToolkit.Shared/OpsToolkit.Shared.sln": {
+    "mtime": 1794553621.335972,
+    "seen": 1794556337.2008412,
+    "ast_hash": "29369901b61b543c0c896f940ee18d25",
+    "semantic_hash": "29369901b61b543c0c896f940ee18d25"
+  },
+  "src/OpsToolkit.Shared/Services/JsonFileStore.cs": {
+    "mtime": 1794554054.0738742,
+    "seen": 1794556337.2008412,
+    "ast_hash": "8b26470665603c0efb45738c7bd71985",
+    "semantic_hash": "8b26470665603c0efb45738c7bd71985"
+  },
+  "src/OpsToolkit.Shared/Services/LogTailService.cs": {
+    "mtime": 1794555274.735982,
+    "seen": 1794556337.2008412,
+    "ast_hash": "cde65fb9055249014b627c5121ab4ec3",
+    "semantic_hash": "cde65fb9055249014b627c5121ab4ec3"
+  },
+  "src/OpsToolkit.Shared/Services/PresetService.cs": {
+    "mtime": 1794553649.6321628,
+    "seen": 1794556337.2008412,
+    "ast_hash": "c292e3c9f0d62a564af342cc208c154d",
+    "semantic_hash": "c292e3c9f0d62a564af342cc208c154d"
+  },
+  "src/OpsToolkit.Shared/Services/RecentHistoryService.cs": {
+    "mtime": 1794553649.6331701,
+    "seen": 1794556337.2008412,
+    "ast_hash": "132d737694470514d8a567667c6091d1",
+    "semantic_hash": "132d737694470514d8a567667c6091d1"
+  },
+  "src/OpsToolkit.Shared/Services/ReportExportService.cs": {
+    "mtime": 1794553649.6341712,
+    "seen": 1794556337.2008412,
+    "ast_hash": "3cf99a979b4f730bc938e12f03b0c9da",
+    "semantic_hash": "3cf99a979b4f730bc938e12f03b0c9da"
+  },
+  "src/OpsToolkit.Shared/Services/SystemDiagnosticsService.cs": {
+    "mtime": 1794553978.8532906,
+    "seen": 1794556337.2008412,
+    "ast_hash": "4afa8817298d9ae798373a9f0e38f9bb",
+    "semantic_hash": "4afa8817298d9ae798373a9f0e38f9bb"
+  },
+  "tests/dotnet/LdapAuthTester.Tests/LdapSettingsStoreTests.cs": {
+    "mtime": 1794553886.6318338,
+    "seen": 1794556337.2008412,
+    "ast_hash": "7f64d60bb8201db29ad5513bd8b6b559",
+    "semantic_hash": "7f64d60bb8201db29ad5513bd8b6b559"
+  },
+  "tests/dotnet/OpsToolkit.Shared.Tests/OpsToolkit.Shared.Tests.csproj": {
+    "mtime": 1794553323.3967957,
+    "seen": 1794556337.2008412,
+    "ast_hash": "520e6798e6f39da664f5c3d92f218a71",
+    "semantic_hash": "520e6798e6f39da664f5c3d92f218a71"
+  },
+  "tests/dotnet/OpsToolkit.Shared.Tests/SharedServicesTests.cs": {
+    "mtime": 1794555274.7365007,
+    "seen": 1794556337.2008412,
+    "ast_hash": "1f800637034fc3527e0ce177f304f7f9",
+    "semantic_hash": "1f800637034fc3527e0ce177f304f7f9"
+  },
+  "tests/powershell/Test-AdCredential.Tests.ps1": {
+    "mtime": 1794553815.003191,
+    "seen": 1794556337.2008412,
+    "ast_hash": "296e8a3d13ce8c0ae4a0cf068060f401",
+    "semantic_hash": "296e8a3d13ce8c0ae4a0cf068060f401"
+  },
+  "DESIGN.md": {
+    "mtime": 1794553401.906009,
+    "seen": 1794556337.2008412,
+    "ast_hash": "1eefddfe5d4db3fda4dd13ff7cc8f9bd",
+    "semantic_hash": "1eefddfe5d4db3fda4dd13ff7cc8f9bd"
+  },
+  "design-system/README.md": {
+    "mtime": 1794553610.1028128,
+    "seen": 1794556337.2008412,
+    "ast_hash": "81e0ced862204989117eb8525061eb98",
+    "semantic_hash": "81e0ced862204989117eb8525061eb98"
+  },
+  "design-system/index.html": {
+    "mtime": 1794553610.1022866,
+    "seen": 1794556337.2008412,
+    "ast_hash": "dfd0c46095b460cf69a5c2a1e528b2dd",
+    "semantic_hash": "dfd0c46095b460cf69a5c2a1e528b2dd"
+  },
+  "docs/specs/utilities-integration/PLAN.md": {
+    "mtime": 1794554267.532193,
+    "seen": 1794556337.2008412,
+    "ast_hash": "3e9991215c65585a3029dc90bdceafc3",
+    "semantic_hash": "3e9991215c65585a3029dc90bdceafc3"
+  },
+  "scripts/ad/Test-AdCredential/AGENTS.md": {
+    "mtime": 1794553362.8848894,
+    "seen": 1794556337.2008412,
+    "ast_hash": "a6c5acbbb3164c831aa3a307252cbf9b",
+    "semantic_hash": "a6c5acbbb3164c831aa3a307252cbf9b"
+  },
+  "scripts/ad/Test-AdCredential/INTENT.md": {
+    "mtime": 1794553362.888921,
+    "seen": 1794556337.2008412,
+    "ast_hash": "75da8c886c31340dfecf20759114e934",
+    "semantic_hash": "75da8c886c31340dfecf20759114e934"
+  },
+  "scripts/ad/Test-AdCredential/PLAN.md": {
+    "mtime": 1794554243.890185,
+    "seen": 1794556337.2008412,
+    "ast_hash": "1f3970609ae1f1d7e58e31dbef69337b",
+    "semantic_hash": "1f3970609ae1f1d7e58e31dbef69337b"
+  },
+  "scripts/ad/Test-AdCredential/README.md": {
+    "mtime": 1794553814.9991622,
+    "seen": 1794556337.2008412,
+    "ast_hash": "1b1bea850fb13de14300785910448e32",
+    "semantic_hash": "1b1bea850fb13de14300785910448e32"
+  },
+  "scripts/ad/Test-AdCredential/REVIEW.md": {
+    "mtime": 1794554243.8937829,
+    "seen": 1794556337.2008412,
+    "ast_hash": "8894b24430e5e7d852c537ad1a77da04",
+    "semantic_hash": "8894b24430e5e7d852c537ad1a77da04"
+  },
+  "scripts/ad/Test-AdCredential/SPEC.md": {
+    "mtime": 1794553815.0020852,
+    "seen": 1794556337.2008412,
+    "ast_hash": "f7cea9875a2cbd01c598d524eb10bf81",
+    "semantic_hash": "f7cea9875a2cbd01c598d524eb10bf81"
+  },
+  "src/OpsToolkit.Shared/AGENTS.md": {
+    "mtime": 1794553323.3736875,
+    "seen": 1794556337.2008412,
+    "ast_hash": "19061e688170617da5e3dc9835e5cec1",
+    "semantic_hash": "19061e688170617da5e3dc9835e5cec1"
+  },
+  "src/OpsToolkit.Shared/INTENT.md": {
+    "mtime": 1794553323.378379,
+    "seen": 1794556337.2014914,
+    "ast_hash": "b0c0262f795e291230d96461428ae0c2",
+    "semantic_hash": "b0c0262f795e291230d96461428ae0c2"
+  },
+  "src/OpsToolkit.Shared/PLAN.md": {
+    "mtime": 1794555274.730342,
+    "seen": 1794556337.2014914,
+    "ast_hash": "48f329fbfadd445b1adec3b4ca7caf06",
+    "semantic_hash": "48f329fbfadd445b1adec3b4ca7caf06"
+  },
+  "src/OpsToolkit.Shared/README.md": {
+    "mtime": 1794554008.5109017,
+    "seen": 1794556337.2014914,
+    "ast_hash": "730811d0a50dff9bc430240580b0a510",
+    "semantic_hash": "730811d0a50dff9bc430240580b0a510"
+  },
+  "src/OpsToolkit.Shared/REVIEW.md": {
+    "mtime": 1794554243.8937829,
+    "seen": 1794556337.2014914,
+    "ast_hash": "94bd54393a28f775f769880820c5af6b",
+    "semantic_hash": "94bd54393a28f775f769880820c5af6b"
+  },
+  "src/OpsToolkit.Shared/SPEC.md": {
+    "mtime": 1794554243.8947895,
+    "seen": 1794556337.2014914,
+    "ast_hash": "a7873b8cb8d6b1d514490827c6f5654e",
+    "semantic_hash": "a7873b8cb8d6b1d514490827c6f5654e"
   }
 }

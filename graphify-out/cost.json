@@ -5,8 +5,25 @@
       "input_tokens": 142576,
       "output_tokens": 18338,
       "files": 201
+    },
+    {
+      "date": "2026-11-13T06:58:19.045073+00:00",
+      "input_tokens": null,
+      "output_tokens": null,
+      "files": 206,
+      "usage_status": "unavailable from host tool"
+    },
+    {
+      "date": "2026-11-13T07:52:17.241895+00:00",
+      "input_tokens": null,
+      "output_tokens": null,
+      "files": 245,
+      "usage_status": "unavailable from host agent tools; semantic extraction and labeling were performed",
+      "semantic_cached_files": 45,
+      "semantic_extracted_files": 31
     }
   ],
   "total_input_tokens": 142576,
-  "total_output_tokens": 18338
+  "total_output_tokens": 18338,
+  "total_usage_complete": false
 }

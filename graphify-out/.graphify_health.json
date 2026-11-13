@@ -1,0 +1,223 @@
+{
+  "node_count": 2837,
+  "unverified_node_count": 0,
+  "raw_edge_count": 7851,
+  "non_object_edges": 0,
+  "missing_endpoint_edges": 0,
+  "dangling_endpoint_edges": 215,
+  "external_reference_edges": 18,
+  "self_loop_edges": 7,
+  "valid_candidate_edges": 7618,
+  "exact_duplicate_edges": 3,
+  "directed_unique_endpoint_pairs": 7386,
+  "directed_same_endpoint_collapsed_edges": 232,
+  "undirected_unique_endpoint_pairs": 7321,
+  "undirected_same_endpoint_collapsed_edges": 297,
+  "same_endpoint_group_count": 159,
+  "relation_variant_groups": 79,
+  "source_file_variant_groups": 4,
+  "source_location_variant_groups": 69,
+  "context_variant_groups": 12,
+  "post_build_graph_type": "Graph",
+  "post_build_node_count": 2901,
+  "post_build_edge_count": 7540,
+  "post_build_error": "",
+  "producer_suppression": {
+    "path": "C:\\Users\\rchco\\AppData\\Roaming\\uv\\tools\\graphifyy\\Lib\\site-packages\\graphify\\extract.py",
+    "total_sites": 12,
+    "sites": [
+      {
+        "line": 1901,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids = {n[\"id\"] for n in nodes}"
+      },
+      {
+        "line": 2596,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids = {n[\"id\"] for n in nodes}"
+      },
+      {
+        "line": 2598,
+        "name": "seen_doc_refs",
+        "tuple_arity": 0,
+        "sample": "seen_doc_refs: set[str] = set()"
+      },
+      {
+        "line": 3265,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = {n[\"id\"] for n in nodes}"
+      },
+      {
+        "line": 3412,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids = {n.get(\"id\") for n in nodes}"
+      },
+      {
+        "line": 5144,
+        "name": "seen_keys",
+        "tuple_arity": 0,
+        "sample": "seen_keys: set[tuple] = set()"
+      },
+      {
+        "line": 5330,
+        "name": "seen_keys",
+        "tuple_arity": 0,
+        "sample": "seen_keys: set[tuple] = set()"
+      },
+      {
+        "line": 9753,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = set()"
+      },
+      {
+        "line": 9861,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = set()"
+      },
+      {
+        "line": 9940,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = set()"
+      },
+      {
+        "line": 10465,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = set()"
+      },
+      {
+        "line": 10466,
+        "name": "seen_edges",
+        "tuple_arity": 4,
+        "sample": "seen_edges: set[tuple[str, str, str, str | None]] = set()"
+      }
+    ],
+    "error": ""
+  },
+  "examples": [
+    {
+      "source": "src_ldapauthtester_mainform_designer_ldapauthtester_mainform",
+      "target": "label",
+      "edge_count": 12,
+      "relations": [
+        "references"
+      ],
+      "source_files": [
+        "src/LdapAuthTester/MainForm.Designer.cs"
+      ],
+      "source_locations": [
+        "L492",
+        "L493",
+        "L497",
+        "L498",
+        "L500",
+        "L502",
+        "L504",
+        "L506",
+        "L508",
+        "L519",
+        "L520",
+        "L521"
+      ],
+      "contexts": [
+        "field"
+      ]
+    },
+    {
+      "source": "src_miplabelcustomcheck_miplabelcustomcheck_explorer_viewmodels_mainviewmodel_miplabelcustomcheck_explorer_viewmodels_mainviewmodel",
+      "target": "src_miplabelcustomcheck_miplabelcustomcheck_explorer_viewmodels_relaycommand_miplabelcustomcheck_explorer_viewmodels_relaycommand",
+      "edge_count": 7,
+      "relations": [
+        "references"
+      ],
+      "source_files": [
+        "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/ViewModels/MainViewModel.cs"
+      ],
+      "source_locations": [
+        "L113",
+        "L115",
+        "L117",
+        "L119",
+        "L121",
+        "L124",
+        "L127"
+      ],
+      "contexts": [
+        "field"
+      ]
+    },
+    {
+      "source": "src_ldapauthtester_mainform_designer_ldapauthtester_mainform",
+      "target": "button",
+      "edge_count": 6,
+      "relations": [
+        "references"
+      ],
+      "source_files": [
+        "src/LdapAuthTester/MainForm.Designer.cs",
+        "src/LdapAuthTester/MainForm.Settings.cs"
+      ],
+      "source_locations": [
+        "L20",
+        "L494",
+        "L514",
+        "L515",
+        "L516",
+        "L517"
+      ],
+      "contexts": [
+        "field"
+      ]
+    },
+    {
+      "source": "src_miplabelcustomcheck_miplabelcustomcheck_internal_fileformatdetector_miplabelcustomcheck_internal_fileformatdetector",
+      "target": "readonlyspan",
+      "edge_count": 6,
+      "relations": [
+        "references"
+      ],
+      "source_files": [
+        "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/FileFormatDetector.cs"
+      ],
+      "source_locations": [
+        "L10",
+        "L13",
+        "L15",
+        "L17",
+        "L19",
+        "L7"
+      ],
+      "contexts": [
+        "field"
+      ]
+    },
+    {
+      "source": "github_workflows_ci_build_and_test_steps",
+      "target": "github_workflows_ci_steps_name",
+      "edge_count": 5,
+      "relations": [
+        "contains"
+      ],
+      "source_files": [
+        ".github/workflows/ci.yml"
+      ],
+      "source_locations": [
+        "L14",
+        "L17",
+        "L22",
+        "L25",
+        "L28"
+      ],
+      "contexts": [
+        ""
+      ]
+    }
+  ]
+}
