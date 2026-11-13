@@ -28,6 +28,7 @@
 | `--method <method>` | `-m` | 선택 | `DirectoryEntry` | 검증 방식: `DirectoryEntry`, `PrincipalContext`, `LdapConnection` |
 | `--timeout <sec>` | - | 선택 | `10` | 연결 및 바인딩 타임아웃(초, `1` ~ `300`) |
 | `--no-lockout-guard` | - | 선택 | `false` | 설정 시 첫 번째 프로토콜 자격 증명 실패 후에도 후속 프로토콜 테스트 강제 진행 (기본값은 중단하여 계정 잠금 방지) |
+| `--include-user-info` | `-i` | 선택 | `false` | 인증 성공 시 사용자의 AD 속성(`distinguishedName`, `displayName`, `mail`, `department`, `title`) 및 `memberOf` 그룹 목록 추가 조회 |
 | `--env-only` | - | 선택 | `false` | 현재 PC의 Windows 로그인 사용자 및 AD 도메인 조인 상태만 조회하고 종료 |
 | `--dry-run` | - | 선택 | `false` | 실제 AD 자격 증명 인증(Bind)을 수행하지 않고, 도메인 환경 감지 및 대상 포트(389/636) TCP 연결성만 사전 점검 |
 | `--json` | - | 선택 | `false` | 결과를 구조화된 JSON 포맷으로 표준 출력(`stdout`)에 출력 |

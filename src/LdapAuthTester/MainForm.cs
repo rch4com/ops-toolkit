@@ -144,6 +144,7 @@ public partial class MainForm : Form
             TestTarget = selectedTarget,
             TestMethod = selectedMethod,
             SkipSecondOnCredentialFailure = chkPreventDuplicateFailure.Checked,
+            IncludeUserInfo = chkIncludeUserInfo.Checked,
             IsDryRun = isDryRun
         };
 
@@ -200,6 +201,7 @@ public partial class MainForm : Form
         cboTestTarget.Enabled = !running;
         cboTestMethod.Enabled = !running;
         chkPreventDuplicateFailure.Enabled = !running;
+        chkIncludeUserInfo.Enabled = !running;
     }
 
     private void ResetStatusSummary(AuthTestTarget target)
@@ -256,6 +258,29 @@ public partial class MainForm : Form
             {
                 AppendLog($"      ↳ LDAP Error Data Code: data {result.LdapDataCode}", Color.Pink);
             }
+        }
+
+        if (result.CertificateInfo is not null)
+        {
+            LdapsCertificateInfo cert = result.CertificateInfo;
+            Color certColor = cert.IsExpired || !string.Equals(cert.SslPolicyErrors, "None", StringComparison.OrdinalIgnoreCase)
+                ? Color.Gold
+                : Color.LightSkyBlue;
+
+            AppendLog($"      ↳ [LDAPS 인증서] Subject: {cert.Subject} | Issuer: {cert.Issuer}", certColor);
+            AppendLog($"      ↳ [LDAPS 인증서] 만료일: {cert.NotAfter:yyyy-MM-dd HH:mm:ss} (D-{cert.DaysUntilExpiration}, 만료={cert.IsExpired}) | SSL Policy: {cert.SslPolicyErrors}", certColor);
+            if (cert.ChainStatusDetails.Count > 0)
+            {
+                AppendLog($"      ↳ [LDAPS 체인 상태] {string.Join("; ", cert.ChainStatusDetails)}", Color.Orange);
+            }
+        }
+
+        if (result.UserProfile is not null)
+        {
+            AdUserProfileInfo profile = result.UserProfile;
+            AppendLog($"      ↳ [사용자 AD 속성] DN: {profile.DistinguishedName}", Color.LightCyan);
+            AppendLog($"      ↳ [사용자 AD 속성] 표시이름: {profile.DisplayName} | 이메일: {profile.Email} | 부서: {profile.Department} | 직급: {profile.Title}", Color.LightCyan);
+            AppendLog($"      ↳ [소속 그룹 ({profile.MemberOfGroups.Count}개)] {(profile.MemberOfGroups.Count > 0 ? string.Join(", ", profile.MemberOfGroups) : "없음")}", Color.LightCyan);
         }
 
         if (result.Protocol == AuthProtocol.LDAP)

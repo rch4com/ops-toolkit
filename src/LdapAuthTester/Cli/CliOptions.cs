@@ -13,6 +13,7 @@ public sealed class CliOptions
     public bool OutputJson { get; set; }
     public bool Verbose { get; set; }
     public bool NoLockoutGuard { get; set; }
+    public bool IncludeUserInfo { get; set; }
     public string? Domain { get; set; }
     public string? UserName { get; set; }
     public string? Password { get; set; }
@@ -72,6 +73,11 @@ public sealed class CliOptions
 
                 case "--no-lockout-guard":
                     options.NoLockoutGuard = true;
+                    break;
+
+                case "--include-user-info":
+                case "-i":
+                    options.IncludeUserInfo = true;
                     break;
 
                 case "--domain":

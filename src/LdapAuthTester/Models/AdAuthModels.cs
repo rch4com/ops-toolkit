@@ -47,6 +47,32 @@ public sealed class AdAuthTestRequest
     public bool SkipSecondOnCredentialFailure { get; set; } = true;
     public int TimeoutSeconds { get; set; } = 10;
     public bool IsDryRun { get; set; }
+    public bool IncludeUserInfo { get; set; }
+}
+
+public sealed class LdapsCertificateInfo
+{
+    public string Subject { get; set; } = string.Empty;
+    public string Issuer { get; set; } = string.Empty;
+    public string Thumbprint { get; set; } = string.Empty;
+    public DateTimeOffset NotBefore { get; set; }
+    public DateTimeOffset NotAfter { get; set; }
+    public bool IsExpired { get; set; }
+    public int DaysUntilExpiration { get; set; }
+    public string SslPolicyErrors { get; set; } = string.Empty;
+    public List<string> ChainStatusDetails { get; set; } = [];
+}
+
+public sealed class AdUserProfileInfo
+{
+    public string DistinguishedName { get; set; } = string.Empty;
+    public string SamAccountName { get; set; } = string.Empty;
+    public string UserPrincipalName { get; set; } = string.Empty;
+    public string DisplayName { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string Department { get; set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
+    public List<string> MemberOfGroups { get; set; } = [];
 }
 
 public sealed class AdAuthTestResult
@@ -63,6 +89,8 @@ public sealed class AdAuthTestResult
     public string? LdapDataCode { get; set; }
     public string DiagnosticDetail { get; set; } = string.Empty;
     public string? RawErrorMessage { get; set; }
+    public LdapsCertificateInfo? CertificateInfo { get; set; }
+    public AdUserProfileInfo? UserProfile { get; set; }
     public long ElapsedMilliseconds { get; set; }
     public DateTimeOffset Timestamp { get; set; } = DateTimeOffset.Now;
 

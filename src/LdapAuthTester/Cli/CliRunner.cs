@@ -114,7 +114,8 @@ public static class CliRunner
             TestMethod = options.Method,
             SkipSecondOnCredentialFailure = !options.NoLockoutGuard,
             TimeoutSeconds = options.TimeoutSeconds,
-            IsDryRun = options.IsDryRun
+            IsDryRun = options.IsDryRun,
+            IncludeUserInfo = options.IncludeUserInfo
         };
 
         try
@@ -152,6 +153,25 @@ public static class CliRunner
                 foreach (AdAuthTestResult r in results)
                 {
                     await stdOut.WriteLineAsync($"  {r}").ConfigureAwait(false);
+                    if (r.CertificateInfo is not null)
+                    {
+                        LdapsCertificateInfo cert = r.CertificateInfo;
+                        await stdOut.WriteLineAsync($"    [LDAPS 인증서] Subject: {cert.Subject} | Issuer: {cert.Issuer}").ConfigureAwait(false);
+                        await stdOut.WriteLineAsync($"    [LDAPS 인증서] 만료일: {cert.NotAfter:yyyy-MM-dd HH:mm:ss} (D-{cert.DaysUntilExpiration}, 만료여부: {cert.IsExpired}) | SSL Policy: {cert.SslPolicyErrors}").ConfigureAwait(false);
+                        if (cert.ChainStatusDetails.Count > 0)
+                        {
+                            await stdOut.WriteLineAsync($"    [LDAPS 체인 상태] {string.Join("; ", cert.ChainStatusDetails)}").ConfigureAwait(false);
+                        }
+                    }
+
+                    if (r.UserProfile is not null)
+                    {
+                        AdUserProfileInfo profile = r.UserProfile;
+                        await stdOut.WriteLineAsync($"    [사용자 프로필] DN: {profile.DistinguishedName}").ConfigureAwait(false);
+                        await stdOut.WriteLineAsync($"    [사용자 프로필] 표시이름: {profile.DisplayName} | 이메일: {profile.Email} | 부서: {profile.Department} | 직함이/직급: {profile.Title}").ConfigureAwait(false);
+                        await stdOut.WriteLineAsync($"    [사용자 그룹 ({profile.MemberOfGroups.Count}개)] {(profile.MemberOfGroups.Count > 0 ? string.Join(", ", profile.MemberOfGroups) : "없음")}").ConfigureAwait(false);
+                    }
+
                     if (options.Verbose && !string.IsNullOrWhiteSpace(r.RawErrorMessage))
                     {
                         await stdOut.WriteLineAsync($"    [상세 예외] {r.RawErrorMessage}").ConfigureAwait(false);
@@ -206,6 +226,7 @@ public static class CliRunner
         writer.WriteLine("  -m, --method <method>      검증 방식: DirectoryEntry (기본값), PrincipalContext, LdapConnection");
         writer.WriteLine("      --timeout <sec>        연결 타임아웃 초 (기본값: 10)");
         writer.WriteLine("      --no-lockout-guard     1차 프로토콜 자격 증명 실패 시에도 2차 프로토콜 강제 시도");
+        writer.WriteLine("  -i, --include-user-info    인증 성공 시 사용자 AD 속성(DN, 이메일, 부서) 및 소속 그룹 조회");
         writer.WriteLine("      --dry-run              실제 AD 인증을 생략하고 도메인 감지 및 TCP 포트 연결성만 점검");
         writer.WriteLine("      --env-only             도메인 조인 상태 및 현재 사용자 환경만 출력 후 종료");
         writer.WriteLine("      --json                 결과를 JSON 포맷으로 출력");

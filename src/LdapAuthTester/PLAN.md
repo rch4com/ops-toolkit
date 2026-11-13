@@ -24,3 +24,8 @@
 - [x] **Step 6: 빌드, 포맷, 테스트 검증 및 카탈로그 등록 (`REVIEW.md`)**
   - `dotnet build -warnaserror`, `dotnet format --verify-no-changes`, `dotnet test --nologo` 실행 및 검증
   - 루트 `README.md` 카탈로그 업데이트 및 `REVIEW.md` 최종 체크리스트 기록
+- [x] **Step 7: LDAPS SSL/TLS 서버 인증서 정밀 진단기(`InspectLdapsCertificateAsync`) 및 사용자 AD 프로필 조회(`--include-user-info`) 고도화**
+  - `LdapsCertificateInfo`, `AdUserProfileInfo` 모델 추가
+  - `SslStream` 커스텀 콜백 기반 LDAPS 서버 인증서 정보(Subject, Issuer, 만료일, SslPolicyErrors, 체인 상태) 추출 구현
+  - 인증 성공 시 LDAP 인젝션 방지 필터(`EscapeLdapSearchFilter`) 기반 사용자 속성 및 `memberOf` 그룹 조회 구현
+  - CLI(`--include-user-info` / `-i`) 및 WinForms GUI(`chkIncludeUserInfo`) 연동 및 단위 테스트 보강

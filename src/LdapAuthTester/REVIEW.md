@@ -9,21 +9,22 @@
 - [x] **코드 품질 및 테스트**:
   - `dotnet build -warnaserror` 경고/오류 0건 통과
   - `dotnet format --verify-no-changes` 통과
-  - `dotnet test --nologo` 단위 테스트 15건 전체 통과
+  - `dotnet test --nologo` 단위 테스트 19건 전체 통과
   - 루트 `README.md` 유틸리티 카탈로그 등록 완료
 
 ---
 
 ## 2. 리뷰 기록 요약
 
-### [2026-11-13] LdapAuthTester 퍼블릭화 및 .NET 10 이관 리뷰 결과
+### [2026-11-13] LdapAuthTester 퍼블릭화, .NET 10 이관 및 LDAPS 인증서/프로필 조회 고도화 리뷰 결과
 - **상태**: PASS
 - **검증 명령어 결과**:
   - Build (`dotnet build -warnaserror`): Pass (경고 0, 오류 0)
   - Format (`dotnet format --verify-no-changes`): Pass
-  - Tests (`dotnet test --nologo`): Pass (15/15 통과)
+  - Tests (`dotnet test --nologo`): Pass (19/19 통과)
   - DryRun Check (`--dry-run` 및 `--env-only`): Pass
 - **주요 확인 사항**:
   - 사내 전용 네임스페이스(`art.CNR.*`), 사내 DLL(`art.CNR.Common`), 특정 고객사 빌드 구성 전수 제거 완료
   - 3번째 인증 방식을 표준 `System.DirectoryServices.Protocols.LdapConnection` 바인딩으로 교체 완료
   - WinForms GUI + CLI 하이브리드 진입점 및 `--password-env`, `--dry-run`, `--json` 지원 완료
+  - LDAPS(636) SSL/TLS 원격 인증서(Subject, Issuer, 만료일, SslPolicyErrors, 체인 오류) 자동 진단 및 `--include-user-info`(`-i`) 사용자 AD 속성/그룹 조회(LDAP 필터 이스케이프 포함) 구현 완료

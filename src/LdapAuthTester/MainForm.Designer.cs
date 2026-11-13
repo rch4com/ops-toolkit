@@ -22,6 +22,7 @@ public partial class MainForm
         this.lblDomainJoinStatus = new System.Windows.Forms.Label();
         this.grpSettings = new System.Windows.Forms.GroupBox();
         this.chkShowPassword = new System.Windows.Forms.CheckBox();
+        this.chkIncludeUserInfo = new System.Windows.Forms.CheckBox();
         this.chkPreventDuplicateFailure = new System.Windows.Forms.CheckBox();
         this.cboTestMethod = new System.Windows.Forms.ComboBox();
         this.lblTestMethod = new System.Windows.Forms.Label();
@@ -111,6 +112,7 @@ public partial class MainForm
         this.grpSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
         | System.Windows.Forms.AnchorStyles.Right)));
         this.grpSettings.Controls.Add(this.chkShowPassword);
+        this.grpSettings.Controls.Add(this.chkIncludeUserInfo);
         this.grpSettings.Controls.Add(this.chkPreventDuplicateFailure);
         this.grpSettings.Controls.Add(this.cboTestMethod);
         this.grpSettings.Controls.Add(this.lblTestMethod);
@@ -145,6 +147,19 @@ public partial class MainForm
         this.chkShowPassword.Text = "표시";
         this.chkShowPassword.UseVisualStyleBackColor = true;
         this.chkShowPassword.CheckedChanged += new System.EventHandler(this.ChkShowPassword_CheckedChanged);
+        //
+        // chkIncludeUserInfo
+        //
+        this.chkIncludeUserInfo.AutoSize = true;
+        this.chkIncludeUserInfo.Checked = true;
+        this.chkIncludeUserInfo.CheckState = System.Windows.Forms.CheckState.Checked;
+        this.chkIncludeUserInfo.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+        this.chkIncludeUserInfo.Location = new System.Drawing.Point(105, 125);
+        this.chkIncludeUserInfo.Name = "chkIncludeUserInfo";
+        this.chkIncludeUserInfo.Size = new System.Drawing.Size(242, 19);
+        this.chkIncludeUserInfo.TabIndex = 15;
+        this.chkIncludeUserInfo.Text = "인증 성공 시 사용자 AD 속성/그룹 조회";
+        this.chkIncludeUserInfo.UseVisualStyleBackColor = true;
         //
         // chkPreventDuplicateFailure
         //
@@ -489,6 +504,7 @@ public partial class MainForm
     private System.Windows.Forms.Label lblTestMethod = null!;
     private System.Windows.Forms.ComboBox cboTestMethod = null!;
     private System.Windows.Forms.CheckBox chkPreventDuplicateFailure = null!;
+    private System.Windows.Forms.CheckBox chkIncludeUserInfo = null!;
     private System.Windows.Forms.CheckBox chkShowPassword = null!;
     private System.Windows.Forms.Panel pnlActions = null!;
     private System.Windows.Forms.Button btnRunTest = null!;

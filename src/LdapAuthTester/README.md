@@ -13,8 +13,11 @@
   - 터미널이나 자동화 스크립트에서 옵션을 주어 실행하면 **CLI 모드(콘솔 및 `--json` 출력)**로 동작합니다.
 - **AD 계정 잠금(Account Lockout) 방지**:
   - LDAP(389)과 LDAPS(636)를 연속으로 테스트할 때, 1차 시도에서 비밀번호 오류 등 자격 증명 실패가 발생하면 2차 시도를 자동으로 건너뛰어 **중복 실패로 인한 AD 계정 잠금**을 예방합니다.
-- **사전 연결 점검 (`--dry-run`)**:
+- **사전 연결 점검 (`--dry-run`) 및 LDAPS 인증서 자동 정밀 진단**:
   - 실제 계정 인증(Bind)을 시도하지 않고 도메인 감지 및 대상 서버의 LDAP/LDAPS TCP 포트 개방 여부만 안전하게 점검할 수 있습니다.
+  - LDAPS(636) 연결 시 원격 서버의 SSL/TLS 인증서(`Subject`, `Issuer`, `Thumbprint`, 만료일 `NotAfter`, 남은 일수, `SslPolicyErrors`, 체인 상태)를 자동으로 추출하여, 자체 서명·만료·호스트명 불일치로 인한 바인딩 실패 원인을 즉시 진단합니다.
+- **인증 성공 사용자 AD 속성 및 소속 그룹 조회 (`--include-user-info` / `-i`)**:
+  - 인증 성공 시 해당 사용자의 `distinguishedName`, `displayName`, `mail`, `department`, `title` 및 `memberOf` 보안 그룹 목록을 안전하게(LDAP 필터 이스케이프 적용) 함께 조회합니다.
 - **3가지 표준 .NET 인증 방식 지원**:
   - `DirectoryEntry` (`System.DirectoryServices` NativeObject 바인딩)
   - `PrincipalContext` (`System.DirectoryServices.AccountManagement` ValidateCredentials)
@@ -56,6 +59,7 @@ dotnet run --project .\src\LdapAuthTester\LdapAuthTester.csproj
 | `--method <method>` | `-m` | 선택 | `DirectoryEntry` | 검증 방식: `DirectoryEntry`, `PrincipalContext`, `LdapConnection` |
 | `--timeout <sec>` | - | 선택 | `10` | 연결 및 인증 타임아웃(초) |
 | `--no-lockout-guard` | - | 선택 | `false` | 자격 증명 실패 시에도 후속 프로토콜 강제 시도 |
+| `--include-user-info` | `-i` | 선택 | `false` | 인증 성공 시 사용자 AD 속성(DN, 이메일, 부서) 및 소속 그룹 조회 |
 | `--env-only` | - | 선택 | `false` | 현재 PC의 AD 도메인 조인 및 로그온 사용자 정보만 출력 |
 | `--dry-run` | - | 선택 | `false` | 실제 인증 없이 도메인 감지 및 TCP 포트(389/636) 연결성만 점검 |
 | `--json` | - | 선택 | `false` | 결과를 JSON 형식으로 출력 |
