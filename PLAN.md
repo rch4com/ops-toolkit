@@ -27,7 +27,7 @@
 
 ---
 
-## Phase 2: 공통 기반 모듈 및 라이브러리 구현 (차기 단계)
+## Phase 2: 공통 기반 모듈 및 CI/CD·배포 파이프라인 구축 (진행 중)
 
 - [ ] **Task 2.1: PowerShell 공통 모듈 (`scripts/modules/OpsCommon`) 개발**
   - 표준 로깅 함수 (`Write-OpsLog`), 실행 결과 레코드 생성기, 공통 사전 점검 함수 구현
@@ -36,10 +36,16 @@
   - `OpsToolkit.slnx` (또는 `.sln`) 생성
   - CLI 공통 옵션(`--dry-run`, `--verbose`, `--json`) 및 콘솔 출력 헬퍼 구현
   - `tests/dotnet/OpsToolkit.Shared.Tests` xUnit 테스트 작성
+- [x] **Task 2.3: GitHub Actions 통합 CI 파이프라인 (`.github/workflows/ci.yml`) 구축**
+  - `windows-latest` 기반 .NET 10 전체 솔루션 빌드(`dotnet build -warnaserror`) 및 단위 테스트(`dotnet test`) 자동화
+  - PowerShell 7 정적 분석(`Invoke-ScriptAnalyzer`) 및 Pester v5 단위 테스트(`Invoke-Pester`) 자동화
+- [x] **Task 2.4: 단일 실행 파일(`.exe`) 배포 자동화 스크립트 (`scripts/build/Publish-SingleFileTools`) 구현**
+  - `LdapAuthTester`, `MIPLabelCustomCheck.Explorer` 단일 파일 패키징 및 `-WhatIf` 시뮬레이션 지원
+  - 6대 필수 문서 및 `tests/powershell/Publish-SingleFileTools.Tests.ps1` Pester 테스트 작성
 
 ---
 
-## Phase 3: 개별 운영 유틸리티 개발 워크플로우 (반복 단계)
+## Phase 3: 개별 운영 유틸리티 개발 워크플로우 및 구현 완료 목록
 
 새로운 스크립트(`scripts/<category>/<ToolName>/`)나 CLI 도구(`src/<ToolName>/`)를 추가할 때마다 아래 순서를 엄격히 따릅니다:
 
@@ -57,3 +63,10 @@
    - 확정된 `SPEC.md`와 `PLAN.md`에 맞춰 코드를 구현하고 `tests/` 하위에 대응하는 테스트 코드를 작성합니다.
 4. **검증 및 카탈로그 등록 (`REVIEW.md`)**:
    - 빌드/린트/테스트 명령어를 실행하고 도구 폴더의 `REVIEW.md` 체크리스트를 통과한 뒤, 루트 `README.md`의 유틸리티 카탈로그에 등록합니다.
+
+### 구현 완료된 유틸리티 목록
+- [x] **`Remove-ExpiredIISCertificate` (`scripts/iis/Remove-ExpiredIISCertificate/`)**: IIS 및 HTTP.sys 바인딩 전수 검사 기반 만료 미바인딩 인증서 안전 조회/삭제 및 CSV 리포트 생성
+- [x] **`PSJobScheduler` (`scripts/scheduler/PSJobScheduler/`)**: 파일명 기반 Cron-Safe(`X`, `@`, `L`) 주기 실행 스케줄러 (타임아웃, 서킷 브레이커, 재시도, NSSM 서비스 등록)
+- [x] **`Publish-SingleFileTools` (`scripts/build/Publish-SingleFileTools/`)**: C# (.NET 10) 실행형 도구의 단일 파일(`.exe`) 일괄/개별 게시 스크립트 (`-WhatIf` 지원)
+- [x] **`LdapAuthTester` (`src/LdapAuthTester/`)**: Active Directory 도메인 조인 감지, LDAP(389)/LDAPS(636) 연결성·인증 검증, LDAPS SSL 인증서 체인/만료일 점검 및 사용자 AD 속성 조회 하이브리드(WinForms GUI + CLI) 도구
+- [x] **`MIPLabelCustomCheck` (`src/MIPLabelCustomCheck/`)**: MIP SDK 없이 Office, PDF, 이미지, 이메일의 Microsoft Purview 민감도 레이블 GUID 및 보호 상태를 고속 검출하고 하위 폴더 재귀 스캔·상태 필터링·CSV/JSON 내보내기를 지원하는 라이브러리 + 하이브리드(WPF Explorer GUI + CLI) 도구

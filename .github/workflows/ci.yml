@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Build C# solution
+        run: dotnet build .\OpsToolkit.slnx -warnaserror
+
+      - name: Test C# solution
+        run: dotnet test .\OpsToolkit.slnx --no-build --nologo
+
+      - name: Run PowerShell 7 Static Analysis & Pester v5 Tests
+        shell: pwsh
+        run: |
+          if (-not (Get-Module -ListAvailable -Name PSScriptAnalyzer)) {
+              Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser -SkipPublisherCheck
+          }
+          if (-not (Get-Module -ListAvailable -Name Pester | Where-Object { $_.Version.Major -ge 5 })) {
+              Install-Module -Name Pester -MinimumVersion 5.0.0 -Force -Scope CurrentUser -SkipPublisherCheck
+          }
+          Invoke-ScriptAnalyzer -Path .\scripts\ -Recurse -Severity Warning,Error -EnableExit
+          Invoke-Pester -Path .\tests\powershell\ -CI

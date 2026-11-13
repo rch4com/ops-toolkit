@@ -77,13 +77,14 @@ ops-toolkit/
 | :--- | :--- | :--- | :--- | :---: | :---: |
 | `iis` | **[Remove-ExpiredIISCertificate](./scripts/iis/Remove-ExpiredIISCertificate/README.md)** | `scripts/iis/Remove-ExpiredIISCertificate/` | IIS 및 HTTP.sys 바인딩을 전수 확인하여 만료된 미바인딩 인증서만 안전하게 조회/삭제 및 현재 폴더 하위 CSV 리포트 생성 | PS 5.1 / 7+ | O (`-List`, `-Execute -WhatIf`) |
 | `scheduler` | **[PSJobScheduler](./scripts/scheduler/PSJobScheduler/README.md)** | `scripts/scheduler/PSJobScheduler/` | 파일명 기반 Cron-Safe(`X`, `@`, `L`) 표기로 PowerShell 작업을 주기 실행하며 타임아웃, 서킷 브레이커, 재시도, NSSM Windows 서비스 등록 지원 | PS 5.1 / 7+ | O (`-WhatIf`, `-RunOnce`, `Test-CronSchedule`) |
+| `build` | **[Publish-SingleFileTools](./scripts/build/Publish-SingleFileTools/README.md)** | `scripts/build/Publish-SingleFileTools/` | C# (.NET 10) 실행형 도구(`LdapAuthTester`, `MIPLabelCustomCheck.Explorer`)를 현장 배포용 단일 실행 파일(`.exe`)로 일괄/개별 패키징 | PS 7+ | O (`-WhatIf`) |
 | `modules` | `OpsCommon` (예정) | `scripts/modules/` | 공통 로깅 및 운영 안전 헬퍼 모듈 | PS 7+ | - |
 
 ### C# .NET 10 CLI Tools (`src/`)
 | 도구명 | 경로 | 설명 | Dry-Run 지원 |
 | :--- | :--- | :--- | :---: |
-| **[LdapAuthTester](./src/LdapAuthTester/README.md)** | `src/LdapAuthTester/` | Active Directory 도메인 조인 감지 및 LDAP(389)/LDAPS(636) 연결성·인증 검증 하이브리드(WinForms GUI + CLI) 도구 (계정 잠금 방지 및 3종 표준 바인딩 지원) | O (`--dry-run`, GUI 사전 포트 점검) |
-| **[MIPLabelCustomCheck](./src/MIPLabelCustomCheck/README.md)** | `src/MIPLabelCustomCheck/` | MIP SDK 없이 Office, PDF, 이미지(PNG/JPEG/TIFF), 이메일(MSG/EML)의 Microsoft Purview 민감도 레이블 GUID 및 보호 상태를 고속 검출하는 무의존성 라이브러리 + 하이브리드(WPF Explorer GUI + CLI) 도구 | O (`--dry-run`) |
+| **[LdapAuthTester](./src/LdapAuthTester/README.md)** | `src/LdapAuthTester/` | Active Directory 도메인 조인 감지, LDAP(389)/LDAPS(636) 연결성·인증 검증, LDAPS SSL 인증서 체인/만료일 점검 및 사용자 AD 속성 조회 하이브리드(WinForms GUI + CLI) 도구 (계정 잠금 방지 및 3종 표준 바인딩 지원) | O (`--dry-run`, GUI 사전 포트 점검) |
+| **[MIPLabelCustomCheck](./src/MIPLabelCustomCheck/README.md)** | `src/MIPLabelCustomCheck/` | MIP SDK 없이 Office, PDF, 이미지(PNG/JPEG/TIFF), 이메일(MSG/EML)의 Microsoft Purview 민감도 레이블 GUID 및 보호 상태를 고속 검출하고 하위 폴더 재귀 스캔·상태 필터링·CSV/JSON 리포트 내보내기를 지원하는 무의존성 라이브러리 + 하이브리드(WPF Explorer GUI + CLI) 도구 | O (`--dry-run`) |
 | `OpsToolkit.Shared` (예정) | `src/OpsToolkit.Shared` | CLI 공통 옵션 및 출력 포맷 라이브러리 | - |
 
 ---
