@@ -44,6 +44,17 @@ public static class CliRunner
             return ExitSuccess;
         }
 
+        string? validationError = AdAuthTestRequest.GetCertificateValidationError(options.SkipCertificateValidation, options.Method, options.Target, options.IncludeUserInfo);
+        if (validationError is not null)
+        {
+            await stdErr.WriteLineAsync(validationError).ConfigureAwait(false);
+            return ExitUsageError;
+        }
+        if (options.SkipCertificateValidation)
+        {
+            await stdErr.WriteLineAsync("WARNING: TLS certificate validation is bypassed for this run only.").ConfigureAwait(false);
+        }
+
         AdEnvironmentInfo envInfo = checker.GetCurrentEnvironmentInfo();
 
         if (options.EnvOnly)
@@ -115,6 +126,7 @@ public static class CliRunner
             SkipSecondOnCredentialFailure = !options.NoLockoutGuard,
             TimeoutSeconds = options.TimeoutSeconds,
             IsDryRun = options.IsDryRun,
+            SkipCertificateValidation = options.SkipCertificateValidation,
             IncludeUserInfo = options.IncludeUserInfo
         };
 
@@ -212,7 +224,7 @@ public static class CliRunner
         writer.WriteLine("  LdapAuthTester                           인자 없이 실행 시 WinForms GUI 실행");
         writer.WriteLine("  LdapAuthTester --gui                     WinForms GUI 명시적 실행");
         writer.WriteLine("  LdapAuthTester --env-only [--json]       현재 PC의 AD 도메인 조인 및 로그인 사용자 상태 조회");
-        writer.WriteLine("  LdapAuthTester --domain <host> --dry-run 실제 인증 없이 LDAP/LDAPS TCP 포트 개방 여부만 안전하게 점검");
+        writer.WriteLine("  LdapAuthTester --domain <host> --dry-run Bind 없이 TCP 연결성 및 LDAPS 인증서 메타데이터 점검");
         writer.WriteLine("  LdapAuthTester --domain <host> --user <id> --password-env <ENV_VAR> [옵션]");
         writer.WriteLine();
         writer.WriteLine("주요 옵션:");
@@ -227,7 +239,8 @@ public static class CliRunner
         writer.WriteLine("      --timeout <sec>        연결 타임아웃 초 (기본값: 10)");
         writer.WriteLine("      --no-lockout-guard     1차 프로토콜 자격 증명 실패 시에도 2차 프로토콜 강제 시도");
         writer.WriteLine("  -i, --include-user-info    인증 성공 시 사용자 AD 속성(DN, 이메일, 부서) 및 소속 그룹 조회");
-        writer.WriteLine("      --dry-run              실제 AD 인증을 생략하고 도메인 감지 및 TCP 포트 연결성만 점검");
+        writer.WriteLine("      --skip-certificate-validation  현재 실행만 인증서 검증 생략 (LdapsOnly + LdapConnection, 사용자 조회 불가)");
+        writer.WriteLine("      --dry-run              Bind 생략, TCP 연결성 및 LDAPS TLS 인증서 메타데이터 점검");
         writer.WriteLine("      --env-only             도메인 조인 상태 및 현재 사용자 환경만 출력 후 종료");
         writer.WriteLine("      --json                 결과를 JSON 포맷으로 출력");
         writer.WriteLine("  -v, --verbose              실패 시 원본 예외 메시지 상세 출력");

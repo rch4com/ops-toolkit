@@ -252,6 +252,57 @@ public class AdAuthCheckerTests
         Assert.Equal(@"alice\2a\28admin\29\5ctest", escaped);
     }
 
+    [Fact]
+    public async Task UnsupportedCertificateBypassIsRejectedBeforeAnyProtocolExecution()
+    {
+        var checker = new TestableAdAuthChecker(new(), new());
+        var request = new AdAuthTestRequest { Domain = "localhost", SkipCertificateValidation = true };
+        await Assert.ThrowsAsync<ArgumentException>(() => checker.RunAuthTestsAsync(request));
+        Assert.Throws<ArgumentException>(() => new AdAuthChecker().ExecuteSingleProtocol(AuthProtocol.LDAP, request));
+        Assert.False(checker.LdapExecuted);
+        Assert.False(checker.LdapsExecuted);
+    }
+
+    [Theory]
+    [InlineData("data 52e", AuthFailureCategory.Credential)]
+    [InlineData("certificate rejected", AuthFailureCategory.Tls)]
+    [InlineData("unknown", AuthFailureCategory.Unknown)]
+    public void FailureCategoryIsStructured(string message, AuthFailureCategory category)
+    {
+        var result = new AdAuthTestResult();
+        AdAuthChecker.PopulateErrorInfo(new InvalidOperationException(message), result);
+        Assert.Equal(category, result.FailureCategory);
+    }
+
+    [Fact]
+    public async Task DryRunNeverCallsBind()
+    {
+        var checker = new DryRunChecker();
+        var results = await checker.RunAuthTestsAsync(new() { Domain = "localhost", IsDryRun = true });
+        Assert.Equal(2, results.Count);
+        Assert.All(results, result => Assert.True(result.IsDryRun));
+    }
+
+    [Fact]
+    public void TypedTransportExceptionsHaveFailureCategories()
+    {
+        var result = new AdAuthTestResult();
+        AdAuthChecker.PopulateErrorInfo(new TimeoutException(), result);
+        Assert.Equal(AuthFailureCategory.Timeout, result.FailureCategory);
+        AdAuthChecker.PopulateErrorInfo(new System.Security.Authentication.AuthenticationException(), result);
+        Assert.Equal(AuthFailureCategory.Tls, result.FailureCategory);
+        AdAuthChecker.PopulateErrorInfo(new InvalidOperationException("wrapper", new System.Net.Sockets.SocketException()), result);
+        Assert.Equal(AuthFailureCategory.NetworkOrServer, result.FailureCategory);
+    }
+
+    private sealed class DryRunChecker : AdAuthChecker
+    {
+        public override AdAuthTestResult ExecuteSingleProtocol(AuthProtocol protocol, AdAuthTestRequest request)
+            => throw new InvalidOperationException("Bind must not run");
+        public override Task<AdAuthTestResult> ExecuteDryRunTcpProbeAsync(AuthProtocol protocol, AdAuthTestRequest request, CancellationToken cancellationToken = default)
+            => Task.FromResult(new AdAuthTestResult { Protocol = protocol, IsDryRun = true, IsSuccess = true });
+    }
+
     private sealed class TestableAdAuthChecker(AdAuthTestResult ldapResult, AdAuthTestResult ldapsResult) : AdAuthChecker
     {
         public bool LdapExecuted { get; private set; }

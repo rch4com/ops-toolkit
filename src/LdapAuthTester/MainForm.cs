@@ -11,6 +11,8 @@ public partial class MainForm : Form
     public MainForm()
     {
         InitializeComponent();
+        NativeTheme.Apply(this);
+        InitializeLocalSettingsControls();
         _authChecker = new AdAuthChecker();
     }
 
@@ -44,12 +46,12 @@ public partial class MainForm : Form
             if (env.IsDomainJoined)
             {
                 lblDomainJoinStatus.Text = $"✔ AD 도메인 조인됨: {env.DomainName}";
-                lblDomainJoinStatus.ForeColor = Color.FromArgb(0, 153, 76);
+                lblDomainJoinStatus.ForeColor = ForeColor;
             }
             else
             {
                 lblDomainJoinStatus.Text = $"⚠ 도메인 미조인 또는 감지 불가 ({env.DetectionMessage})";
-                lblDomainJoinStatus.ForeColor = Color.FromArgb(204, 102, 0);
+                lblDomainJoinStatus.ForeColor = ForeColor;
             }
 
             string dcText = string.IsNullOrWhiteSpace(env.DomainController) ? "-" : env.DomainController;
@@ -70,7 +72,7 @@ public partial class MainForm : Form
         catch (Exception ex)
         {
             lblDomainJoinStatus.Text = "환경 정보 조회 실패";
-            lblDomainJoinStatus.ForeColor = Color.Red;
+            lblDomainJoinStatus.ForeColor = ForeColor;
             lblEnvDetails.Text = ex.Message;
             AppendLog($"[환경 정보 로드 오류] {ex}", Color.Salmon);
         }
@@ -145,9 +147,22 @@ public partial class MainForm : Form
             TestMethod = selectedMethod,
             SkipSecondOnCredentialFailure = chkPreventDuplicateFailure.Checked,
             IncludeUserInfo = chkIncludeUserInfo.Checked,
+            SkipCertificateValidation = _skipCertificateValidation.Checked,
+            TimeoutSeconds = (int)_timeout.Value,
             IsDryRun = isDryRun
         };
 
+        string? validationError = AdAuthTestRequest.GetCertificateValidationError(request.SkipCertificateValidation, selectedMethod, selectedTarget, request.IncludeUserInfo);
+        if (validationError is not null)
+        {
+            MessageBox.Show(this, validationError, "입력 확인", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+        if (request.SkipCertificateValidation)
+        {
+            AppendLog("경고: 현재 실행에서 TLS 인증서 검증을 생략합니다. 서버 신원을 확인하지 않습니다.", Color.Orange);
+        }
+        _runCts = CancellationTokenSource.CreateLinkedTokenSource(_lifetimeCts.Token);
         SetUiRunningState(true);
         ResetStatusSummary(request.TestTarget);
 
@@ -168,27 +183,58 @@ public partial class MainForm : Form
         {
             List<AdAuthTestResult> results = await _authChecker.RunAuthTestsAsync(request, result =>
             {
-                BeginInvoke(new Action(() => UpdateProtocolResult(result)));
-            }).ConfigureAwait(true);
+                if (!IsDisposed && IsHandleCreated && !_closing)
+                {
+                    BeginInvoke(new Action(() => { if (!_closing && !IsDisposed) { UpdateProtocolResult(result); } }));
+                }
+            }, _runCts.Token).ConfigureAwait(true);
 
+            if (_closing) { return; }
             UpdateOverallSummary(results, isDryRun);
+            if (_saveLocally.Checked && _settingsStore is not null)
+            {
+                await RunSettingsActionAsync(async () =>
+                {
+                    await _settingsStore.AddRecentServerAsync(request.Domain, _lifetimeCts.Token);
+                    await RefreshSavedSettingsAsync();
+                });
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            if (!_closing && !IsDisposed) { lblSummary.Text = "상태: 취소됨"; }
         }
         catch (Exception ex)
         {
+            if (_closing) { return; }
             AppendLog($"[실행 중 치명적 오류] {ex.Message}", Color.Salmon);
             lblSummary.Text = "상태: 검증 중 예외가 발생했습니다.";
-            lblSummary.ForeColor = Color.Red;
+            lblSummary.ForeColor = ForeColor;
         }
         finally
         {
-            SetUiRunningState(false);
-            AppendLog($"◀ [{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {(isDryRun ? "사전 포트 점검(Dry-Run)" : "AD 인증 검증")} 완료", Color.FromArgb(255, 255, 128));
+            _runCts?.Dispose();
+            _runCts = null;
+            _isRunning = false;
+            if (!_closing)
+            {
+                _skipCertificateValidation.Checked = false;
+                SetUiRunningState(false);
+                AppendLog($"◀ [{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {(isDryRun ? "사전 포트 점검(Dry-Run)" : "AD 인증 검증")} 완료", Color.FromArgb(255, 255, 128));
+            }
+            TryCleanupResources();
         }
     }
 
     private void SetUiRunningState(bool running)
     {
+        if (_closing || IsDisposed || Disposing) { return; }
         _isRunning = running;
+        _cancel.Enabled = running;
+        _saveLocally.Enabled = !running;
+        _skipCertificateValidation.Enabled = !running;
+        _timeout.Enabled = !running;
+        _storageControls.Parent!.Enabled = !running;
         btnRunTest.Enabled = !running;
         btnDryRun.Enabled = !running;
         btnRunTest.Text = running ? "⏳ 검증 진행 중..." : "▶ AD 인증 검증 실행";
@@ -207,52 +253,51 @@ public partial class MainForm : Form
     private void ResetStatusSummary(AuthTestTarget target)
     {
         lblSummary.Text = "상태: 검증 진행 중...";
-        lblSummary.ForeColor = Color.FromArgb(0, 102, 204);
+        lblSummary.ForeColor = ForeColor;
 
         if (target == AuthTestTarget.Both || target == AuthTestTarget.LdapOnly)
         {
             lblLdapStatus.Text = "LDAP (389): [진행 중]";
-            lblLdapStatus.ForeColor = Color.DarkOrange;
+            lblLdapStatus.ForeColor = ForeColor;
         }
         else
         {
             lblLdapStatus.Text = "LDAP (389): [비대상]";
-            lblLdapStatus.ForeColor = Color.Gray;
+            lblLdapStatus.ForeColor = ForeColor;
         }
 
         if (target == AuthTestTarget.Both || target == AuthTestTarget.LdapsOnly)
         {
             lblLdapsStatus.Text = "LDAPS (636): [대기]";
-            lblLdapsStatus.ForeColor = Color.Gray;
+            lblLdapsStatus.ForeColor = ForeColor;
         }
         else
         {
             lblLdapsStatus.Text = "LDAPS (636): [비대상]";
-            lblLdapsStatus.ForeColor = Color.Gray;
+            lblLdapsStatus.ForeColor = ForeColor;
         }
     }
 
     private void UpdateProtocolResult(AdAuthTestResult result)
     {
         string statusText;
-        Color statusColor;
 
         if (result.IsSkipped)
         {
             statusText = "[생략됨]";
-            statusColor = Color.FromArgb(255, 165, 0);
+
             AppendLog($"  - [{result.Protocol}] ⏭ 건너뜀: {result.SkipReason}", Color.Orange);
         }
         else if (result.IsSuccess)
         {
             statusText = $"[성공 - {result.ElapsedMilliseconds}ms]";
-            statusColor = Color.FromArgb(0, 204, 102);
+
             AppendLog($"  - [{result.Protocol}] ✔ 성공 ({result.ElapsedMilliseconds}ms): {result.DiagnosticDetail}", Color.FromArgb(120, 255, 120));
         }
         else
         {
             statusText = $"[실패 - {result.ElapsedMilliseconds}ms]";
-            statusColor = Color.Salmon;
+
             AppendLog($"  - [{result.Protocol}] ✖ 실패 ({result.ElapsedMilliseconds}ms): {result.DiagnosticDetail}", Color.Salmon);
             if (!string.IsNullOrWhiteSpace(result.LdapDataCode))
             {
@@ -286,12 +331,12 @@ public partial class MainForm : Form
         if (result.Protocol == AuthProtocol.LDAP)
         {
             lblLdapStatus.Text = $"LDAP (389): {statusText}";
-            lblLdapStatus.ForeColor = statusColor;
+            lblLdapStatus.ForeColor = ForeColor;
         }
         else
         {
             lblLdapsStatus.Text = $"LDAPS (636): {statusText}";
-            lblLdapsStatus.ForeColor = statusColor;
+            lblLdapsStatus.ForeColor = ForeColor;
         }
     }
 
@@ -322,22 +367,22 @@ public partial class MainForm : Form
             lblSummary.Text = isDryRun
                 ? "상태: [Dry-Run] 모든 대상 포트 TCP 연결 성공!"
                 : "상태: 모든 대상 프로토콜 인증 성공!";
-            lblSummary.ForeColor = Color.FromArgb(0, 153, 76);
+            lblSummary.ForeColor = ForeColor;
         }
         else if (hasSuccess && hasFailure)
         {
             lblSummary.Text = "상태: 일부 프로토콜만 성공 (상세 로그 확인)";
-            lblSummary.ForeColor = Color.DarkOrange;
+            lblSummary.ForeColor = ForeColor;
         }
         else if (hasSkipped && !hasSuccess)
         {
             lblSummary.Text = "상태: 자격 증명 오류로 실패 및 후속 시도 중단 (계정 잠금 방지됨)";
-            lblSummary.ForeColor = Color.Salmon;
+            lblSummary.ForeColor = ForeColor;
         }
         else
         {
             lblSummary.Text = isDryRun ? "상태: [Dry-Run] 포트 연결 실패" : "상태: 인증 실패";
-            lblSummary.ForeColor = Color.Red;
+            lblSummary.ForeColor = ForeColor;
         }
     }
 
@@ -351,7 +396,7 @@ public partial class MainForm : Form
 
         rtbLog.SelectionStart = rtbLog.TextLength;
         rtbLog.SelectionLength = 0;
-        rtbLog.SelectionColor = color;
+        rtbLog.SelectionColor = SystemInformation.HighContrast ? SystemColors.WindowText : rtbLog.ForeColor;
         rtbLog.AppendText(message + Environment.NewLine);
         rtbLog.SelectionColor = rtbLog.ForeColor;
         rtbLog.ScrollToCaret();

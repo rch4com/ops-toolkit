@@ -19,7 +19,7 @@ dotnet format .\src\LdapAuthTester\LdapAuthTester.sln --verify-no-changes
 dotnet run --project .\src\LdapAuthTester\LdapAuthTester.csproj -- --help
 dotnet run --project .\src\LdapAuthTester\LdapAuthTester.csproj -- --env-only
 
-# 4. Dry-Run 검증 (실제 AD 인증 없이 TCP 포트 연결성만 점검)
+# 4. Dry-Run 검증 (실제 AD 인증 없이 TCP 연결성 및 LDAPS TLS 인증서 메타데이터를 점검)
 dotnet run --project .\src\LdapAuthTester\LdapAuthTester.csproj -- --domain localhost --dry-run --timeout 2
 
 # 5. 단위 테스트 실행

@@ -25,6 +25,9 @@ public enum AuthTestTarget
     LdapsOnly = 2
 }
 
+[JsonConverter(typeof(JsonStringEnumConverter))]
+public enum AuthFailureCategory { None, Credential, NetworkOrServer, Tls, Timeout, Unknown, Skipped }
+
 public sealed class AdEnvironmentInfo
 {
     public bool IsDomainJoined { get; set; }
@@ -48,6 +51,15 @@ public sealed class AdAuthTestRequest
     public int TimeoutSeconds { get; set; } = 10;
     public bool IsDryRun { get; set; }
     public bool IncludeUserInfo { get; set; }
+    public bool SkipCertificateValidation { get; set; }
+
+    public static string? GetCertificateValidationError(bool bypass, AuthTestMethod method, AuthTestTarget target, bool includeUserInfo)
+    {
+        return bypass && (method != AuthTestMethod.LdapConnection || target != AuthTestTarget.LdapsOnly || includeUserInfo)
+            ? "--skip-certificate-validation requires --method LdapConnection --target LdapsOnly and forbids --include-user-info."
+            : null;
+    }
+
 }
 
 public sealed class LdapsCertificateInfo
@@ -83,6 +95,8 @@ public sealed class AdAuthTestResult
     public bool IsDryRun { get; set; }
     public bool IsSkipped { get; set; }
     public string? SkipReason { get; set; }
+    public AuthFailureCategory FailureCategory { get; set; }
+    public bool CertificateValidationBypassed { get; set; }
     public bool IsCredentialFailure { get; set; }
     public bool IsNetworkOrServerFailure { get; set; }
     public int Win32ErrorCode { get; set; }

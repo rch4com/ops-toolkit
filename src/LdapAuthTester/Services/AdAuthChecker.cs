@@ -100,6 +100,7 @@ public partial class AdAuthChecker
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
+        ValidateRequest(request);
 
         var results = new List<AdAuthTestResult>();
         var targetProtocols = new List<AuthProtocol>();
@@ -135,6 +136,7 @@ public partial class AdAuthChecker
                     IsSuccess = false,
                     IsDryRun = request.IsDryRun,
                     IsSkipped = true,
+                    FailureCategory = AuthFailureCategory.Skipped,
                     SkipReason = skipReasonMessage,
                     DiagnosticDetail = "AD 계정 잠금(Account Lockout) 방지를 위해 인증 시도를 건너뛰었습니다.",
                     ElapsedMilliseconds = 0
@@ -169,6 +171,7 @@ public partial class AdAuthChecker
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
+        ValidateRequest(request);
 
         int port = protocol == AuthProtocol.LDAP ? request.LdapPort : request.LdapsPort;
         string endpoint = $"LDAP://{request.Domain}:{port}";
@@ -216,6 +219,7 @@ public partial class AdAuthChecker
             sw.Stop();
             result.IsSuccess = false;
             result.IsNetworkOrServerFailure = true;
+            result.FailureCategory = AuthFailureCategory.Timeout;
             result.ElapsedMilliseconds = sw.ElapsedMilliseconds;
             result.DiagnosticDetail = $"[Dry-Run 연결 타임아웃] {request.Domain}:{port} TCP 연결이 {timeoutSeconds}초 내에 응답하지 않았습니다. 방화벽 및 네트워크 경로를 확인하세요.";
         }
@@ -224,6 +228,7 @@ public partial class AdAuthChecker
             sw.Stop();
             result.IsSuccess = false;
             result.IsNetworkOrServerFailure = true;
+            result.FailureCategory = AuthFailureCategory.NetworkOrServer;
             result.ElapsedMilliseconds = sw.ElapsedMilliseconds;
             result.RawErrorMessage = ex.ToString();
             result.DiagnosticDetail = $"[Dry-Run 포트 연결 실패] {request.Domain}:{port} TCP 연결 실패: {ex.Message}";
@@ -329,6 +334,12 @@ public partial class AdAuthChecker
     public virtual AdAuthTestResult ExecuteSingleProtocol(AuthProtocol protocol, AdAuthTestRequest request)
     {
         ArgumentNullException.ThrowIfNull(request);
+        ValidateRequest(request);
+
+        if (request.SkipCertificateValidation && protocol != AuthProtocol.LDAPS)
+        {
+            throw new ArgumentException("Certificate validation bypass requires LDAPS.", nameof(protocol));
+        }
 
         int port = protocol == AuthProtocol.LDAP ? request.LdapPort : request.LdapsPort;
         bool useSsl = protocol == AuthProtocol.LDAPS;
@@ -338,7 +349,8 @@ public partial class AdAuthChecker
         {
             Protocol = protocol,
             Endpoint = endpoint,
-            IsDryRun = false
+            IsDryRun = false,
+            CertificateValidationBypassed = request.SkipCertificateValidation
         };
 
         var sw = Stopwatch.StartNew();
@@ -348,7 +360,7 @@ public partial class AdAuthChecker
             switch (request.TestMethod)
             {
                 case AuthTestMethod.LdapConnection:
-                    ExecuteViaLdapConnection(request.Domain, request.UserName, request.Password, port, useSsl, request.TimeoutSeconds);
+                    ExecuteViaLdapConnection(request.Domain, request.UserName, request.Password, port, useSsl, request.TimeoutSeconds, request.SkipCertificateValidation);
                     break;
 
                 case AuthTestMethod.PrincipalContext:
@@ -580,7 +592,8 @@ public partial class AdAuthChecker
         }
     }
 
-    private static void ExecuteViaLdapConnection(string domain, string userName, string password, int port, bool useSsl, int timeoutSeconds)
+    [SuppressMessage("Security", "CA5359:Do Not Disable Certificate Validation", Justification = "Explicit per-run diagnostic opt-in restricted to LDAPS LdapConnection without profile lookup.")]
+    private static void ExecuteViaLdapConnection(string domain, string userName, string password, int port, bool useSsl, int timeoutSeconds, bool skipCertificateValidation)
     {
         var identifier = new LdapDirectoryIdentifier(domain, port, fullyQualifiedDnsHostName: false, connectionless: false);
         var credential = new NetworkCredential(userName, password);
@@ -591,9 +604,22 @@ public partial class AdAuthChecker
         if (useSsl)
         {
             connection.SessionOptions.SecureSocketLayer = true;
+            if (skipCertificateValidation)
+            {
+                connection.SessionOptions.VerifyServerCertificate = (_, _) => true;
+            }
         }
 
         connection.Bind();
+    }
+
+    private static void ValidateRequest(AdAuthTestRequest request)
+    {
+        string? error = AdAuthTestRequest.GetCertificateValidationError(request.SkipCertificateValidation, request.TestMethod, request.TestTarget, request.IncludeUserInfo);
+        if (error is not null)
+        {
+            throw new ArgumentException(error, nameof(request));
+        }
     }
 
     public static void PopulateErrorInfo(Exception ex, AdAuthTestResult result)
@@ -603,6 +629,24 @@ public partial class AdAuthChecker
             return;
         }
 
+        if (ex.InnerException is not null)
+        {
+            PopulateErrorInfo(ex.InnerException, result);
+            return;
+        }
+        if (ex is TimeoutException or SocketException or System.Security.Authentication.AuthenticationException)
+        {
+            result.IsNetworkOrServerFailure = true;
+            result.FailureCategory = ex switch
+            {
+                TimeoutException => AuthFailureCategory.Timeout,
+                System.Security.Authentication.AuthenticationException => AuthFailureCategory.Tls,
+                _ => AuthFailureCategory.NetworkOrServer
+            };
+            result.DiagnosticDetail = $"[{result.FailureCategory}] 연결 또는 TLS 검증 실패";
+            return;
+        }
+        result.FailureCategory = AuthFailureCategory.Unknown;
         string fullMessage = ex.ToString();
         int win32Code = 0;
 
@@ -633,30 +677,37 @@ public partial class AdAuthChecker
             {
                 case "52e":
                     result.IsCredentialFailure = true;
+                    result.FailureCategory = AuthFailureCategory.Credential;
                     result.DiagnosticDetail = "[자격 증명 오류] 아이디 또는 비밀번호가 잘못되었습니다 (Data 52e: Logon failure / Bad password).";
                     return;
                 case "525":
                     result.IsCredentialFailure = true;
+                    result.FailureCategory = AuthFailureCategory.Credential;
                     result.DiagnosticDetail = "[사용자 없음] 해당 사용자를 찾을 수 없습니다 (Data 525: User not found).";
                     return;
                 case "775":
                     result.IsCredentialFailure = true;
+                    result.FailureCategory = AuthFailureCategory.Credential;
                     result.DiagnosticDetail = "[계정 잠금] 계정이 잠겨 있습니다 (Data 775: User account locked).";
                     return;
                 case "532":
                     result.IsCredentialFailure = true;
+                    result.FailureCategory = AuthFailureCategory.Credential;
                     result.DiagnosticDetail = "[비밀번호 만료] 비밀번호가 만료되었습니다 (Data 532: Password expired).";
                     return;
                 case "533":
                     result.IsCredentialFailure = true;
+                    result.FailureCategory = AuthFailureCategory.Credential;
                     result.DiagnosticDetail = "[계정 비활성화] 계정이 비활성화되었습니다 (Data 533: Account disabled).";
                     return;
                 case "701":
                     result.IsCredentialFailure = true;
+                    result.FailureCategory = AuthFailureCategory.Credential;
                     result.DiagnosticDetail = "[계정 만료] 계정이 만료되었습니다 (Data 701: Account expired).";
                     return;
                 case "773":
                     result.IsCredentialFailure = true;
+                    result.FailureCategory = AuthFailureCategory.Credential;
                     result.DiagnosticDetail = "[비밀번호 재설정 필요] 첫 로그인 비밀번호 변경이 필요합니다 (Data 773: User must reset password).";
                     return;
             }
@@ -667,6 +718,7 @@ public partial class AdAuthChecker
             ex is UnauthorizedAccessException)
         {
             result.IsCredentialFailure = true;
+            result.FailureCategory = AuthFailureCategory.Credential;
             result.DiagnosticDetail = "[자격 증명 오류] 사용자 ID 또는 비밀번호가 일치하지 않습니다 (0x8007052E / LDAP 49: Logon failure).";
             return;
         }
@@ -678,6 +730,7 @@ public partial class AdAuthChecker
             fullMessage.Contains("The LDAP server is unavailable", StringComparison.OrdinalIgnoreCase))
         {
             result.IsNetworkOrServerFailure = true;
+            result.FailureCategory = AuthFailureCategory.NetworkOrServer;
             result.DiagnosticDetail = "[서버 연결 실패] AD 서버에 연결할 수 없거나 포트가 닫혀 있습니다 (0x8007203A / LDAP 81: Server not operational). 방화벽 및 포트/SSL 인증서를 확인하세요.";
             return;
         }
@@ -688,6 +741,7 @@ public partial class AdAuthChecker
             fullMessage.Contains("인증서", StringComparison.OrdinalIgnoreCase))
         {
             result.IsNetworkOrServerFailure = true;
+            result.FailureCategory = AuthFailureCategory.Tls;
             result.DiagnosticDetail = "[SSL/TLS 오류] LDAPS SSL/TLS 핸드셰이크 또는 인증서 검증 실패. 서버 인증서 신뢰 상태 및 포트 636을 확인하세요.";
             return;
         }

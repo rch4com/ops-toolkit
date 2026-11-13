@@ -29,3 +29,11 @@
   - `SslStream` 커스텀 콜백 기반 LDAPS 서버 인증서 정보(Subject, Issuer, 만료일, SslPolicyErrors, 체인 상태) 추출 구현
   - 인증 성공 시 LDAP 인젝션 방지 필터(`EscapeLdapSearchFilter`) 기반 사용자 속성 및 `memberOf` 그룹 조회 구현
   - CLI(`--include-user-info` / `-i`) 및 WinForms GUI(`chkIncludeUserInfo`) 연동 및 단위 테스트 보강
+
+## Phase 1 승인 범위
+- [x] 구현 전 로컬 저장/실행별 TLS 우회/실패 분류 계약 문서 갱신
+- [x] 파서 및 서비스 신뢰 경계에 실행별 LDAPS 우회 검증 추가
+- [x] 기존 계정 잠금 방지 유지 및 구조화된 실패 분류 추가
+- [x] 공통 저장 서비스를 통한 허용 목록 DTO와 기본 OFF GUI 프리셋/최근 서버 구현
+- [x] 파서/신뢰 경계/Bind 없는 dry-run/저장·재로드·손상 파일 테스트
+- [x] 도구 솔루션 build/test/format 및 README/REVIEW 갱신 (실제 AD 접속 제외)

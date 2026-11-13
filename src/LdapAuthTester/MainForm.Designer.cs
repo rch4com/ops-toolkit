@@ -7,6 +7,10 @@ public partial class MainForm
 
     protected override void Dispose(bool disposing)
     {
+        if (disposing)
+        {
+            RequestShutdown();
+        }
         if (disposing && (components is not null))
         {
             components.Dispose();

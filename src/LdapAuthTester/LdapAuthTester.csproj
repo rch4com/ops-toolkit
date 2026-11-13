@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../OpsToolkit.Shared/OpsToolkit.Shared.csproj" />
     <PackageReference Include="System.DirectoryServices.AccountManagement" Version="10.0.0" />
     <PackageReference Include="System.DirectoryServices.Protocols" Version="10.0.0" />
   </ItemGroup>

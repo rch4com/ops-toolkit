@@ -18,12 +18,13 @@
   2. `PrincipalContext` (`System.DirectoryServices.AccountManagement` `ValidateCredentials`)
   3. `LdapConnection` (`System.DirectoryServices.Protocols` `Bind` — 기존 사내 `CredentialManager` 대체)
 - **계정 잠금(Account Lockout) 방지 및 `--dry-run` 안전장치**:
-  - `--dry-run` (및 GUI의 '사전 연결 점검(Dry-Run)') 실행 시 실제 AD 자격 증명 바인딩을 생략하고, 현재 PC의 도메인 조인 상태 및 대상 엔드포인트(LDAP 389 / LDAPS 636)의 **TCP 포트 연결 가능 여부만 안전하게 점검**합니다.
+  - `--dry-run` (및 GUI의 '사전 연결 점검(Dry-Run)') 실행 시 실제 AD 자격 증명 바인딩을 생략하고, 현재 PC의 도메인 조인 상태 및 대상 엔드포인트(LDAP 389 / LDAPS 636)의 **TCP 포트 연결 가능 여부를 점검하고 LDAPS 인증서 메타데이터 수집을 위한 TLS 핸드셰이크를 수행**합니다.
   - 실제 인증 테스트 시 첫 번째 프로토콜(LDAP)에서 자격 증명 오류(`52e`, `775` 등)가 감지되면 후속 프로토콜(LDAPS) 시도를 즉시 중단(`SkipSecondOnCredentialFailure`)하여 중복 실패로 인한 계정 잠금을 방지합니다.
 
 ---
 
 ## 3. Non-Goals (하지 않을 것 / 안전 제약)
-- **비밀번호/민감정보 저장 금지**: 입력된 비밀번호나 사내 도메인/DC 정보를 설정 파일이나 로그에 평문으로 기록하거나 저장하지 않습니다.
+- **로컬 저장은 명시적 선택만 허용**: 기본 OFF인 GUI 선택 시 도메인/서버, 포트, 인증 방식, 대상, 타임아웃만 LocalAppData/LdapAuthTester에 저장합니다. 비밀번호, 사용자 ID, 사용자 프로필, 원본 오류, 인증서 검증 우회 설정은 저장하지 않습니다. 기존 Utilities 데이터는 자동 이관하지 않습니다.
+- **인증서 검증 우회는 해당 실행만 허용**: LDAPS 단독 + LdapConnection에서만 허용하며 사용자 속성 조회와 결합하지 않습니다. 기본값은 검증 ON입니다.
 - **AD 객체 상태 변경 금지**: 이 도구는 오직 읽기/바인딩을 통한 인증 및 연결성 진단만 수행하며, AD 사용자 비밀번호 변경이나 계정 잠금 해제 등 디렉터리 상태를 수정하는 작업은 수행하지 않습니다.
 - **사내 전용 라이브러리 재도입 금지**: 외부 환경이나 다른 팀에서도 즉시 빌드/사용할 수 있도록 사내 프라이빗 패키지 참조를 추가하지 않습니다.

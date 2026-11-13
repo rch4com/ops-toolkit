@@ -99,3 +99,10 @@
 
 ### 4.3 계정 잠금 방지 (`SkipSecondOnCredentialFailure`)
 - `TestTarget == Both`일 때 1차 프로토콜(LDAP)에서 자격 증명 오류(`IsCredentialFailure == true`: LDAP data code `52e`, `525`, `775`, `532`, `533`, `701`, `773` 또는 Win32 `0x8007052E` / `LdapException` invalid credentials `49`)가 발생하면, 2차 프로토콜(LDAPS)은 바인딩을 시도하지 않고 `IsSkipped = true`로 기록합니다.
+
+## 5. 승인된 Phase 1 계약
+- `--skip-certificate-validation`: 기본 false, 현재 실행에만 적용. `--target LdapsOnly --method LdapConnection` 조합만 허용하며 `--include-user-info`와 결합 시 Usage Error(2). 서비스 직접 호출도 동일하게 검증합니다.
+- 종료 코드 0/1/2 유지. 결과 `failureCategory`는 None, Credential, NetworkOrServer, Tls, Timeout, Unknown, Skipped로 실패를 구조화합니다. 우회 여부는 `certificateValidationBypassed`로 명시합니다.
+- Dry-run은 Bind/사용자 조회를 하지 않습니다. TCP 연결을 점검하며 LDAPS는 별도 TLS 핸드셰이크로 인증서 메타데이터를 수집합니다. 이 진단 핸드셰이크는 신뢰 오류가 있는 인증서도 수집하며 TCP 성공은 인증/인증서 신뢰 성공을 뜻하지 않습니다.
+- GUI 로컬 저장 기본 OFF. 사용자가 선택한 세션에서만 `%LOCALAPPDATA%/LdapAuthTester`의 presets.json / history.json을 읽고 씁니다. 서버 설정 프리셋 저장/불러오기/삭제 및 최근 서버 최대 10개 중복 제거/명시적 지우기를 제공합니다.
+- 저장 DTO 허용 목록: Domain, LdapPort, LdapsPort, TestMethod, TestTarget, TimeoutSeconds. 사용자 ID/비밀번호/프로필/원본 오류/검증 우회는 저장 금지. 알 수 없는 저장 필드/잘못된 JSON은 명시적으로 실패하고 원본 파일을 덮어쓰지 않습니다. Utilities 자동 이관 없음.

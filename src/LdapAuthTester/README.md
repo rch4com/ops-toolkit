@@ -14,7 +14,7 @@
 - **AD 계정 잠금(Account Lockout) 방지**:
   - LDAP(389)과 LDAPS(636)를 연속으로 테스트할 때, 1차 시도에서 비밀번호 오류 등 자격 증명 실패가 발생하면 2차 시도를 자동으로 건너뛰어 **중복 실패로 인한 AD 계정 잠금**을 예방합니다.
 - **사전 연결 점검 (`--dry-run`) 및 LDAPS 인증서 자동 정밀 진단**:
-  - 실제 계정 인증(Bind)을 시도하지 않고 도메인 감지 및 대상 서버의 LDAP/LDAPS TCP 포트 개방 여부만 안전하게 점검할 수 있습니다.
+  - 실제 계정 인증(Bind)을 시도하지 않고 도메인 감지 및 대상 서버의 LDAP/LDAPS TCP 연결성 및 LDAPS TLS 인증서 메타데이터를 점검할 수 있습니다.
   - LDAPS(636) 연결 시 원격 서버의 SSL/TLS 인증서(`Subject`, `Issuer`, `Thumbprint`, 만료일 `NotAfter`, 남은 일수, `SslPolicyErrors`, 체인 상태)를 자동으로 추출하여, 자체 서명·만료·호스트명 불일치로 인한 바인딩 실패 원인을 즉시 진단합니다.
 - **인증 성공 사용자 AD 속성 및 소속 그룹 조회 (`--include-user-info` / `-i`)**:
   - 인증 성공 시 해당 사용자의 `distinguishedName`, `displayName`, `mail`, `department`, `title` 및 `memberOf` 보안 그룹 목록을 안전하게(LDAP 필터 이스케이프 적용) 함께 조회합니다.
@@ -37,7 +37,7 @@
 ## 3. 사용법 및 옵션 (Usage & Options)
 
 ### GUI 모드 실행 (Visual Studio 또는 CLI)
-- **Visual Studio에서 단독 실행 (`F5`)**: `src/LdapAuthTester/LdapAuthTester.sln` 파일을 열면 `LdapAuthTester`(기본 시작 프로젝트)와 단위 테스트 프로젝트만 로드되어 즉시 `F5`로 실행 및 디버깅할 수 있습니다.
+- **Visual Studio에서 단독 실행 (`F5`)**: `src/LdapAuthTester/LdapAuthTester.sln` 파일을 열면 `LdapAuthTester`(기본 시작 프로젝트)와 공통 라이브러리 및 단위 테스트 프로젝트가 로드되어 즉시 `F5`로 실행 및 디버깅할 수 있습니다.
 - **명령줄에서 GUI 실행**: 인자 없이 실행하거나 `--gui` 옵션을 전달하면 데스크톱 UI 창이 실행됩니다:
 ```powershell
 dotnet run --project .\src\LdapAuthTester\LdapAuthTester.csproj
@@ -86,3 +86,14 @@ $env:AD_PASS = "MySecretPassword!"
 dotnet run --project .\src\LdapAuthTester\LdapAuthTester.csproj -- --domain corp.example.com --user alice --password-env AD_PASS --method LdapConnection --json
 Remove-Item Env:\AD_PASS
 ```
+
+## Phase 1: 서버 설정 저장과 TLS 진단
+GUI의 **이 PC에 서버 설정/최근 서버 저장 허용**은 매 실행 기본 OFF입니다. 선택하면 `%LOCALAPPDATA%/LdapAuthTester/presets.json`과 `history.json`을 사용합니다. 현재 서버 설정을 저장하고 목록에서 불러오거나 삭제할 수 있으며, 실행한 최근 서버는 중복 없이 최대 10개를 보관합니다. **최근 서버 지우기**로 비울 수 있습니다. 선택을 끄면 읽기/쓰기를 중단하며 기존 파일은 유지합니다. Utilities 데이터는 자동 이관하지 않습니다.
+
+저장 항목은 도메인/서버, LDAP/LDAPS 포트, 인증 방식, 대상, 타임아웃뿐입니다. 계정 ID, 비밀번호, 사용자 프로필, 원본 오류, 인증서 검증 우회는 저장하지 않습니다. 알 수 없는 설정 필드나 손상 파일은 오류로 보고하며 자동 초기화하지 않습니다.
+
+`--skip-certificate-validation`은 **해당 실행의 LDAPS 인증서 검증만 생략**합니다. `--target LdapsOnly --method LdapConnection`을 함께 지정해야 하고 `--include-user-info`는 사용할 수 없습니다. 잘못된 조합은 종료 코드 2입니다. GUI 선택은 실행 후 초기화됩니다. 기본값은 인증서 검증 ON이며 결과의 `certificateValidationBypassed`와 CLI 경고로 우회 여부를 확인합니다.
+
+Dry-run은 Bind를 수행하지 않습니다. LDAPS의 별도 TLS 핸드셰이크는 신뢰 오류가 있는 인증서도 메타데이터 수집 목적으로 허용합니다. TCP 성공을 인증서 신뢰나 자격 증명 성공으로 해석하지 마세요. `failureCategory`는 None/Credential/NetworkOrServer/Tls/Timeout/Unknown/Skipped로 실패를 분류하며 종료 코드 0/1/2는 유지합니다.
+
+취소 버튼은 후속 시도와 비동기 네트워크 작업을 중단합니다. 이미 시작된 동기 Windows 디렉터리 바인딩은 반환될 때까지 즉시 중단되지 않을 수 있습니다.

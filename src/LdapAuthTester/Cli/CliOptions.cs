@@ -14,6 +14,7 @@ public sealed class CliOptions
     public bool Verbose { get; set; }
     public bool NoLockoutGuard { get; set; }
     public bool IncludeUserInfo { get; set; }
+    public bool SkipCertificateValidation { get; set; }
     public string? Domain { get; set; }
     public string? UserName { get; set; }
     public string? Password { get; set; }
@@ -73,6 +74,10 @@ public sealed class CliOptions
 
                 case "--no-lockout-guard":
                     options.NoLockoutGuard = true;
+                    break;
+
+                case "--skip-certificate-validation":
+                    options.SkipCertificateValidation = true;
                     break;
 
                 case "--include-user-info":
@@ -178,7 +183,8 @@ public sealed class CliOptions
             }
         }
 
-        return true;
+        errorMessage = AdAuthTestRequest.GetCertificateValidationError(options.SkipCertificateValidation, options.Method, options.Target, options.IncludeUserInfo);
+        return errorMessage is null;
     }
 
     private static bool TryReadValue(string[] args, ref int index, string optionName, out string? value, out string? errorMessage)

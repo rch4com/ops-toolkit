@@ -139,6 +139,17 @@ public class CliOptionsAndRunnerTests
         Assert.Contains("CN=Domain Admins,CN=Users,DC=corp,DC=example,DC=com", output, StringComparison.Ordinal);
     }
 
+    [Theory]
+    [InlineData("DirectoryEntry", "LdapsOnly", false)]
+    [InlineData("LdapConnection", "Both", false)]
+    [InlineData("LdapConnection", "LdapOnly", false)]
+    [InlineData("LdapConnection", "LdapsOnly", true)]
+    public void CertificateBypassRequiresSupportedCombination(string method, string target, bool expected)
+    {
+        Assert.Equal(expected, CliOptions.TryParse(["--method", method, "--target", target, "--skip-certificate-validation"], out _, out _));
+        Assert.False(CliOptions.TryParse(["--method", "LdapConnection", "--target", "LdapsOnly", "--skip-certificate-validation", "-i"], out _, out _));
+    }
+
     private sealed class StubProfileAndCertChecker : AdAuthChecker
     {
         public override AdAuthTestResult ExecuteSingleProtocol(AuthProtocol protocol, AdAuthTestRequest request)
