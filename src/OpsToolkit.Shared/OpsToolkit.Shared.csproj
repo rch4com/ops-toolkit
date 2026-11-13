@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- Shared is the repository contract; service instances retain the source consumer API. -->
+    <NoWarn>$(NoWarn);CA1716;CA1822</NoWarn>
+  </PropertyGroup>
+</Project>
