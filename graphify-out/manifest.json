@@ -1,0 +1,1208 @@
+{
+  ".agent-kit/agent-setup.json": {
+    "mtime": 1794461597.3378344,
+    "seen": 1794547834.2959952,
+    "ast_hash": "dd50597f57ca4cf1aba0dd144592a266",
+    "semantic_hash": "dd50597f57ca4cf1aba0dd144592a266"
+  },
+  ".agents/skills/agent-handoff-manager/scripts/handoff.py": {
+    "mtime": 1794547066.9518845,
+    "seen": 1794547834.2959952,
+    "ast_hash": "248ff3fde056b4385e24cc36c13f53a7",
+    "semantic_hash": "248ff3fde056b4385e24cc36c13f53a7"
+  },
+  ".agents/skills/html-plan/runtime/htmlplan.js": {
+    "mtime": 1794498502.1068428,
+    "seen": 1794547834.2959952,
+    "ast_hash": "938d8d4414365c71edd8d4ce43b536d1",
+    "semantic_hash": "938d8d4414365c71edd8d4ce43b536d1"
+  },
+  ".agents/skills/html-plan/runtime/pack.mjs": {
+    "mtime": 1794498502.107347,
+    "seen": 1794547834.2959952,
+    "ast_hash": "88f9302340fb966e037acf83b9c32068",
+    "semantic_hash": "88f9302340fb966e037acf83b9c32068"
+  },
+  ".agents/skills/unslop/agents/openai.yaml": {
+    "mtime": 1794498499.1432223,
+    "seen": 1794547834.2959952,
+    "ast_hash": "193371da595952e8c53447c70e16f349",
+    "semantic_hash": "193371da595952e8c53447c70e16f349"
+  },
+  ".agents/skills/unslop/scripts/snapshot.mjs": {
+    "mtime": 1794498499.151369,
+    "seen": 1794547834.2959952,
+    "ast_hash": "90ecb31b9a9b8ac4123f042af57dd525",
+    "semantic_hash": "90ecb31b9a9b8ac4123f042af57dd525"
+  },
+  ".agents/skills/unslop/scripts/story.mjs": {
+    "mtime": 1794498499.151369,
+    "seen": 1794547834.2959952,
+    "ast_hash": "93d2ff10602598778ac0cf34d874da3c",
+    "semantic_hash": "93d2ff10602598778ac0cf34d874da3c"
+  },
+  ".claude/settings.json": {
+    "mtime": 1794498485.0058548,
+    "seen": 1794547834.2959952,
+    "ast_hash": "c1e81aa6161bf835149b3d8a0a3c0036",
+    "semantic_hash": "c1e81aa6161bf835149b3d8a0a3c0036"
+  },
+  ".mcp.json": {
+    "mtime": 1794500671.4673865,
+    "seen": 1794547834.2959952,
+    "ast_hash": "599076fb2ea9b56eaa21e5e3803beb27",
+    "semantic_hash": "599076fb2ea9b56eaa21e5e3803beb27"
+  },
+  ".vscode/mcp.json": {
+    "mtime": 1794500674.1370645,
+    "seen": 1794547834.2959952,
+    "ast_hash": "d191f8ba491f6028e542328eab14d73d",
+    "semantic_hash": "d191f8ba491f6028e542328eab14d73d"
+  },
+  ".vscode/settings.json": {
+    "mtime": 1794461703.734985,
+    "seen": 1794547834.2959952,
+    "ast_hash": "8136984c7ac29d13e648cdba86db5a38",
+    "semantic_hash": "8136984c7ac29d13e648cdba86db5a38"
+  },
+  "OpsToolkit.slnx": {
+    "mtime": 1794502863.2265935,
+    "seen": 1794547834.2959952,
+    "ast_hash": "77d4d55d56a7bdbce59f49c6aec6200c",
+    "semantic_hash": "77d4d55d56a7bdbce59f49c6aec6200c"
+  },
+  "global.json": {
+    "mtime": 1794462621.9227817,
+    "seen": 1794547834.2959952,
+    "ast_hash": "be898355a76bba7c9e864e085e83a229",
+    "semantic_hash": "be898355a76bba7c9e864e085e83a229"
+  },
+  "scripts/iis/Remove-ExpiredIISCertificate/Remove-ExpiredIISCertificate.ps1": {
+    "mtime": 1794463890.9985254,
+    "seen": 1794547834.2959952,
+    "ast_hash": "dfe2685c40941c1d6e378f961127e3a6",
+    "semantic_hash": "dfe2685c40941c1d6e378f961127e3a6"
+  },
+  "scripts/scheduler/PSJobScheduler/Get-JobStatus.ps1": {
+    "mtime": 1794465477.6660752,
+    "seen": 1794547834.2959952,
+    "ast_hash": "07f2675a235e58301fa6f2780333406d",
+    "semantic_hash": "07f2675a235e58301fa6f2780333406d"
+  },
+  "scripts/scheduler/PSJobScheduler/Install-PSSchedule-NSSM.ps1": {
+    "mtime": 1794465472.32779,
+    "seen": 1794547834.2959952,
+    "ast_hash": "fdb7d5474901ac6582ec460334495678",
+    "semantic_hash": "fdb7d5474901ac6582ec460334495678"
+  },
+  "scripts/scheduler/PSJobScheduler/Test-CronSchedule.ps1": {
+    "mtime": 1794465686.4657528,
+    "seen": 1794547834.2959952,
+    "ast_hash": "4328cb3cbc3ab0a0523b66d5c781b687",
+    "semantic_hash": "4328cb3cbc3ab0a0523b66d5c781b687"
+  },
+  "scripts/scheduler/PSJobScheduler/Uninstall-PSSchedule-NSSM.ps1": {
+    "mtime": 1794465475.1978128,
+    "seen": 1794547834.2959952,
+    "ast_hash": "55541d6b5b70b02106a558ffd824211e",
+    "semantic_hash": "55541d6b5b70b02106a558ffd824211e"
+  },
+  "scripts/scheduler/PSJobScheduler/jobs/daily_4am 0 4 X X X.ps1": {
+    "mtime": 1794464617.4393365,
+    "seen": 1794547834.2959952,
+    "ast_hash": "f0b0f1a14414525c1cdb949883f0859f",
+    "semantic_hash": "f0b0f1a14414525c1cdb949883f0859f"
+  },
+  "scripts/scheduler/PSJobScheduler/jobs/job_1min X@1 X X X X.ps1": {
+    "mtime": 1794464617.4393365,
+    "seen": 1794547834.2959952,
+    "ast_hash": "9d8aef156e26fb2a763c479f900b188a",
+    "semantic_hash": "9d8aef156e26fb2a763c479f900b188a"
+  },
+  "scripts/scheduler/PSJobScheduler/jobs/job_5min X@5 X X X X.ps1": {
+    "mtime": 1794464617.440336,
+    "seen": 1794547834.2959952,
+    "ast_hash": "6e2bb8256fd3fcbb12fcf988ea7b6ebe",
+    "semantic_hash": "6e2bb8256fd3fcbb12fcf988ea7b6ebe"
+  },
+  "scripts/scheduler/PSJobScheduler/jobs/month_end 30 18 L X X TIMEOUT=600 CB=3.ps1": {
+    "mtime": 1794464617.440336,
+    "seen": 1794547834.2959952,
+    "ast_hash": "0fb249626ba85700b0785a61a63d17cb",
+    "semantic_hash": "0fb249626ba85700b0785a61a63d17cb"
+  },
+  "scripts/scheduler/PSJobScheduler/jobs/weekday_9am 0 9 X X MON-FRI.ps1": {
+    "mtime": 1794464617.4413347,
+    "seen": 1794547834.2959952,
+    "ast_hash": "732a6daf5a42748eda1eac72c0152950",
+    "semantic_hash": "732a6daf5a42748eda1eac72c0152950"
+  },
+  "scripts/scheduler/PSJobScheduler/jobs/year_end 55 23 31 12 X.ps1": {
+    "mtime": 1794464617.4413347,
+    "seen": 1794547834.2959952,
+    "ast_hash": "b7014869fb88f4c509f5831e534e4240",
+    "semantic_hash": "b7014869fb88f4c509f5831e534e4240"
+  },
+  "scripts/scheduler/PSJobScheduler/schedule-service-host.ps1": {
+    "mtime": 1794465462.2372952,
+    "seen": 1794547834.2959952,
+    "ast_hash": "c8e9ce11aa37235510f462c3f13ffdc2",
+    "semantic_hash": "c8e9ce11aa37235510f462c3f13ffdc2"
+  },
+  "scripts/scheduler/PSJobScheduler/schedule.ps1": {
+    "mtime": 1794465737.5829384,
+    "seen": 1794547834.2959952,
+    "ast_hash": "fe902df06efe7906ddfb5e26bcf71d17",
+    "semantic_hash": "fe902df06efe7906ddfb5e26bcf71d17"
+  },
+  "skills-lock.json": {
+    "mtime": 1794547068.2693622,
+    "seen": 1794547834.2959952,
+    "ast_hash": "6ddf502321abd54d6a7d1bf08d025cc9",
+    "semantic_hash": "6ddf502321abd54d6a7d1bf08d025cc9"
+  },
+  "src/LdapAuthTester/Cli/CliOptions.cs": {
+    "mtime": 1794499262.7613032,
+    "seen": 1794547834.2959952,
+    "ast_hash": "80b7cb5b93eb7dbca4a327bfb1d4790d",
+    "semantic_hash": "80b7cb5b93eb7dbca4a327bfb1d4790d"
+  },
+  "src/LdapAuthTester/Cli/CliRunner.cs": {
+    "mtime": 1794499316.192589,
+    "seen": 1794547834.2959952,
+    "ast_hash": "2cf87c43fb42fdee44d87884d5672067",
+    "semantic_hash": "2cf87c43fb42fdee44d87884d5672067"
+  },
+  "src/LdapAuthTester/LdapAuthTester.csproj": {
+    "mtime": 1794499156.4598703,
+    "seen": 1794547834.2959952,
+    "ast_hash": "e6fc91696e42f21a91e81a9e89b69aee",
+    "semantic_hash": "e6fc91696e42f21a91e81a9e89b69aee"
+  },
+  "src/LdapAuthTester/LdapAuthTester.sln": {
+    "mtime": 1794501561.1338954,
+    "seen": 1794547834.2959952,
+    "ast_hash": "a42b78303e421ed8e8b0d5ebb0136ff5",
+    "semantic_hash": "a42b78303e421ed8e8b0d5ebb0136ff5"
+  },
+  "src/LdapAuthTester/MainForm.Designer.cs": {
+    "mtime": 1794499187.5962863,
+    "seen": 1794547834.2959952,
+    "ast_hash": "2380315beacc51e77d646127244ccbd3",
+    "semantic_hash": "2380315beacc51e77d646127244ccbd3"
+  },
+  "src/LdapAuthTester/MainForm.cs": {
+    "mtime": 1794499262.7755258,
+    "seen": 1794547834.2959952,
+    "ast_hash": "b765e4f5e91b7d0190fb10570e5ec7af",
+    "semantic_hash": "b765e4f5e91b7d0190fb10570e5ec7af"
+  },
+  "src/LdapAuthTester/Models/AdAuthModels.cs": {
+    "mtime": 1794499262.7760513,
+    "seen": 1794547834.2959952,
+    "ast_hash": "7c66660cc98e69aad2a8635f0e253cfd",
+    "semantic_hash": "7c66660cc98e69aad2a8635f0e253cfd"
+  },
+  "src/LdapAuthTester/Program.cs": {
+    "mtime": 1794499262.777105,
+    "seen": 1794547834.2959952,
+    "ast_hash": "e27e57d0c82b4da4279866a7e9a6c140",
+    "semantic_hash": "e27e57d0c82b4da4279866a7e9a6c140"
+  },
+  "src/LdapAuthTester/Services/AdAuthChecker.cs": {
+    "mtime": 1794499262.777645,
+    "seen": 1794547834.2959952,
+    "ast_hash": "41f80b7ddd6f73f755db3dbd41cbeafa",
+    "semantic_hash": "41f80b7ddd6f73f755db3dbd41cbeafa"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Benchmarks/LabelCheckerBenchmarks.cs": {
+    "mtime": 1794502836.8606672,
+    "seen": 1794547834.2959952,
+    "ast_hash": "fb30a34ad8bb6b0527f91aa93aab8390",
+    "semantic_hash": "fb30a34ad8bb6b0527f91aa93aab8390"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Benchmarks/MIPLabelCustomCheck.Benchmarks.csproj": {
+    "mtime": 1794502929.999189,
+    "seen": 1794547834.2959952,
+    "ast_hash": "8e42bfb27bfb1832138764a8de74bd9b",
+    "semantic_hash": "8e42bfb27bfb1832138764a8de74bd9b"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Benchmarks/Program.cs": {
+    "mtime": 1784257851.7312381,
+    "seen": 1794547834.2959952,
+    "ast_hash": "afd7291261063bef7920cf6c6d033f34",
+    "semantic_hash": "afd7291261063bef7920cf6c6d033f34"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/App.xaml": {
+    "mtime": 1784274984.819203,
+    "seen": 1794547834.2959952,
+    "ast_hash": "25047ff5dd282193a47629c039c726d0",
+    "semantic_hash": "25047ff5dd282193a47629c039c726d0"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/App.xaml.cs": {
+    "mtime": 1784299082.9872823,
+    "seen": 1794547834.2959952,
+    "ast_hash": "44278563a2c043754b0b800a443814c0",
+    "semantic_hash": "44278563a2c043754b0b800a443814c0"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Cli/CliOptions.cs": {
+    "mtime": 1794502829.306926,
+    "seen": 1794547834.2959952,
+    "ast_hash": "9c77ec622800276ee66ff8563aa0979e",
+    "semantic_hash": "9c77ec622800276ee66ff8563aa0979e"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Cli/CliRunner.cs": {
+    "mtime": 1794502831.453082,
+    "seen": 1794547834.2959952,
+    "ast_hash": "418224df4c85212b5d58a39320e757ce",
+    "semantic_hash": "418224df4c85212b5d58a39320e757ce"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Converters/CheckStateToBrushConverter.cs": {
+    "mtime": 1784289549.1595395,
+    "seen": 1794547834.2959952,
+    "ast_hash": "73e2d10250082554c0274bfc7ce15d20",
+    "semantic_hash": "73e2d10250082554c0274bfc7ce15d20"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Converters/ElapsedToTextConverter.cs": {
+    "mtime": 1784274920.3197446,
+    "seen": 1794547834.2959952,
+    "ast_hash": "aa967b424e5b1c2b99689421ab3768a5",
+    "semantic_hash": "aa967b424e5b1c2b99689421ab3768a5"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/MIPLabelCustomCheck.Explorer.csproj": {
+    "mtime": 1794502927.5291362,
+    "seen": 1794547834.2959952,
+    "ast_hash": "997f9b245f70ae0bef6078b9dc5be8a5",
+    "semantic_hash": "997f9b245f70ae0bef6078b9dc5be8a5"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/MainWindow.xaml": {
+    "mtime": 1791716495.3424945,
+    "seen": 1794547834.2959952,
+    "ast_hash": "fa1e4e3bc468ca480150e603f66d4a9a",
+    "semantic_hash": "fa1e4e3bc468ca480150e603f66d4a9a"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/MainWindow.xaml.cs": {
+    "mtime": 1784294379.3197641,
+    "seen": 1794547834.2959952,
+    "ast_hash": "ce63a3fda971349764ecdbe39de4e627",
+    "semantic_hash": "ce63a3fda971349764ecdbe39de4e627"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Program.cs": {
+    "mtime": 1794502834.2894328,
+    "seen": 1794547834.2959952,
+    "ast_hash": "f19855507cfe7ed45e18cce3f431dc73",
+    "semantic_hash": "f19855507cfe7ed45e18cce3f431dc73"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Scanning/LabelableExtensions.cs": {
+    "mtime": 1784289406.4558887,
+    "seen": 1794547834.2959952,
+    "ast_hash": "41964c5ce5b3c1f91fef8cad8be5b541",
+    "semantic_hash": "41964c5ce5b3c1f91fef8cad8be5b541"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Scanning/ScanProgress.cs": {
+    "mtime": 1784274741.1372483,
+    "seen": 1794547834.2959952,
+    "ast_hash": "692096a2a8be069b23e73bca305f5a80",
+    "semantic_hash": "692096a2a8be069b23e73bca305f5a80"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Scanning/ScanSession.cs": {
+    "mtime": 1784298954.4422367,
+    "seen": 1794547834.2959952,
+    "ast_hash": "08caab95a9c9eb6e7004a5d0013efb61",
+    "semantic_hash": "08caab95a9c9eb6e7004a5d0013efb61"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Scanning/ScanSummary.cs": {
+    "mtime": 1784275191.2725327,
+    "seen": 1794547834.2959952,
+    "ast_hash": "22c9304b30d3494c86e54ad554fe24f6",
+    "semantic_hash": "22c9304b30d3494c86e54ad554fe24f6"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Scanning/TimedCheckResult.cs": {
+    "mtime": 1784274608.969903,
+    "seen": 1794547834.2959952,
+    "ast_hash": "36f7373a4a07b16a431e59da69dfab19",
+    "semantic_hash": "36f7373a4a07b16a431e59da69dfab19"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/Scanning/TimedChecker.cs": {
+    "mtime": 1784298927.3410559,
+    "seen": 1794547834.2959952,
+    "ast_hash": "86ac62ccb5b18ac5f70507b0105ca726",
+    "semantic_hash": "86ac62ccb5b18ac5f70507b0105ca726"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/ViewModels/CheckState.cs": {
+    "mtime": 1784289453.9294121,
+    "seen": 1794547834.2959952,
+    "ast_hash": "a45a117be8ffe55bbfe5fbba7511fb03",
+    "semantic_hash": "a45a117be8ffe55bbfe5fbba7511fb03"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/ViewModels/FileEntryViewModel.cs": {
+    "mtime": 1791716495.347759,
+    "seen": 1794547834.2959952,
+    "ast_hash": "aadc344d9a79877d0260c80fb7dc0f68",
+    "semantic_hash": "aadc344d9a79877d0260c80fb7dc0f68"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/ViewModels/FolderTreeNodeViewModel.cs": {
+    "mtime": 1784294250.236135,
+    "seen": 1794547834.2959952,
+    "ast_hash": "af31d50faaa0d2b4ba7c0dbbcb2d7156",
+    "semantic_hash": "af31d50faaa0d2b4ba7c0dbbcb2d7156"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/ViewModels/LabelDetailViewModel.cs": {
+    "mtime": 1784299144.8038504,
+    "seen": 1794547834.2959952,
+    "ast_hash": "bdb37f9b6a2bca36be8d1ae7d918fd74",
+    "semantic_hash": "bdb37f9b6a2bca36be8d1ae7d918fd74"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/ViewModels/MainViewModel.cs": {
+    "mtime": 1784299999.516226,
+    "seen": 1794547834.2959952,
+    "ast_hash": "21bd0434cad57c6bbd5e4082063ab19c",
+    "semantic_hash": "21bd0434cad57c6bbd5e4082063ab19c"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/ViewModels/ObservableObject.cs": {
+    "mtime": 1784274781.9692416,
+    "seen": 1794547834.2959952,
+    "ast_hash": "2dac035a98e050a3b93940c245cbd860",
+    "semantic_hash": "2dac035a98e050a3b93940c245cbd860"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Explorer/ViewModels/RelayCommand.cs": {
+    "mtime": 1784274788.3881707,
+    "seen": 1794547834.2959952,
+    "ast_hash": "edf0311762b431faefb20af101b79646",
+    "semantic_hash": "edf0311762b431faefb20af101b79646"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.sln": {
+    "mtime": 1794502870.9466052,
+    "seen": 1794547834.2959952,
+    "ast_hash": "44977cd64819f61140bae24866532397",
+    "semantic_hash": "44977cd64819f61140bae24866532397"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/CompoundFileLabelReader.cs": {
+    "mtime": 1791716495.3516703,
+    "seen": 1794547834.2959952,
+    "ast_hash": "409c43227477d893c72e365a4574628a",
+    "semantic_hash": "409c43227477d893c72e365a4574628a"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/CompoundFile/CompoundDirectoryEntry.cs": {
+    "mtime": 1784257851.7322438,
+    "seen": 1794547834.2959952,
+    "ast_hash": "e71c51b358700b24ea4f36554de4b968",
+    "semantic_hash": "e71c51b358700b24ea4f36554de4b968"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/CompoundFile/CompoundFileReader.cs": {
+    "mtime": 1784257851.733244,
+    "seen": 1794547834.2959952,
+    "ast_hash": "71fb6b1b72a6d3ba8f31d47845ca2d32",
+    "semantic_hash": "71fb6b1b72a6d3ba8f31d47845ca2d32"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/CompoundFile/OlePropertySetReader.cs": {
+    "mtime": 1784257851.733244,
+    "seen": 1794547834.2959952,
+    "ast_hash": "0fca8492d47f8e7b341c28e0bc63d4df",
+    "semantic_hash": "0fca8492d47f8e7b341c28e0bc63d4df"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/Crc32.cs": {
+    "mtime": 1784257851.7342434,
+    "seen": 1794547834.2959952,
+    "ast_hash": "c79fcb9e21a0518b676057f151ef51fc",
+    "semantic_hash": "c79fcb9e21a0518b676057f151ef51fc"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/DeflateFramingValidator.cs": {
+    "mtime": 1784257851.7342434,
+    "seen": 1794547834.2959952,
+    "ast_hash": "743451dc4ddbaf96d4b409c1e2a88c36",
+    "semantic_hash": "743451dc4ddbaf96d4b409c1e2a88c36"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/EmlLabelReader.cs": {
+    "mtime": 1791716495.3531768,
+    "seen": 1794547834.2959952,
+    "ast_hash": "fc2c873f10d40e41111bcac53e7810a0",
+    "semantic_hash": "fc2c873f10d40e41111bcac53e7810a0"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/FileFormat.cs": {
+    "mtime": 1791716495.3581083,
+    "seen": 1794547834.2959952,
+    "ast_hash": "bb2fdfd19a1fccc3590368c6a1e1f5dd",
+    "semantic_hash": "bb2fdfd19a1fccc3590368c6a1e1f5dd"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/FileFormatDetector.cs": {
+    "mtime": 1791716495.369753,
+    "seen": 1794547834.2959952,
+    "ast_hash": "12410fe6b58d8b726b3195042ec31e68",
+    "semantic_hash": "12410fe6b58d8b726b3195042ec31e68"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/InputGuard.cs": {
+    "mtime": 1784257851.736243,
+    "seen": 1794547834.2959952,
+    "ast_hash": "5021468f4e5f5e418bb7d91197cfd698",
+    "semantic_hash": "5021468f4e5f5e418bb7d91197cfd698"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/JpegLabelReader.cs": {
+    "mtime": 1791716495.3707907,
+    "seen": 1794547834.2959952,
+    "ast_hash": "d7777b259eec183b9c48e2d476db0616",
+    "semantic_hash": "d7777b259eec183b9c48e2d476db0616"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/LabelInfoXmlReader.cs": {
+    "mtime": 1784297282.3306825,
+    "seen": 1794547834.2959952,
+    "ast_hash": "62659d3f0fa84b755094766f6364b09f",
+    "semantic_hash": "62659d3f0fa84b755094766f6364b09f"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/LabelPropertyParser.cs": {
+    "mtime": 1784297231.339285,
+    "seen": 1794547834.2959952,
+    "ast_hash": "c712942515fd79b904792a3fa917000a",
+    "semantic_hash": "c712942515fd79b904792a3fa917000a"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/LabelReadResult.cs": {
+    "mtime": 1791716495.3762891,
+    "seen": 1794547834.2959952,
+    "ast_hash": "1dfbf090f119cbd350ba769842e01709",
+    "semantic_hash": "1dfbf090f119cbd350ba769842e01709"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/LimitedReadStream.cs": {
+    "mtime": 1784257851.7372813,
+    "seen": 1794547834.2959952,
+    "ast_hash": "f6320461cdcc69d4325e4add4f72e69b",
+    "semantic_hash": "f6320461cdcc69d4325e4add4f72e69b"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/MsgLabelReader.cs": {
+    "mtime": 1791716495.3775601,
+    "seen": 1794547834.2959952,
+    "ast_hash": "b773bbd9fad0537dfd3fd7df04dc4ed7",
+    "semantic_hash": "b773bbd9fad0537dfd3fd7df04dc4ed7"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/OpenXmlLabelReader.cs": {
+    "mtime": 1791716495.382803,
+    "seen": 1794547834.2959952,
+    "ast_hash": "103fec2d231717ab299d37ec538b8124",
+    "semantic_hash": "103fec2d231717ab299d37ec538b8124"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/PFileProtectionReader.cs": {
+    "mtime": 1784257851.7372813,
+    "seen": 1794547834.2959952,
+    "ast_hash": "f4f8b0baa1e9a365646aa6f0b1cd01ff",
+    "semantic_hash": "f4f8b0baa1e9a365646aa6f0b1cd01ff"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/PdfLabelReader.cs": {
+    "mtime": 1791716495.3843923,
+    "seen": 1794547834.2959952,
+    "ast_hash": "c6f58e5c2e53d7eed298fa2c6c7c1d79",
+    "semantic_hash": "c6f58e5c2e53d7eed298fa2c6c7c1d79"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/Pdf/PdfCrossReferenceReader.cs": {
+    "mtime": 1784260551.8307934,
+    "seen": 1794547834.2959952,
+    "ast_hash": "060ce831e08944761d1a388e51d24dc6",
+    "semantic_hash": "060ce831e08944761d1a388e51d24dc6"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/Pdf/PdfLexer.cs": {
+    "mtime": 1784257851.7372813,
+    "seen": 1794547834.2959952,
+    "ast_hash": "fce849c7f5b134b21aabd7e0f0bc6178",
+    "semantic_hash": "fce849c7f5b134b21aabd7e0f0bc6178"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/Pdf/PdfObjectResolver.cs": {
+    "mtime": 1784260566.3403547,
+    "seen": 1794547834.2959952,
+    "ast_hash": "a829d7f7ea6cd3d2c714cede27e45a5b",
+    "semantic_hash": "a829d7f7ea6cd3d2c714cede27e45a5b"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/Pdf/PdfValue.cs": {
+    "mtime": 1784257851.7389104,
+    "seen": 1794547834.2959952,
+    "ast_hash": "9d06f794b42a59e4d2f807feae0c12ec",
+    "semantic_hash": "9d06f794b42a59e4d2f807feae0c12ec"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/PngLabelReader.cs": {
+    "mtime": 1791716495.3865778,
+    "seen": 1794547834.2959952,
+    "ast_hash": "f8236a0589fcb3e000001d75ed2416d0",
+    "semantic_hash": "f8236a0589fcb3e000001d75ed2416d0"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/SafeXml.cs": {
+    "mtime": 1784257851.7394156,
+    "seen": 1794547834.2959952,
+    "ast_hash": "ac9d11d46e969cc5bb097bf49b5b6133",
+    "semantic_hash": "ac9d11d46e969cc5bb097bf49b5b6133"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/TiffLabelReader.cs": {
+    "mtime": 1791716495.3876307,
+    "seen": 1794547834.2959952,
+    "ast_hash": "6efedbac336eaa0baadae8c49c5a82e3",
+    "semantic_hash": "6efedbac336eaa0baadae8c49c5a82e3"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/XmpLabelReader.cs": {
+    "mtime": 1784298442.5815978,
+    "seen": 1794547834.2959952,
+    "ast_hash": "c2e0ab71673bf3306b0d81fdcc54325e",
+    "semantic_hash": "c2e0ab71673bf3306b0d81fdcc54325e"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Internal/XmpPacketLabelReader.cs": {
+    "mtime": 1791716495.3886874,
+    "seen": 1794547834.2959952,
+    "ast_hash": "64dfbd6e890575f617b2a84c32af5966",
+    "semantic_hash": "64dfbd6e890575f617b2a84c32af5966"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/LabelCheckOptions.cs": {
+    "mtime": 1784297025.9006746,
+    "seen": 1794547834.2959952,
+    "ast_hash": "e9d1f9902ad4dee9c37ac12adeca944a",
+    "semantic_hash": "e9d1f9902ad4dee9c37ac12adeca944a"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/LabelCheckResult.cs": {
+    "mtime": 1791716495.3902931,
+    "seen": 1794547834.2959952,
+    "ast_hash": "78824cc9abb4b79f1e15edbf08c8ac88",
+    "semantic_hash": "78824cc9abb4b79f1e15edbf08c8ac88"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/LabelDetail.cs": {
+    "mtime": 1784297003.9967363,
+    "seen": 1794547834.2959952,
+    "ast_hash": "6bec7976f2a62b24a84bcbb7cd222ea8",
+    "semantic_hash": "6bec7976f2a62b24a84bcbb7cd222ea8"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/LabelSource.cs": {
+    "mtime": 1791716495.3908195,
+    "seen": 1794547834.2959952,
+    "ast_hash": "bd5d9f82bc8fcb6717c6b320abcad93c",
+    "semantic_hash": "bd5d9f82bc8fcb6717c6b320abcad93c"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/MIPLabelCustomCheck.csproj": {
+    "mtime": 1794502925.3931854,
+    "seen": 1794547834.2959952,
+    "ast_hash": "fcd1f3a7ec1f59a96242beee4637d4d6",
+    "semantic_hash": "fcd1f3a7ec1f59a96242beee4637d4d6"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/MipLabelCheckException.cs": {
+    "mtime": 1784298856.5211606,
+    "seen": 1794547834.2959952,
+    "ast_hash": "3189be9ab9821dec9694b7fff4c8d3b6",
+    "semantic_hash": "3189be9ab9821dec9694b7fff4c8d3b6"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/MipLabelChecker.cs": {
+    "mtime": 1791716495.392399,
+    "seen": 1794547834.2959952,
+    "ast_hash": "2d6c779af52a764767f1d82dcda8dd47",
+    "semantic_hash": "2d6c779af52a764767f1d82dcda8dd47"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck/Properties/AssemblyInfo.cs": {
+    "mtime": 1784257851.74042,
+    "seen": 1794547834.2959952,
+    "ast_hash": "463ff2a1614a4176830713be60d77881",
+    "semantic_hash": "463ff2a1614a4176830713be60d77881"
+  },
+  "tests/dotnet/LdapAuthTester.Tests/AdAuthCheckerTests.cs": {
+    "mtime": 1794499262.779249,
+    "seen": 1794547834.2959952,
+    "ast_hash": "92016f7567bd62a745540449cdacbb1f",
+    "semantic_hash": "92016f7567bd62a745540449cdacbb1f"
+  },
+  "tests/dotnet/LdapAuthTester.Tests/CliOptionsAndRunnerTests.cs": {
+    "mtime": 1794499262.7797747,
+    "seen": 1794547834.2959952,
+    "ast_hash": "86ce385b97626048a5bd0fbc3b55e791",
+    "semantic_hash": "86ce385b97626048a5bd0fbc3b55e791"
+  },
+  "tests/dotnet/LdapAuthTester.Tests/LdapAuthTester.Tests.csproj": {
+    "mtime": 1794499101.223505,
+    "seen": 1794547834.2959952,
+    "ast_hash": "aa602f3c8eb4f53b01923ca88f63a341",
+    "semantic_hash": "aa602f3c8eb4f53b01923ca88f63a341"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/CliRunnerTests.cs": {
+    "mtime": 1794502861.1269116,
+    "seen": 1794547834.2959952,
+    "ast_hash": "c4c0af172f8e15ae5c3bc6d914936453",
+    "semantic_hash": "c4c0af172f8e15ae5c3bc6d914936453"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/CollectingProgress.cs": {
+    "mtime": 1784299423.337417,
+    "seen": 1794547834.2959952,
+    "ast_hash": "6a48b8b1c9d5b057ac4f98c06684300a",
+    "semantic_hash": "6a48b8b1c9d5b057ac4f98c06684300a"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/FileEntryViewModelTests.cs": {
+    "mtime": 1791716495.3934402,
+    "seen": 1794547834.2959952,
+    "ast_hash": "c3781e50a00a8ffebce32680511409fa",
+    "semantic_hash": "c3781e50a00a8ffebce32680511409fa"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/FixturePaths.cs": {
+    "mtime": 1784299423.3400304,
+    "seen": 1794547834.2959952,
+    "ast_hash": "26424f681f56acc552f4d76a0e5fc4a6",
+    "semantic_hash": "26424f681f56acc552f4d76a0e5fc4a6"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/FolderTreeNavigationTests.cs": {
+    "mtime": 1784299423.3420818,
+    "seen": 1794547834.2959952,
+    "ast_hash": "d37ad21ef1178a4bcb8b98987584cf2e",
+    "semantic_hash": "d37ad21ef1178a4bcb8b98987584cf2e"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/LabelableExtensionsTests.cs": {
+    "mtime": 1784299423.3440843,
+    "seen": 1794547834.2959952,
+    "ast_hash": "39f68b2b04a3263eb085e8cb1c75d37b",
+    "semantic_hash": "39f68b2b04a3263eb085e8cb1c75d37b"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/MIPLabelCustomCheck.Explorer.Tests.csproj": {
+    "mtime": 1794502934.6808357,
+    "seen": 1794547834.2959952,
+    "ast_hash": "00cf28bc07ed51d8bb75350491565693",
+    "semantic_hash": "00cf28bc07ed51d8bb75350491565693"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/MainViewModelOpenFileTests.cs": {
+    "mtime": 1784299423.345081,
+    "seen": 1794547834.2959952,
+    "ast_hash": "d59928ee2c92451f684995f589fd6781",
+    "semantic_hash": "d59928ee2c92451f684995f589fd6781"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/ScanSessionTests.cs": {
+    "mtime": 1784299423.3481536,
+    "seen": 1794547834.2959952,
+    "ast_hash": "8c7d451b3af5987d059f770035ac25af",
+    "semantic_hash": "8c7d451b3af5987d059f770035ac25af"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/TimedCheckerTests.cs": {
+    "mtime": 1784299423.3608487,
+    "seen": 1794547834.2959952,
+    "ast_hash": "ce74022644a5207a49806b7fcf6dc8e4",
+    "semantic_hash": "ce74022644a5207a49806b7fcf6dc8e4"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Explorer.Tests/TimedCheckerWarmupTests.cs": {
+    "mtime": 1784299423.383692,
+    "seen": 1794547834.2959952,
+    "ast_hash": "1571ea76f6d467dcf37e10a6f52bfa85",
+    "semantic_hash": "1571ea76f6d467dcf37e10a6f52bfa85"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/CompoundFileLabelReaderTests.cs": {
+    "mtime": 1791716495.394498,
+    "seen": 1794547834.2959952,
+    "ast_hash": "9723346a664ea98fefd0026f2659d014",
+    "semantic_hash": "9723346a664ea98fefd0026f2659d014"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/CompoundFileReaderTests.cs": {
+    "mtime": 1784257851.7419236,
+    "seen": 1794547834.2959952,
+    "ast_hash": "4592f0ced254da4bcc556d992bcf55bb",
+    "semantic_hash": "4592f0ced254da4bcc556d992bcf55bb"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/EmailLabelReaderTests.cs": {
+    "mtime": 1791716495.3955593,
+    "seen": 1794547834.2959952,
+    "ast_hash": "5872759c8b896b3565531447d3b6c6e7",
+    "semantic_hash": "5872759c8b896b3565531447d3b6c6e7"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/FileFormatDetectorTests.cs": {
+    "mtime": 1791716495.3966153,
+    "seen": 1794547834.2959952,
+    "ast_hash": "5822a374085f2e5a12de9b8819581408",
+    "semantic_hash": "5822a374085f2e5a12de9b8819581408"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/FixturePaths.cs": {
+    "mtime": 1784257851.7419236,
+    "seen": 1794547834.2959952,
+    "ast_hash": "ac800f550a272cea0acef41a18857b5c",
+    "semantic_hash": "ac800f550a272cea0acef41a18857b5c"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/LabelCheckResultTests.cs": {
+    "mtime": 1791716495.3976934,
+    "seen": 1794547834.2959952,
+    "ast_hash": "80e97cb52e651ffa4ed917ac5cb9b7c5",
+    "semantic_hash": "80e97cb52e651ffa4ed917ac5cb9b7c5"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/LabelDetailTests.cs": {
+    "mtime": 1784299479.2208488,
+    "seen": 1794547834.2959952,
+    "ast_hash": "50253a8c74161b6b28636afad35e50e7",
+    "semantic_hash": "50253a8c74161b6b28636afad35e50e7"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/LabelInfoXmlReaderTests.cs": {
+    "mtime": 1784257851.7429278,
+    "seen": 1794547834.2959952,
+    "ast_hash": "64e46950f2e861b1d30a4d05e2e25357",
+    "semantic_hash": "64e46950f2e861b1d30a4d05e2e25357"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/LabelPropertyParserTests.cs": {
+    "mtime": 1784257851.7429278,
+    "seen": 1794547834.2959952,
+    "ast_hash": "9ff1243391604849ba4466b26a0ef328",
+    "semantic_hash": "9ff1243391604849ba4466b26a0ef328"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/LimitedReadStreamTests.cs": {
+    "mtime": 1784257851.7429278,
+    "seen": 1794547834.2959952,
+    "ast_hash": "2d7126254df24aed42308ba140dc0479",
+    "semantic_hash": "2d7126254df24aed42308ba140dc0479"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/MIPLabelCustomCheck.Tests.csproj": {
+    "mtime": 1794502932.2953188,
+    "seen": 1794547834.2959952,
+    "ast_hash": "53d26be4ddf2b3820659664dd507df2e",
+    "semantic_hash": "53d26be4ddf2b3820659664dd507df2e"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/MipLabelCheckerTests.cs": {
+    "mtime": 1791716495.3987446,
+    "seen": 1794547834.2959952,
+    "ast_hash": "14a0092a945661943589d550cfafb4cd",
+    "semantic_hash": "14a0092a945661943589d550cfafb4cd"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/OlePropertySetReaderTests.cs": {
+    "mtime": 1784257851.7439287,
+    "seen": 1794547834.2959952,
+    "ast_hash": "0338fd9a7502e105854b3609d92a475c",
+    "semantic_hash": "0338fd9a7502e105854b3609d92a475c"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/OpenXmlLabelReaderTests.cs": {
+    "mtime": 1784257851.7439287,
+    "seen": 1794547834.2959952,
+    "ast_hash": "a8991c16a0743bd94ed83bf1edc1deb0",
+    "semantic_hash": "a8991c16a0743bd94ed83bf1edc1deb0"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/PdfCrossReferenceReaderTests.cs": {
+    "mtime": 1784257851.7439287,
+    "seen": 1794547834.2959952,
+    "ast_hash": "b9306909357658e1d2e1f1c495782533",
+    "semantic_hash": "b9306909357658e1d2e1f1c495782533"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/PdfLabelReaderTests.cs": {
+    "mtime": 1791716495.399297,
+    "seen": 1794547834.2959952,
+    "ast_hash": "51745d67d66144aa60311e3d5ca0d25f",
+    "semantic_hash": "51745d67d66144aa60311e3d5ca0d25f"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/PdfLexerTests.cs": {
+    "mtime": 1784257851.744929,
+    "seen": 1794547834.2959952,
+    "ast_hash": "c9eaba4032ad86c406f3e8e3cb81b4e6",
+    "semantic_hash": "c9eaba4032ad86c406f3e8e3cb81b4e6"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/PngLabelReaderTests.cs": {
+    "mtime": 1791716495.400812,
+    "seen": 1794547834.2959952,
+    "ast_hash": "47d8dc2966830a9ab549592d04862ce3",
+    "semantic_hash": "47d8dc2966830a9ab549592d04862ce3"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/SafeXmlTests.cs": {
+    "mtime": 1784257851.744929,
+    "seen": 1794547834.2959952,
+    "ast_hash": "8368746946b9fa410eb4ea1b3394fd17",
+    "semantic_hash": "8368746946b9fa410eb4ea1b3394fd17"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/SecurityLimitTests.cs": {
+    "mtime": 1794503055.8679838,
+    "seen": 1794547834.2959952,
+    "ast_hash": "3ddbc95b2b26437175b5a72282e9f5a3",
+    "semantic_hash": "3ddbc95b2b26437175b5a72282e9f5a3"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/TestData/CompoundFileFixture.cs": {
+    "mtime": 1784257851.7459285,
+    "seen": 1794547834.2959952,
+    "ast_hash": "d7137511d265b10a6de59f3f5fb4cc3d",
+    "semantic_hash": "d7137511d265b10a6de59f3f5fb4cc3d"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/TestData/FakeCompoundFileView.cs": {
+    "mtime": 1784257851.7459285,
+    "seen": 1794547834.2959952,
+    "ast_hash": "7de65624a36fc3cab3785d35e010ef0a",
+    "semantic_hash": "7de65624a36fc3cab3785d35e010ef0a"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/TestData/MsgFixture.cs": {
+    "mtime": 1791716495.4019973,
+    "seen": 1794547834.2959952,
+    "ast_hash": "035ed2fef3245affce91a90fb8dbd939",
+    "semantic_hash": "035ed2fef3245affce91a90fb8dbd939"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/TestData/OpenXmlFixture.cs": {
+    "mtime": 1784257851.7459285,
+    "seen": 1794547834.2959952,
+    "ast_hash": "379e62ce8deb2d5bf9224397b0779d7d",
+    "semantic_hash": "379e62ce8deb2d5bf9224397b0779d7d"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/TestData/PdfFixture.cs": {
+    "mtime": 1791716495.4030173,
+    "seen": 1794547834.2959952,
+    "ast_hash": "d7e87848963188823cbc0d0aac2e26e7",
+    "semantic_hash": "d7e87848963188823cbc0d0aac2e26e7"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/TestData/PngFixture.cs": {
+    "mtime": 1784257851.7469516,
+    "seen": 1794547834.2959952,
+    "ast_hash": "935f2f239b227125333d80b8b870e139",
+    "semantic_hash": "935f2f239b227125333d80b8b870e139"
+  },
+  "tests/dotnet/MIPLabelCustomCheck.Tests/XmpLabelReaderTests.cs": {
+    "mtime": 1784257851.7469516,
+    "seen": 1794547834.2959952,
+    "ast_hash": "2c95ed0b3cc91e5275b581d6672ab0ee",
+    "semantic_hash": "2c95ed0b3cc91e5275b581d6672ab0ee"
+  },
+  "tests/powershell/PSJobScheduler.Tests.ps1": {
+    "mtime": 1794465509.2043388,
+    "seen": 1794547834.2959952,
+    "ast_hash": "9353bfa49fa103c2539f40dd8cd3b568",
+    "semantic_hash": "9353bfa49fa103c2539f40dd8cd3b568"
+  },
+  "tests/powershell/Remove-ExpiredIISCertificate.Tests.ps1": {
+    "mtime": 1794463924.6525998,
+    "seen": 1794547834.2959952,
+    "ast_hash": "208cb0fe13ab26d87ce6cac8647dffa5",
+    "semantic_hash": "208cb0fe13ab26d87ce6cac8647dffa5"
+  },
+  ".agents/skills/agent-handoff-manager/SKILL.md": {
+    "mtime": 1794547066.9513798,
+    "seen": 1794547834.2959952,
+    "ast_hash": "421c55c66491b6980817e9b74a96d714",
+    "semantic_hash": "421c55c66491b6980817e9b74a96d714"
+  },
+  ".agents/skills/caveman/README.md": {
+    "mtime": 1794500677.2837756,
+    "seen": 1794547834.2959952,
+    "ast_hash": "c6565f2f610ce9f2bab13b09009d8c2b",
+    "semantic_hash": "c6565f2f610ce9f2bab13b09009d8c2b"
+  },
+  ".agents/skills/caveman/SKILL.md": {
+    "mtime": 1794500677.2842958,
+    "seen": 1794547834.2959952,
+    "ast_hash": "56b2f9db32197569a4a53b69bd8e859d",
+    "semantic_hash": "56b2f9db32197569a4a53b69bd8e859d"
+  },
+  ".agents/skills/html-plan/SKILL.md": {
+    "mtime": 1794498502.1040711,
+    "seen": 1794547834.2959952,
+    "ast_hash": "4378c5eb18e5202e3f1e0f6eb489c144",
+    "semantic_hash": "4378c5eb18e5202e3f1e0f6eb489c144"
+  },
+  ".agents/skills/html-plan/examples/scheduled-send.html": {
+    "mtime": 1794498502.1040711,
+    "seen": 1794547834.2959952,
+    "ast_hash": "ad1e1f858a5d66c7220bef824a89d0a0",
+    "semantic_hash": "ad1e1f858a5d66c7220bef824a89d0a0"
+  },
+  ".agents/skills/html-plan/references/blocks.md": {
+    "mtime": 1794498502.105579,
+    "seen": 1794547834.2959952,
+    "ast_hash": "59d2372a92bafdc49585c1990ec41424",
+    "semantic_hash": "59d2372a92bafdc49585c1990ec41424"
+  },
+  ".agents/skills/unslop/SKILL.md": {
+    "mtime": 1794498499.1427178,
+    "seen": 1794547834.2959952,
+    "ast_hash": "3dcf068f1ac7925b8a45e8a17821f88a",
+    "semantic_hash": "3dcf068f1ac7925b8a45e8a17821f88a"
+  },
+  ".agents/skills/unslop/references/effects.md": {
+    "mtime": 1794498499.1437335,
+    "seen": 1794547834.2959952,
+    "ast_hash": "9bf23b1815fec28077eaa069ea4dbfa3",
+    "semantic_hash": "9bf23b1815fec28077eaa069ea4dbfa3"
+  },
+  ".agents/skills/unslop/references/refs.md": {
+    "mtime": 1794498499.1437335,
+    "seen": 1794547834.2959952,
+    "ast_hash": "eb4ad2f0cd3df89eb56a723802d74744",
+    "semantic_hash": "eb4ad2f0cd3df89eb56a723802d74744"
+  },
+  ".agents/skills/unslop/references/signs.md": {
+    "mtime": 1794498499.1493697,
+    "seen": 1794547834.2959952,
+    "ast_hash": "4060164316cc00541f3115488f9f450f",
+    "semantic_hash": "4060164316cc00541f3115488f9f450f"
+  },
+  ".agents/skills/unslop/references/tokens.md": {
+    "mtime": 1794498499.1503694,
+    "seen": 1794547834.2959952,
+    "ast_hash": "aee32a4cd5181d4b5b7d67901b10c746",
+    "semantic_hash": "aee32a4cd5181d4b5b7d67901b10c746"
+  },
+  ".agents/skills/unslop/references/visuals.md": {
+    "mtime": 1794498499.1503694,
+    "seen": 1794547834.2959952,
+    "ast_hash": "5f5e034bb8cfc2d3aa7aab8b13e62bc5",
+    "semantic_hash": "5f5e034bb8cfc2d3aa7aab8b13e62bc5"
+  },
+  ".github/copilot-instructions.md": {
+    "mtime": 1794547409.8425126,
+    "seen": 1794547834.2959952,
+    "ast_hash": "905dadbf8077deed50606d2880a5d9ac",
+    "semantic_hash": "905dadbf8077deed50606d2880a5d9ac"
+  },
+  ".gitmessage.txt": {
+    "mtime": 1794461703.6746266,
+    "seen": 1794547834.2959952,
+    "ast_hash": "502c1ce734276509ecc7ee563645703a",
+    "semantic_hash": "502c1ce734276509ecc7ee563645703a"
+  },
+  "AGENTS.md": {
+    "mtime": 1794502158.830263,
+    "seen": 1794547834.2959952,
+    "ast_hash": "a2df42ce483327be306b625e0956122e",
+    "semantic_hash": "a2df42ce483327be306b625e0956122e"
+  },
+  "CLAUDE.md": {
+    "mtime": 1794463134.8994408,
+    "seen": 1794547834.2959952,
+    "ast_hash": "69518669a0f751edb6bd6abaf51cf62f",
+    "semantic_hash": "69518669a0f751edb6bd6abaf51cf62f"
+  },
+  "GEMINI.md": {
+    "mtime": 1794463137.6933713,
+    "seen": 1794547834.2959952,
+    "ast_hash": "e51fb53edbc59f31de0fe6cfea9cfc3d",
+    "semantic_hash": "e51fb53edbc59f31de0fe6cfea9cfc3d"
+  },
+  "INTENT.md": {
+    "mtime": 1794502153.8391352,
+    "seen": 1794547834.2959952,
+    "ast_hash": "caf5b1fb43dda06d65741e271445f28f",
+    "semantic_hash": "caf5b1fb43dda06d65741e271445f28f"
+  },
+  "PLAN.md": {
+    "mtime": 1794463129.8839202,
+    "seen": 1794547834.2959952,
+    "ast_hash": "5d98f543b563177401221410c45bdb9d",
+    "semantic_hash": "5d98f543b563177401221410c45bdb9d"
+  },
+  "README.md": {
+    "mtime": 1794503004.8382337,
+    "seen": 1794547834.2959952,
+    "ast_hash": "64f628ce0a2a9b017bb6638b835fc3c0",
+    "semantic_hash": "64f628ce0a2a9b017bb6638b835fc3c0"
+  },
+  "REVIEW.md": {
+    "mtime": 1794463132.090463,
+    "seen": 1794547834.2959952,
+    "ast_hash": "36a083397c8b569e1ad167e830ca981a",
+    "semantic_hash": "36a083397c8b569e1ad167e830ca981a"
+  },
+  "SPEC.md": {
+    "mtime": 1794502156.036608,
+    "seen": 1794547834.2959952,
+    "ast_hash": "e47a29d19c77402d1e4689b808cc8da8",
+    "semantic_hash": "e47a29d19c77402d1e4689b808cc8da8"
+  },
+  "docs/templates/TOOL_BLUEPRINT.template.md": {
+    "mtime": 1794463142.5986617,
+    "seen": 1794547834.2959952,
+    "ast_hash": "ee7928f0de5c4856751a9675453d3a1f",
+    "semantic_hash": "ee7928f0de5c4856751a9675453d3a1f"
+  },
+  "scripts/iis/Remove-ExpiredIISCertificate/AGENTS.md": {
+    "mtime": 1794463825.1723948,
+    "seen": 1794547834.2959952,
+    "ast_hash": "fb7f2b0de93462ceccf4412bc68ac765",
+    "semantic_hash": "fb7f2b0de93462ceccf4412bc68ac765"
+  },
+  "scripts/iis/Remove-ExpiredIISCertificate/INTENT.md": {
+    "mtime": 1794463827.118671,
+    "seen": 1794547834.2959952,
+    "ast_hash": "62d82d454cf63bfdc306f4d3eacac666",
+    "semantic_hash": "62d82d454cf63bfdc306f4d3eacac666"
+  },
+  "scripts/iis/Remove-ExpiredIISCertificate/PLAN.md": {
+    "mtime": 1794463830.026157,
+    "seen": 1794547834.2959952,
+    "ast_hash": "24bab6e39838edf84b4a4326cb240882",
+    "semantic_hash": "24bab6e39838edf84b4a4326cb240882"
+  },
+  "scripts/iis/Remove-ExpiredIISCertificate/README.md": {
+    "mtime": 1794463823.6519132,
+    "seen": 1794547834.2959952,
+    "ast_hash": "540003ad1be6484babc52d5b2e6bc5c6",
+    "semantic_hash": "540003ad1be6484babc52d5b2e6bc5c6"
+  },
+  "scripts/iis/Remove-ExpiredIISCertificate/REVIEW.md": {
+    "mtime": 1794463831.4566405,
+    "seen": 1794547834.2959952,
+    "ast_hash": "2159be4d68d15a2a574e1f86cc9bf38b",
+    "semantic_hash": "2159be4d68d15a2a574e1f86cc9bf38b"
+  },
+  "scripts/iis/Remove-ExpiredIISCertificate/SPEC.md": {
+    "mtime": 1794463828.5574648,
+    "seen": 1794547834.2959952,
+    "ast_hash": "66d411426a653ea9e2c95bb4ad199b7c",
+    "semantic_hash": "66d411426a653ea9e2c95bb4ad199b7c"
+  },
+  "scripts/modules/README.md": {
+    "mtime": 1794462641.4443913,
+    "seen": 1794547834.2959952,
+    "ast_hash": "f6d2aa6e9430711cc24ad95ff7994ed6",
+    "semantic_hash": "f6d2aa6e9430711cc24ad95ff7994ed6"
+  },
+  "scripts/scheduler/PSJobScheduler/AGENTS.md": {
+    "mtime": 1794465245.7896202,
+    "seen": 1794547834.2959952,
+    "ast_hash": "b715cd14445a3d4c0896ba0981094974",
+    "semantic_hash": "b715cd14445a3d4c0896ba0981094974"
+  },
+  "scripts/scheduler/PSJobScheduler/INTENT.md": {
+    "mtime": 1794465248.2013183,
+    "seen": 1794547834.2959952,
+    "ast_hash": "b940ca816d66ba8172e96222476bdcb3",
+    "semantic_hash": "b940ca816d66ba8172e96222476bdcb3"
+  },
+  "scripts/scheduler/PSJobScheduler/PLAN.md": {
+    "mtime": 1794465251.8599823,
+    "seen": 1794547834.2959952,
+    "ast_hash": "a2f7c8f06da61b507ea2d3ac8a526973",
+    "semantic_hash": "a2f7c8f06da61b507ea2d3ac8a526973"
+  },
+  "scripts/scheduler/PSJobScheduler/README.md": {
+    "mtime": 1794465243.7777514,
+    "seen": 1794547834.2959952,
+    "ast_hash": "3546c802e64bd32f26d19d9d0a109038",
+    "semantic_hash": "3546c802e64bd32f26d19d9d0a109038"
+  },
+  "scripts/scheduler/PSJobScheduler/REVIEW.md": {
+    "mtime": 1794465253.759358,
+    "seen": 1794547834.2959952,
+    "ast_hash": "7fbc16c2bbf26e0b00e0481c87b01f2e",
+    "semantic_hash": "7fbc16c2bbf26e0b00e0481c87b01f2e"
+  },
+  "scripts/scheduler/PSJobScheduler/SPEC.md": {
+    "mtime": 1794465250.0119786,
+    "seen": 1794547834.2959952,
+    "ast_hash": "cd3054723c7c318ad496d87c95089c7f",
+    "semantic_hash": "cd3054723c7c318ad496d87c95089c7f"
+  },
+  "src/LdapAuthTester/AGENTS.md": {
+    "mtime": 1794501614.3806393,
+    "seen": 1794547834.2959952,
+    "ast_hash": "9a9a723caced8b98c9e262c681aaa135",
+    "semantic_hash": "9a9a723caced8b98c9e262c681aaa135"
+  },
+  "src/LdapAuthTester/INTENT.md": {
+    "mtime": 1794498831.5107834,
+    "seen": 1794547834.2959952,
+    "ast_hash": "672ca79cabc09f2278f905fe8906d71c",
+    "semantic_hash": "672ca79cabc09f2278f905fe8906d71c"
+  },
+  "src/LdapAuthTester/PLAN.md": {
+    "mtime": 1794499317.9509044,
+    "seen": 1794547834.2959952,
+    "ast_hash": "955498c194954b620c2c1cadd8ce567e",
+    "semantic_hash": "955498c194954b620c2c1cadd8ce567e"
+  },
+  "src/LdapAuthTester/README.md": {
+    "mtime": 1794501612.2651248,
+    "seen": 1794547834.2959952,
+    "ast_hash": "a419909ec4f8d76f61b9f6200a8d964f",
+    "semantic_hash": "a419909ec4f8d76f61b9f6200a8d964f"
+  },
+  "src/LdapAuthTester/REVIEW.md": {
+    "mtime": 1794499320.057631,
+    "seen": 1794547834.2959952,
+    "ast_hash": "10493f16a114dd7c1dac287369ee02f1",
+    "semantic_hash": "10493f16a114dd7c1dac287369ee02f1"
+  },
+  "src/LdapAuthTester/SPEC.md": {
+    "mtime": 1794499291.4930947,
+    "seen": 1794547834.2959952,
+    "ast_hash": "710b377dbabd979e61b572af828fedc6",
+    "semantic_hash": "710b377dbabd979e61b572af828fedc6"
+  },
+  "src/MIPLabelCustomCheck/AGENTS.md": {
+    "mtime": 1794502627.8375435,
+    "seen": 1794547834.2959952,
+    "ast_hash": "12834a1e690ac9504c45c92ecd3e0083",
+    "semantic_hash": "12834a1e690ac9504c45c92ecd3e0083"
+  },
+  "src/MIPLabelCustomCheck/INTENT.md": {
+    "mtime": 1794502621.865865,
+    "seen": 1794547834.2959952,
+    "ast_hash": "32379a01f462310e1201affc6a5fad42",
+    "semantic_hash": "32379a01f462310e1201affc6a5fad42"
+  },
+  "src/MIPLabelCustomCheck/MIPLabelCustomCheck.Benchmarks/README.md": {
+    "mtime": 1784257851.7322438,
+    "seen": 1794547834.2959952,
+    "ast_hash": "1115aa2a67f3c11fb7cb59bb079f6df3",
+    "semantic_hash": "1115aa2a67f3c11fb7cb59bb079f6df3"
+  },
+  "src/MIPLabelCustomCheck/PLAN.md": {
+    "mtime": 1794503006.8373592,
+    "seen": 1794547834.2959952,
+    "ast_hash": "752db5ffe4a8417477c383cf1bbf4efd",
+    "semantic_hash": "752db5ffe4a8417477c383cf1bbf4efd"
+  },
+  "src/MIPLabelCustomCheck/README.md": {
+    "mtime": 1794502630.0553913,
+    "seen": 1794547834.2959952,
+    "ast_hash": "bfe25e5c00d4066a6804352d610299f0",
+    "semantic_hash": "bfe25e5c00d4066a6804352d610299f0"
+  },
+  "src/MIPLabelCustomCheck/REVIEW.md": {
+    "mtime": 1794503008.1286087,
+    "seen": 1794547834.2959952,
+    "ast_hash": "a1351c1ab3e23b353bc604dfc25a33e1",
+    "semantic_hash": "a1351c1ab3e23b353bc604dfc25a33e1"
+  },
+  "src/MIPLabelCustomCheck/SPEC.md": {
+    "mtime": 1794502623.8383613,
+    "seen": 1794547834.2959952,
+    "ast_hash": "99b62f22cb15e46ca5dcc6436e7d12bf",
+    "semantic_hash": "99b62f22cb15e46ca5dcc6436e7d12bf"
+  },
+  "src/README.md": {
+    "mtime": 1794462643.8041713,
+    "seen": 1794547834.2959952,
+    "ast_hash": "df0187e77800c3d814f50a84ad61b240",
+    "semantic_hash": "df0187e77800c3d814f50a84ad61b240"
+  },
+  "tests/dotnet/README.md": {
+    "mtime": 1794462647.9221706,
+    "seen": 1794547834.2959952,
+    "ast_hash": "6dc75d9d847ba0ab48dfe980edb6d231",
+    "semantic_hash": "6dc75d9d847ba0ab48dfe980edb6d231"
+  },
+  "tests/powershell/README.md": {
+    "mtime": 1794462645.6414409,
+    "seen": 1794547834.2959952,
+    "ast_hash": "54a95e5c1caf1493182363080106c883",
+    "semantic_hash": "54a95e5c1caf1493182363080106c883"
+  },
+  "src/MIPLabelCustomCheck/Fixtures/MIP Label.pdf": {
+    "mtime": 1784257851.7279162,
+    "seen": 1794547834.2959952,
+    "ast_hash": "c846b3769cbb721fb8273da46dfd8a93",
+    "semantic_hash": "c846b3769cbb721fb8273da46dfd8a93"
+  },
+  ".agents/skills/unslop/references/refs/beacon-engraving.webp": {
+    "mtime": 1794498499.146265,
+    "seen": 1794547834.2959952,
+    "ast_hash": "ac6688bae1e993ff49ddaa889b59f973",
+    "semantic_hash": "ac6688bae1e993ff49ddaa889b59f973"
+  },
+  ".agents/skills/unslop/references/refs/meadow-3d.webp": {
+    "mtime": 1794498499.1472704,
+    "seen": 1794547834.2959952,
+    "ast_hash": "c61db8a0d26de70ad03bc508979fd381",
+    "semantic_hash": "c61db8a0d26de70ad03bc508979fd381"
+  },
+  ".agents/skills/unslop/references/refs/story-dashboard-frames.webp": {
+    "mtime": 1794498499.148272,
+    "seen": 1794547834.2959952,
+    "ast_hash": "f85a4421e03df9ecdb96acd5f54c509b",
+    "semantic_hash": "f85a4421e03df9ecdb96acd5f54c509b"
+  },
+  ".agents/skills/unslop/references/refs/unslop-dashboard-after.webp": {
+    "mtime": 1794498499.148272,
+    "seen": 1794547834.2959952,
+    "ast_hash": "7d6a37ef7c3d47ab0146921153e104d7",
+    "semantic_hash": "7d6a37ef7c3d47ab0146921153e104d7"
+  },
+  ".agents/skills/unslop/references/refs/unslop-hero-after.webp": {
+    "mtime": 1794498499.1493697,
+    "seen": 1794547834.2959952,
+    "ast_hash": "455f26af08824bfb90641eeda7b7a0ce",
+    "semantic_hash": "455f26af08824bfb90641eeda7b7a0ce"
+  },
+  "src/MIPLabelCustomCheck/Fixtures/MIP Label.png": {
+    "mtime": 1784257851.7279162,
+    "seen": 1794547834.2959952,
+    "ast_hash": "666f6fb0867321df6a7680811e22a0b3",
+    "semantic_hash": "666f6fb0867321df6a7680811e22a0b3"
+  }
+}
